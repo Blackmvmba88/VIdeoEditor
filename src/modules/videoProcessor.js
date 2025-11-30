@@ -84,7 +84,7 @@ class VideoProcessor {
     const listFilePath = path.join(this.tempDir, listFileName);
 
     const fileListContent = inputPaths
-      .map(p => `file '${p.replace(/'/g, "'\\''")}'`)
+      .map(p => `file '${p.replace(/'/g, '\'\\\'\'')}'`)
       .join('\n');
 
     fs.writeFileSync(listFilePath, fileListContent, 'utf8');

@@ -253,40 +253,40 @@ class ErrorHandler {
     const suggestions = [];
 
     switch (error.code) {
-      case ErrorCodes.FILE_NOT_FOUND:
-        suggestions.push('Check if the file path is correct');
-        suggestions.push('Ensure the file has not been moved or deleted');
-        break;
+    case ErrorCodes.FILE_NOT_FOUND:
+      suggestions.push('Check if the file path is correct');
+      suggestions.push('Ensure the file has not been moved or deleted');
+      break;
 
-      case ErrorCodes.FILE_PERMISSION_DENIED:
-        suggestions.push('Run the application with administrator privileges');
-        suggestions.push('Check file and folder permissions');
-        break;
+    case ErrorCodes.FILE_PERMISSION_DENIED:
+      suggestions.push('Run the application with administrator privileges');
+      suggestions.push('Check file and folder permissions');
+      break;
 
-      case ErrorCodes.FFMPEG_NOT_FOUND:
-        suggestions.push('Install FFmpeg from https://ffmpeg.org');
-        suggestions.push('Add FFmpeg to your system PATH');
-        break;
+    case ErrorCodes.FFMPEG_NOT_FOUND:
+      suggestions.push('Install FFmpeg from https://ffmpeg.org');
+      suggestions.push('Add FFmpeg to your system PATH');
+      break;
 
-      case ErrorCodes.FILE_INVALID_FORMAT:
-        suggestions.push('Convert the file to a supported format (MP4, MOV, AVI)');
-        suggestions.push('Check if the file is corrupted');
-        break;
+    case ErrorCodes.FILE_INVALID_FORMAT:
+      suggestions.push('Convert the file to a supported format (MP4, MOV, AVI)');
+      suggestions.push('Check if the file is corrupted');
+      break;
 
-      case ErrorCodes.DISK_FULL:
-        suggestions.push('Free up disk space');
-        suggestions.push('Choose a different output location');
-        break;
+    case ErrorCodes.DISK_FULL:
+      suggestions.push('Free up disk space');
+      suggestions.push('Choose a different output location');
+      break;
 
-      case ErrorCodes.OUT_OF_MEMORY:
-        suggestions.push('Close other applications');
-        suggestions.push('Restart the application');
-        suggestions.push('Process smaller files');
-        break;
+    case ErrorCodes.OUT_OF_MEMORY:
+      suggestions.push('Close other applications');
+      suggestions.push('Restart the application');
+      suggestions.push('Process smaller files');
+      break;
 
-      default:
-        suggestions.push('Try again with different settings');
-        suggestions.push('Restart the application');
+    default:
+      suggestions.push('Try again with different settings');
+      suggestions.push('Restart the application');
     }
 
     return suggestions;

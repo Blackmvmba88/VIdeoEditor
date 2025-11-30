@@ -33,9 +33,10 @@ describe('FileValidator', () => {
     });
 
     it('should reject unsupported extension', async () => {
-      // Create a temp file with unsupported extension
+      // Create a temp file with unsupported extension (large enough to pass size check)
       const tempFile = path.join(require('os').tmpdir(), 'test.xyz');
-      fs.writeFileSync(tempFile, 'test content');
+      const content = Buffer.alloc(2048, 'x');
+      fs.writeFileSync(tempFile, content);
 
       try {
         const result = await validator.validateFile(tempFile);

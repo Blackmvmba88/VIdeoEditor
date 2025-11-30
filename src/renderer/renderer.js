@@ -12,7 +12,7 @@ let selectedClip = null;
 let selectedPreset = 'youtube1080p';
 let availablePresets = {};
 let isPlaying = false;
-let currentSection = 'edit';
+let currentSection = 'edit'; // eslint-disable-line no-unused-vars
 let renderStartTime = null;
 
 // DOM Elements
@@ -569,7 +569,7 @@ function zoomTimeline(direction) {
 /**
  * Handle zoom slider
  */
-function handleZoomSlider(e) {
+function handleZoomSlider(_e) {
   // Apply zoom effect based on value
 }
 

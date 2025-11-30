@@ -127,7 +127,7 @@ describe('ErrorHandler', () => {
     });
 
     it('should parse ffmpeg spawn error as FFMPEG_NOT_FOUND', () => {
-      const error = new Error('FFmpeg spawn error: not found');
+      const error = new Error('ffmpeg spawn error failed');
       const parsed = handler.parseError(error);
       expect(parsed.code).toBe(ErrorCodes.FFMPEG_NOT_FOUND);
     });

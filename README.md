@@ -1,2 +1,165 @@
-# VIdeoEditor
-Edicion de video con IA
+# 🐍 BlackMamba Studio
+
+**Professional Cross-Platform Video Editor**
+
+A cinematic video editing application built with Electron and Node.js, featuring FFmpeg integration for professional video processing.
+
+![BlackMamba Studio](https://img.shields.io/badge/BlackMamba-Studio-00d4ff?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjMDBkNGZmIiBkPSJNNTAgNSBDMjUgNSAxMCAyNSAxMCA0NSBDMTAgNTUgMTUgNjUgMjUgNzAgTDIwIDkwIEMyMCA5NSAyNSA5OCAzMCA5NSBMNTAgODAgTDcwIDk1IEM3NSA5OCA4MCA5NSA4MCA5MCBMNSA3MCBDODUgNjUgOTAgNTUgOTAgNDUgQzkwIDI1IDc1IDUgNTAgNSBaIE0zNSA0MCBDMzggNDAgNDAgNDIgNDAgNDUgQzQwIDQ4IDM4IDUwIDM1IDUwIEMzMiA1MCAzMCA0OCAzMCA0NSBDM Agog== MCAzMiA0MCAzNSA0MCBaIE02NSA0MCBDNjggNDAgNzAgNDIgNzAgNDUgQzcwIDQ4IDY4IDUwIDY1IDUwIEM2MiA1MCA2MCA0OCA2MCA0NSBDNjAgNDIgNjIgNDAgNjUgNDAgWiIvPjwvc3ZnPg==)
+
+## ✨ Features
+
+### Video Editing
+- **Join Clips** - Combine multiple video clips into one seamless video
+- **Cut/Trim** - Precisely trim videos with frame-accurate controls
+- **Reorder** - Drag and drop clips to arrange your timeline
+- **Format Detection** - Automatic detection of video formats and codecs
+
+### Professional Interface
+- **Cinematic Dark Theme** - DaVinci Resolve-inspired UI with electric blue and quantum purple accents
+- **Timeline with Thumbnails** - Visual timeline for easy clip management
+- **Preview Window** - Real-time preview with timecode overlay
+- **Properties Panel** - Transform, scale, and rotation controls
+
+### Export Options
+- **Platform Presets** - Optimized settings for YouTube, Instagram, TikTok, Twitter
+- **Quality Presets** - From web-optimized to professional 4K
+- **Custom Settings** - Full control over codec, bitrate, resolution, and more
+- **Progress Tracking** - Cinematic progress modal with ETA
+
+### Technical Features
+- **FFmpeg Integration** - Full FFmpeg support for video processing
+- **File Validation** - Comprehensive input validation and error handling
+- **Cross-Platform** - Works on Windows and macOS
+- **Modular Architecture** - Clean, maintainable codebase
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **FFmpeg** (must be installed and in PATH)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Blackmvmba88/VIdeoEditor.git
+cd VIdeoEditor
+
+# Install dependencies
+npm install
+
+# Start the application
+npm start
+```
+
+### Development
+
+```bash
+# Run in development mode
+npm start
+
+# Lint code
+npm run lint
+
+# Run tests
+npm test
+```
+
+## 📦 Building Installers
+
+### Windows (.exe)
+
+```bash
+# Using npm
+npm run build:win
+
+# Or using the script
+./scripts/build-win.sh      # Linux/macOS
+scripts\build-win.bat       # Windows
+```
+
+### macOS (.dmg)
+
+```bash
+# Using npm
+npm run build:mac
+
+# Or using the script
+./scripts/build-mac.sh
+```
+
+Build outputs are saved to the `dist/` directory.
+
+## 🎨 Export Presets
+
+| Preset | Resolution | Use Case |
+|--------|------------|----------|
+| YouTube 1080p | 1920x1080 | Standard YouTube uploads |
+| YouTube 4K | 3840x2160 | High-quality YouTube content |
+| Instagram | 1080x1080 | Instagram feed posts |
+| TikTok | 1080x1920 | TikTok vertical videos |
+| Twitter | 1280x720 | Twitter video posts |
+| High Quality | Source | Professional archival |
+
+## 🛠️ Project Structure
+
+```
+blackmamba-studio/
+├── src/
+│   ├── main/           # Electron main process
+│   │   ├── main.js     # Application entry point
+│   │   └── preload.js  # Preload script for security
+│   ├── renderer/       # Frontend UI
+│   │   ├── index.html  # Main HTML
+│   │   ├── styles.css  # Cinematic styling
+│   │   └── renderer.js # UI logic
+│   ├── modules/        # Core business logic
+│   │   ├── ffmpegWrapper.js    # FFmpeg integration
+│   │   ├── videoProcessor.js   # Video operations
+│   │   ├── formatDetector.js   # Format detection
+│   │   ├── fileValidator.js    # Input validation
+│   │   ├── exportPresets.js    # Export configurations
+│   │   ├── exportRenderer.js   # Export handling
+│   │   └── errorHandler.js     # Error management
+│   └── presets/        # Export preset definitions
+├── scripts/            # Build scripts
+├── assets/             # Application icons
+└── package.json        # Project configuration
+```
+
+## 🎬 Usage
+
+1. **Import Media** - Drag and drop video files or click to browse
+2. **Arrange Timeline** - Drag clips to reorder them
+3. **Edit Clips** - Use the properties panel to trim and adjust
+4. **Select Preset** - Choose an export preset or customize settings
+5. **Export** - Click "Export Masterpiece" and watch the magic happen
+
+## 🔧 Supported Formats
+
+### Video
+- MP4, MOV, AVI, MKV, WebM, FLV
+- MPEG, 3GP, TS, M2TS, VOB, OGV
+
+### Audio
+- MP3, AAC, WAV, FLAC, OGG, M4A
+- WMA, OPUS, AIFF, APE
+
+### Codecs
+- H.264, H.265/HEVC, VP8, VP9, AV1
+- ProRes, DNxHD, MPEG-2, MPEG-4
+
+## 📝 License
+
+MIT License - feel free to use this project for your own video editing needs.
+
+## 🙏 Acknowledgments
+
+- FFmpeg team for the amazing video processing library
+- Electron team for the cross-platform framework
+- DaVinci Resolve for UI inspiration
+
+---
+
+**Made with 💜 by the BlackMamba Team**

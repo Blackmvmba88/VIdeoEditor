@@ -12,6 +12,11 @@ const ExportPresets = require('./exportPresets');
 const FFmpegWrapper = require('./ffmpegWrapper');
 const { v4: uuidv4 } = require('uuid');
 
+// Processing time estimation multipliers (seconds per second of video)
+const ANALYSIS_TIME_MULTIPLIER = 0.1;    // Analysis takes ~10% of video duration
+const CUTTING_TIME_MULTIPLIER = 0.2;     // Cutting takes ~20% of video duration
+const JOINING_TIME_MULTIPLIER = 0.3;     // Joining takes ~30% of video duration
+
 class AutoEditor {
   constructor() {
     this.videoProcessor = new VideoProcessor();
@@ -331,9 +336,9 @@ class AutoEditor {
    */
   estimateProcessingTime(videoDuration) {
     // Rough estimates based on typical processing speeds
-    const analysisTime = Math.ceil(videoDuration * 0.1);
-    const cuttingTime = Math.ceil(videoDuration * 0.2);
-    const joiningTime = Math.ceil(videoDuration * 0.3);
+    const analysisTime = Math.ceil(videoDuration * ANALYSIS_TIME_MULTIPLIER);
+    const cuttingTime = Math.ceil(videoDuration * CUTTING_TIME_MULTIPLIER);
+    const joiningTime = Math.ceil(videoDuration * JOINING_TIME_MULTIPLIER);
     const totalTime = analysisTime + cuttingTime + joiningTime;
 
     return {

@@ -9,6 +9,12 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
+// Configuration constants
+const FALLBACK_SCENE_INTERVAL = 5;       // Seconds between estimated scene changes
+const MAX_FALLBACK_SCENES = 20;          // Maximum number of fallback scene changes
+const FALLBACK_AUDIO_INTERVAL = 10;      // Seconds between estimated audio peaks
+const MAX_FALLBACK_AUDIO_PEAKS = 10;     // Maximum number of fallback audio peaks
+
 class ContentAnalyzer {
   constructor() {
     this.ffmpeg = new FFmpegWrapper();
@@ -142,8 +148,8 @@ class ContentAnalyzer {
     } catch (error) {
       // If scene detection fails, generate estimated scene changes
       // based on video duration (fallback method)
-      const estimatedChanges = Math.floor(duration / 5);
-      for (let i = 1; i <= estimatedChanges && i <= 20; i++) {
+      const estimatedChanges = Math.floor(duration / FALLBACK_SCENE_INTERVAL);
+      for (let i = 1; i <= estimatedChanges && i <= MAX_FALLBACK_SCENES; i++) {
         sceneChanges.push({
           time: (duration / (estimatedChanges + 1)) * i,
           type: 'scene_change',
@@ -209,8 +215,8 @@ class ContentAnalyzer {
       }
     } catch (error) {
       // Fallback: estimate audio peaks based on duration
-      const estimatedPeaks = Math.floor(duration / 10);
-      for (let i = 1; i <= estimatedPeaks && i <= 10; i++) {
+      const estimatedPeaks = Math.floor(duration / FALLBACK_AUDIO_INTERVAL);
+      for (let i = 1; i <= estimatedPeaks && i <= MAX_FALLBACK_AUDIO_PEAKS; i++) {
         audioPeaks.push({
           time: (duration / (estimatedPeaks + 1)) * i,
           type: 'audio_activity',

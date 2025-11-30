@@ -13,6 +13,8 @@ const {
   FileValidator,
   ExportRenderer,
   FFmpegWrapper,
+  ContentAnalyzer,
+  AutoEditor,
   ErrorHandler
 } = require('../modules');
 
@@ -22,6 +24,8 @@ let formatDetector;
 let fileValidator;
 let exportRenderer;
 let ffmpeg;
+let contentAnalyzer;
+let autoEditor;
 let errorHandler;
 
 /**
@@ -33,6 +37,8 @@ function initializeModules() {
   fileValidator = new FileValidator();
   exportRenderer = new ExportRenderer();
   ffmpeg = new FFmpegWrapper();
+  contentAnalyzer = new ContentAnalyzer();
+  autoEditor = new AutoEditor();
   errorHandler = new ErrorHandler();
 
   errorHandler.setErrorCallback((error) => {
@@ -398,4 +404,97 @@ ipcMain.handle('get-platform-info', async () => {
     arch: process.arch,
     version: process.version
   };
+});
+
+// ============================================
+// Auto-Edit Feature - Smart Automatic Editing
+// ============================================
+
+/**
+ * Analyze video content for auto-editing
+ * Detects interesting moments, scene changes, and audio peaks
+ */
+ipcMain.handle('analyze-content', async (event, { inputPath, options }) => {
+  try {
+    mainWindow.webContents.send('progress', { 
+      type: 'analyze', 
+      stage: 'starting', 
+      percent: 0, 
+      message: 'Iniciando análisis de contenido...' 
+    });
+
+    const analysis = await contentAnalyzer.analyzeContent(inputPath, options);
+    const summary = contentAnalyzer.getAnalysisSummary(analysis);
+
+    return { 
+      success: true, 
+      analysis, 
+      summary,
+      momentsCount: analysis.interestingMoments.length,
+      clipsCount: analysis.suggestedClips.length
+    };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Perform automatic video editing
+ * Analyzes content and creates an optimized edit automatically
+ */
+ipcMain.handle('auto-edit', async (event, { inputPath, outputPath, options }) => {
+  try {
+    const result = await autoEditor.autoEdit(inputPath, outputPath, options, (progress) => {
+      mainWindow.webContents.send('progress', { 
+        type: 'auto-edit', 
+        ...progress 
+      });
+    });
+
+    return { 
+      success: true, 
+      outputPath: result.outputPath,
+      statistics: result.statistics
+    };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Get available auto-edit styles
+ */
+ipcMain.handle('get-auto-edit-styles', async () => {
+  try {
+    const styles = autoEditor.getAvailableStyles();
+    return { success: true, styles };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+});
+
+/**
+ * Estimate auto-edit processing time
+ */
+ipcMain.handle('estimate-auto-edit-time', async (event, { duration }) => {
+  try {
+    const estimate = autoEditor.estimateProcessingTime(duration);
+    return { success: true, estimate };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+});
+
+/**
+ * Get analysis summary
+ */
+ipcMain.handle('get-analysis-summary', async (event, { analysis }) => {
+  try {
+    const summary = contentAnalyzer.getAnalysisSummary(analysis);
+    return { success: true, summary };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
 });

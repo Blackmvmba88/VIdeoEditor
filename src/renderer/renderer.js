@@ -15,6 +15,11 @@ let isPlaying = false;
 let currentSection = 'edit'; // eslint-disable-line no-unused-vars
 let renderStartTime = null;
 
+// Auto-Edit State
+let autoEditStyles = [];
+let selectedAutoEditStyle = 'highlights';
+let contentAnalysis = null;
+
 // DOM Elements
 const elements = {};
 
@@ -27,6 +32,7 @@ async function init() {
 
   await checkFFmpeg();
   await loadPresets();
+  await loadAutoEditStyles();
   await loadAppInfo();
 
   setupEventListeners();
@@ -68,6 +74,20 @@ function cacheElements() {
   elements.fileCount = document.getElementById('file-count');
   elements.clipProperties = document.getElementById('clip-properties');
   elements.qualityDisplay = document.getElementById('quality-display');
+  
+  // Auto-Edit elements
+  elements.styleCards = document.getElementById('style-cards');
+  elements.btnAnalyze = document.getElementById('btn-analyze');
+  elements.btnAutoEdit = document.getElementById('btn-auto-edit');
+  elements.analysisResults = document.getElementById('analysis-results');
+  elements.statMoments = document.getElementById('stat-moments');
+  elements.statClips = document.getElementById('stat-clips');
+  elements.statTimeSaved = document.getElementById('stat-time-saved');
+  elements.minClipDuration = document.getElementById('min-clip-duration');
+  elements.maxClipDuration = document.getElementById('max-clip-duration');
+  elements.minClipDisplay = document.getElementById('min-clip-display');
+  elements.maxClipDisplay = document.getElementById('max-clip-display');
+  elements.targetDuration = document.getElementById('target-duration');
 }
 
 /**
@@ -123,6 +143,18 @@ async function loadPresets() {
   if (result.success) {
     availablePresets = result.presets;
     renderPresetCards();
+  }
+}
+
+/**
+ * Load auto-edit styles
+ */
+async function loadAutoEditStyles() {
+  updateSplashStatus('Loading auto-edit styles...');
+  const result = await videoEditorAPI.getAutoEditStyles();
+  if (result.success) {
+    autoEditStyles = result.styles;
+    renderStyleCards();
   }
 }
 
@@ -186,6 +218,16 @@ function setupEventListeners() {
 
   // Trim button
   document.getElementById('btn-apply-trim').addEventListener('click', applyTrim);
+
+  // Auto-Edit controls
+  elements.btnAnalyze.addEventListener('click', analyzeContent);
+  elements.btnAutoEdit.addEventListener('click', runAutoEdit);
+  elements.minClipDuration.addEventListener('input', (e) => {
+    elements.minClipDisplay.textContent = `${e.target.value}s`;
+  });
+  elements.maxClipDuration.addEventListener('input', (e) => {
+    elements.maxClipDisplay.textContent = `${e.target.value}s`;
+  });
 }
 
 /**
@@ -214,6 +256,9 @@ function switchSection(section) {
   // Handle section-specific UI updates
   if (section === 'export') {
     switchPanelTab('export');
+  }
+  if (section === 'auto') {
+    switchPanelTab('autoedit');
   }
 }
 
@@ -726,6 +771,7 @@ function renderPresetCards() {
  */
 function updateExportButton() {
   elements.btnExport.disabled = timelineClips.length === 0;
+  updateAutoEditButtons();
 }
 
 /**
@@ -913,6 +959,167 @@ function parseTimecode(timecode) {
     return parts[0] * 3600 + parts[1] * 60 + parts[2] + parts[3] / 30;
   }
   return 0;
+}
+
+// ============================================
+// Auto-Edit Feature Functions
+// ============================================
+
+/**
+ * Render auto-edit style cards
+ */
+function renderStyleCards() {
+  const container = elements.styleCards;
+  if (!container) return;
+  
+  container.innerHTML = '';
+
+  autoEditStyles.forEach(style => {
+    const card = document.createElement('div');
+    card.className = `style-card${style.key === selectedAutoEditStyle ? ' selected' : ''}`;
+    card.dataset.key = style.key;
+
+    card.innerHTML = `
+      <div class="style-card-header">
+        <span class="style-name">${style.name}</span>
+        <span class="style-badge">${style.nameEn}</span>
+      </div>
+      <p class="style-desc">${style.description}</p>
+    `;
+
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedAutoEditStyle = style.key;
+    });
+
+    container.appendChild(card);
+  });
+}
+
+/**
+ * Update auto-edit buttons state
+ */
+function updateAutoEditButtons() {
+  const hasClips = mediaLibrary.length > 0;
+  elements.btnAnalyze.disabled = !hasClips;
+  elements.btnAutoEdit.disabled = !hasClips;
+}
+
+/**
+ * Analyze video content
+ */
+async function analyzeContent() {
+  if (mediaLibrary.length === 0) {
+    showNotification('Importa un video primero', 'warning');
+    return;
+  }
+
+  const clip = selectedClip || mediaLibrary[0];
+  setStatus('Analizando contenido del video...');
+  showProgressModal('Analizando tu video...');
+
+  try {
+    const options = {
+      minMomentDuration: parseInt(elements.minClipDuration.value, 10),
+      maxMomentDuration: parseInt(elements.maxClipDuration.value, 10),
+      targetDuration: elements.targetDuration.value 
+        ? parseInt(elements.targetDuration.value, 10) 
+        : null
+    };
+
+    const result = await videoEditorAPI.analyzeContent({
+      inputPath: clip.path,
+      options
+    });
+
+    hideProgressModal();
+
+    if (result.success) {
+      contentAnalysis = result.analysis;
+      showAnalysisResults(result);
+      showNotification('¡Análisis completado!', 'success');
+    } else {
+      showNotification(`Error en análisis: ${result.error?.message}`, 'error');
+    }
+  } catch (error) {
+    hideProgressModal();
+    showNotification(`Error: ${error.message}`, 'error');
+  }
+}
+
+/**
+ * Show analysis results
+ */
+function showAnalysisResults(result) {
+  elements.analysisResults.style.display = 'block';
+  elements.statMoments.textContent = result.momentsCount || 0;
+  elements.statClips.textContent = result.clipsCount || 0;
+  
+  const timeSaved = result.summary?.timeSaved || 0;
+  elements.statTimeSaved.textContent = formatDuration(timeSaved);
+}
+
+/**
+ * Run automatic video editing
+ */
+async function runAutoEdit() {
+  if (mediaLibrary.length === 0) {
+    showNotification('Importa un video primero', 'warning');
+    return;
+  }
+
+  const clip = selectedClip || mediaLibrary[0];
+  
+  const outputPath = await videoEditorAPI.saveFileDialog({
+    defaultName: `${clip.name.replace(/\.[^.]+$/, '')}_auto_edit.mp4`,
+    extension: '.mp4'
+  });
+
+  if (!outputPath) return;
+
+  showProgressModal('Creando tu video automáticamente...');
+  renderStartTime = Date.now();
+
+  try {
+    const options = {
+      style: selectedAutoEditStyle,
+      minClipDuration: parseInt(elements.minClipDuration.value, 10),
+      maxClipDuration: parseInt(elements.maxClipDuration.value, 10),
+      targetDuration: elements.targetDuration.value 
+        ? parseInt(elements.targetDuration.value, 10) 
+        : null
+    };
+
+    const result = await videoEditorAPI.autoEdit({
+      inputPath: clip.path,
+      outputPath,
+      options
+    });
+
+    if (result.success) {
+      showSuccessModal(result.outputPath);
+      showAutoEditStats(result.statistics);
+    } else {
+      hideProgressModal();
+      showNotification(`Error: ${result.error?.message}`, 'error');
+    }
+  } catch (error) {
+    hideProgressModal();
+    showNotification(`Error: ${error.message}`, 'error');
+  }
+}
+
+/**
+ * Show auto-edit statistics
+ */
+function showAutoEditStats(stats) {
+  if (stats) {
+    const msg = `¡Video creado! Original: ${formatDuration(stats.originalDuration)}, ` +
+                `Nuevo: ${formatDuration(stats.newDuration)}, ` +
+                `Ahorraste ${formatDuration(stats.timeSaved)} de edición`;
+    setStatus(msg);
+  }
 }
 
 // Initialize on DOM ready

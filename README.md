@@ -8,6 +8,19 @@ A cinematic video editing application built with Electron and Node.js, featuring
 
 ## ✨ Features
 
+### 🤖 Auto-Edit - Automatic Video Editing (NEW!)
+**Save hours of editing time and spend more time with your family!**
+
+- **Smart Content Detection** - Automatically analyzes your video to find the most interesting moments
+- **Scene Change Detection** - Identifies visual transitions and key moments
+- **Audio Peak Analysis** - Detects high-energy audio moments for engaging content
+- **Multiple Editing Styles**:
+  - **Highlights** - Selects the best moments based on content analysis
+  - **Summary** - Creates a balanced overview of your entire video
+  - **Action** - Focuses on high-activity visual and audio moments
+- **Customizable Settings** - Control clip duration and target video length
+- **Time-Saving Statistics** - See how much editing time you've saved
+
 ### Video Editing
 - **Join Clips** - Combine multiple video clips into one seamless video
 - **Cut/Trim** - Precisely trim videos with frame-accurate controls
@@ -121,6 +134,8 @@ blackmamba-studio/
 │   │   ├── fileValidator.js    # Input validation
 │   │   ├── exportPresets.js    # Export configurations
 │   │   ├── exportRenderer.js   # Export handling
+│   │   ├── contentAnalyzer.js  # Smart content analysis (NEW)
+│   │   ├── autoEditor.js       # Automatic video editing (NEW)
 │   │   └── errorHandler.js     # Error management
 │   └── presets/        # Export preset definitions
 ├── scripts/            # Build scripts
@@ -135,6 +150,18 @@ blackmamba-studio/
 3. **Edit Clips** - Use the properties panel to trim and adjust
 4. **Select Preset** - Choose an export preset or customize settings
 5. **Export** - Click "Export Masterpiece" and watch the magic happen
+
+### 🤖 Using Auto-Edit (Save Time!)
+
+1. **Import Video** - Import the video you want to automatically edit
+2. **Click Auto Edit** - Select the "Auto Edit" button in the toolbar
+3. **Choose Style** - Select your preferred editing style:
+   - **Mejores Momentos (Highlights)** - Best moments only
+   - **Resumen (Summary)** - Balanced overview
+   - **Acción (Action)** - High-activity moments
+4. **Configure Settings** - Adjust target duration and clip lengths
+5. **Click "¡Crear Video Automático!"** - Let the AI detect and edit for you
+6. **Enjoy Your Free Time** - Spend time with your family while the video is created!
 
 ## 🔧 Supported Formats
 

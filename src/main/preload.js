@@ -40,6 +40,13 @@ contextBridge.exposeInMainWorld('videoEditorAPI', {
   getPresets: () => ipcRenderer.invoke('get-presets'),
   getPresetInfo: (presetKey) => ipcRenderer.invoke('get-preset-info', presetKey),
 
+  // Auto-Edit - Automatic Video Editing
+  analyzeContent: (params) => ipcRenderer.invoke('analyze-content', params),
+  autoEdit: (params) => ipcRenderer.invoke('auto-edit', params),
+  getAutoEditStyles: () => ipcRenderer.invoke('get-auto-edit-styles'),
+  estimateAutoEditTime: (params) => ipcRenderer.invoke('estimate-auto-edit-time', params),
+  getAnalysisSummary: (params) => ipcRenderer.invoke('get-analysis-summary', params),
+
   // Utilities
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
   showInFolder: (filePath) => ipcRenderer.invoke('show-in-folder', filePath),

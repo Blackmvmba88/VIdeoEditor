@@ -96,12 +96,13 @@ class FFmpegWrapper {
         errorOutput += dataStr;
 
         if (onProgress) {
-          const progressMatch = dataStr.match(/time=(\d{2}):(\d{2}):(\d{2})/);
+          const progressMatch = dataStr.match(/time=(\d{2}):(\d{2}):(\d{2})\.(\d{2})/);
           if (progressMatch) {
             const hours = parseInt(progressMatch[1], 10);
             const minutes = parseInt(progressMatch[2], 10);
             const seconds = parseInt(progressMatch[3], 10);
-            const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            const centiseconds = parseInt(progressMatch[4], 10);
+            const totalSeconds = hours * 3600 + minutes * 60 + seconds + centiseconds / 100;
             onProgress(totalSeconds);
           }
         }

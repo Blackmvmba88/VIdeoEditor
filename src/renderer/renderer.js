@@ -879,7 +879,7 @@ function updateFileCount() {
  * Generate unique ID
  */
 function generateId() {
-  return `clip_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  return `clip_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**

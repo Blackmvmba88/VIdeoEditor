@@ -16,6 +16,15 @@ class VideoProcessor {
   }
 
   /**
+   * Escape file path for FFmpeg concat file format
+   * @param {string} filePath - File path to escape
+   * @returns {string} Escaped path
+   */
+  escapePath(filePath) {
+    return filePath.replace(/'/g, '\'\\\'\'');
+  }
+
+  /**
    * Ensure temporary directory exists
    */
   ensureTempDir() {
@@ -84,7 +93,7 @@ class VideoProcessor {
     const listFilePath = path.join(this.tempDir, listFileName);
 
     const fileListContent = inputPaths
-      .map(p => `file '${p.replace(/'/g, '\'\\\'\'')}'`)
+      .map(p => `file '${this.escapePath(p)}'`)
       .join('\n');
 
     fs.writeFileSync(listFilePath, fileListContent, 'utf8');

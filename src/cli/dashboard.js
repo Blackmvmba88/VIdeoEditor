@@ -194,13 +194,21 @@ function getProjectInfo() {
  * @returns {object}
  */
 function getFormatsInfo() {
-  const detector = new FormatDetector();
-  const extensions = detector.getSupportedExtensions();
-  return {
-    videoFormats: extensions.video.length,
-    audioFormats: extensions.audio.length,
-    totalFormats: extensions.all.length
-  };
+  try {
+    const detector = new FormatDetector();
+    const extensions = detector.getSupportedExtensions();
+    return {
+      videoFormats: extensions.video.length,
+      audioFormats: extensions.audio.length,
+      totalFormats: extensions.all.length
+    };
+  } catch {
+    return {
+      videoFormats: 0,
+      audioFormats: 0,
+      totalFormats: 0
+    };
+  }
 }
 
 /**
@@ -208,14 +216,23 @@ function getFormatsInfo() {
  * @returns {object}
  */
 function getPresetsInfo() {
-  const presetsManager = new ExportPresets();
-  const presets = presetsManager.getAllPresets();
-  const categoryNames = ['social', 'web', 'professional', 'audio', 'other'];
-  return {
-    totalPresets: Object.keys(presets).length,
-    categories: categoryNames.length,
-    categoryNames: categoryNames
-  };
+  try {
+    const presetsManager = new ExportPresets();
+    const presets = presetsManager.getAllPresets();
+    // Categories defined in ExportPresets.getPresetsByCategory
+    const categoryNames = ['social', 'web', 'professional', 'audio', 'other'];
+    return {
+      totalPresets: Object.keys(presets).length,
+      categories: categoryNames.length,
+      categoryNames: categoryNames
+    };
+  } catch {
+    return {
+      totalPresets: 0,
+      categories: 0,
+      categoryNames: []
+    };
+  }
 }
 
 /**
@@ -254,9 +271,9 @@ function drawLogo(width) {
   ];
   
   return logo.map(line => {
-    const padding = Math.max(0, (width - line.length - 4) / 2);
-    const leftPad = Math.floor(padding);
-    const rightPad = Math.ceil(padding);
+    const totalPadding = Math.max(0, width - line.length - 4);
+    const leftPad = Math.floor(totalPadding / 2);
+    const rightPad = totalPadding - leftPad;
     const content = `${' '.repeat(leftPad)}${colors.magenta}${colors.bold}${line}${colors.reset}${' '.repeat(rightPad)}`;
     return `${colors.cyan}${box.vertical}${colors.reset}${content}${colors.cyan}${box.vertical}${colors.reset}`;
   });

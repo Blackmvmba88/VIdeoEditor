@@ -1,6 +1,21 @@
 # 🐍 BlackMamba Studio
 
+<div align="center">
+
 **Professional Cross-Platform Video Editor**
+
+*Edita como los profesionales • Ahorra tiempo con IA • Pasa más tiempo con tu familia*
+
+[![Version](https://img.shields.io/badge/version-1.0.0-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor/releases)
+[![License](https://img.shields.io/badge/license-MIT-00d4ff?style=for-the-badge)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-00d4ff?style=for-the-badge)](https://nodejs.org/)
+
+[🚀 **Ver Roadmap Completo**](ROADMAP.md) • [📦 Releases](https://github.com/Blackmvmba88/VIdeoEditor/releases) • [🐛 Reportar Bug](https://github.com/Blackmvmba88/VIdeoEditor/issues)
+
+</div>
+
+---
 
 A cinematic video editing application built with Electron and Node.js, featuring FFmpeg integration for professional video processing.
 
@@ -177,6 +192,28 @@ blackmamba-studio/
 - H.264, H.265/HEVC, VP8, VP9, AV1
 - ProRes, DNxHD, MPEG-2, MPEG-4
 
+## 🗺️ Roadmap
+
+Tenemos planes ambiciosos para BlackMamba Studio. Consulta nuestro [**Roadmap Épico**](ROADMAP.md) para ver:
+
+- 🚀 **Fase 1:** Mejoras de rendimiento y herramientas esenciales
+- 🤖 **Fase 2:** Inteligencia Artificial avanzada (Auto-Edit 2.0, transcripción, subtítulos)
+- 💎 **Fase 3:** Color grading profesional, audio, motion graphics y VFX
+- 🌐 **Fase 4:** Colaboración en la nube e integraciones
+- 🔮 **Fase 5:** Editor AI-First, realidad extendida y streaming
+
+[**→ Ver Roadmap Completo**](ROADMAP.md)
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Consulta nuestra guía de contribución:
+
+1. 🍴 Fork el repositorio
+2. 🌿 Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push a la rama (`git push origin feature/AmazingFeature`)
+5. 🔃 Abre un Pull Request
+
 ## 📝 License
 
 MIT License - feel free to use this project for your own video editing needs.
@@ -189,4 +226,12 @@ MIT License - feel free to use this project for your own video editing needs.
 
 ---
 
+<div align="center">
+
+**⭐ Si te gusta BlackMamba Studio, dale una estrella al repo ⭐**
+
+[🗺️ Roadmap](ROADMAP.md) • [🐛 Issues](https://github.com/Blackmvmba88/VIdeoEditor/issues) • [💬 Discussions](https://github.com/Blackmvmba88/VIdeoEditor/discussions)
+
 **Made with 💜 by the BlackMamba Team**
+
+</div>

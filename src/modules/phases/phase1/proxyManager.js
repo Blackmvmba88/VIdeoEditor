@@ -59,7 +59,7 @@ class ProxyManager {
     const proxyPath = path.join(this.proxyDir, `proxy_${proxyId}.mp4`);
 
     if (onProgress) {
-      onProgress({ stage: 'starting', percent: 0, message: 'Iniciando generación de proxy...' });
+      onProgress({ stage: 'starting', percent: 0, message: 'Starting proxy generation...' });
     }
 
     const args = [
@@ -85,7 +85,7 @@ class ProxyManager {
       });
 
       if (onProgress) {
-        onProgress({ stage: 'complete', percent: 100, message: 'Proxy generado exitosamente' });
+        onProgress({ stage: 'complete', percent: 100, message: 'Proxy generated successfully' });
       }
 
       return {

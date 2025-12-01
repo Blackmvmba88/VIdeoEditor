@@ -14,6 +14,12 @@ const DETECTION_METHOD = {
   COMBINED: 'combined'
 };
 
+// Default text constants
+const DEFAULT_TEXTS = {
+  FULL_VIDEO: 'Full Video',
+  CHAPTER_PREFIX: 'Chapter'
+};
+
 class SmartChapters {
   constructor() {
     this.chapters = [];
@@ -42,7 +48,7 @@ class SmartChapters {
 
     if (sceneChanges.length === 0) {
       // No scene changes, create single chapter
-      this.chapters.push(this.createChapter(0, duration, 'Full Video', 1));
+      this.chapters.push(this.createChapter(0, duration, DEFAULT_TEXTS.FULL_VIDEO, 1));
       return this.chapters;
     }
 
@@ -64,7 +70,7 @@ class SmartChapters {
           this.createChapter(
             lastChapterEnd,
             change.time,
-            `Chapter ${chapterNum}`,
+            `${DEFAULT_TEXTS.CHAPTER_PREFIX} ${chapterNum}`,
             chapterNum
           )
         );
@@ -79,7 +85,7 @@ class SmartChapters {
         this.createChapter(
           lastChapterEnd,
           duration,
-          `Chapter ${chapterNum}`,
+          `${DEFAULT_TEXTS.CHAPTER_PREFIX} ${chapterNum}`,
           chapterNum
         )
       );

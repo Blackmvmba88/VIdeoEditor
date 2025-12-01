@@ -13,6 +13,9 @@ const SPEED_TYPE = {
   FREEZE: 'freeze'
 };
 
+// Frame duration constant for freeze frame (single frame at 25fps)
+const SINGLE_FRAME_DURATION = 0.04; // 1/25 seconds
+
 // Preset speed configurations
 const SPEED_PRESETS = {
   slowmo2x: { name: 'Slow Mo 2x', speed: 0.5, type: SPEED_TYPE.CONSTANT },
@@ -347,8 +350,8 @@ class SpeedController {
       break;
 
     case SPEED_TYPE.FREEZE:
-      // Freeze at specific frame
-      filters.video = `trim=${speedChange.freezeTime}:${speedChange.freezeTime + 0.04},loop=-1:1,trim=0:${speedChange.duration}`;
+      // Freeze at specific frame (using single frame duration constant)
+      filters.video = `trim=${speedChange.freezeTime}:${speedChange.freezeTime + SINGLE_FRAME_DURATION},loop=-1:1,trim=0:${speedChange.duration}`;
       filters.audio = `anull`; // Mute during freeze
       break;
 

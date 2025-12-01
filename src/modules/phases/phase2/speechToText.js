@@ -14,6 +14,9 @@ const TRANSCRIPTION_STATUS = {
   FAILED: 'failed'
 };
 
+// Placeholder text for simulation mode
+const PLACEHOLDER_TEXT = '[Transcription placeholder - integrate with Whisper API]';
+
 // Supported languages
 const SUPPORTED_LANGUAGES = {
   en: 'English',
@@ -102,7 +105,7 @@ class SpeechToText {
         id: uuidv4(),
         start: currentTime,
         end: Math.min(currentTime + segmentDuration, duration),
-        text: '[Transcription placeholder - integrate with Whisper API]',
+        text: PLACEHOLDER_TEXT,
         confidence: 0.95,
         words: []
       });

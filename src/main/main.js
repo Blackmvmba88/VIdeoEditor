@@ -1,6 +1,6 @@
 /**
- * Video Editor Pro - Electron Main Process
- * Cross-platform desktop video editor
+ * Video Editor Pro - Proceso Principal de Electron
+ * Editor de video de escritorio multiplataforma
  */
 
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
@@ -29,7 +29,7 @@ let autoEditor;
 let errorHandler;
 
 /**
- * Initialize modules
+ * Inicializar módulos
  */
 function initializeModules() {
   videoProcessor = new VideoProcessor();
@@ -49,7 +49,7 @@ function initializeModules() {
 }
 
 /**
- * Create main window
+ * Crear ventana principal
  */
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -83,7 +83,7 @@ function createWindow() {
 }
 
 /**
- * App ready handler
+ * Manejador de aplicación lista
  */
 app.whenReady().then(() => {
   initializeModules();
@@ -97,7 +97,7 @@ app.whenReady().then(() => {
 });
 
 /**
- * App quit handler
+ * Manejador de cierre de aplicación
  */
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -106,7 +106,7 @@ app.on('window-all-closed', () => {
 });
 
 /**
- * Check FFmpeg availability
+ * Verificar disponibilidad de FFmpeg
  */
 ipcMain.handle('check-ffmpeg', async () => {
   try {
@@ -119,7 +119,7 @@ ipcMain.handle('check-ffmpeg', async () => {
 });
 
 /**
- * Open file dialog
+ * Abrir diálogo de archivo
  */
 ipcMain.handle('open-file-dialog', async (event, options = {}) => {
   const extensions = formatDetector.getSupportedExtensions();
@@ -136,7 +136,7 @@ ipcMain.handle('open-file-dialog', async (event, options = {}) => {
 });
 
 /**
- * Save file dialog
+ * Diálogo de guardar archivo
  */
 ipcMain.handle('save-file-dialog', async (event, options = {}) => {
   const defaultExt = options.extension || '.mp4';
@@ -155,7 +155,7 @@ ipcMain.handle('save-file-dialog', async (event, options = {}) => {
 });
 
 /**
- * Select folder dialog
+ * Diálogo de selección de carpeta
  */
 ipcMain.handle('select-folder-dialog', async () => {
   const result = await dialog.showOpenDialog(mainWindow, {
@@ -166,7 +166,7 @@ ipcMain.handle('select-folder-dialog', async () => {
 });
 
 /**
- * Get video info
+ * Obtener información del video
  */
 ipcMain.handle('get-video-info', async (event, filePath) => {
   try {
@@ -179,7 +179,7 @@ ipcMain.handle('get-video-info', async (event, filePath) => {
 });
 
 /**
- * Validate files
+ * Validar archivos
  */
 ipcMain.handle('validate-files', async (event, filePaths) => {
   try {
@@ -192,7 +192,7 @@ ipcMain.handle('validate-files', async (event, filePaths) => {
 });
 
 /**
- * Cut video
+ * Cortar video
  */
 ipcMain.handle('cut-video', async (event, { inputPath, startTime, endTime, outputPath }) => {
   try {
@@ -207,7 +207,7 @@ ipcMain.handle('cut-video', async (event, { inputPath, startTime, endTime, outpu
 });
 
 /**
- * Join videos
+ * Unir videos
  */
 ipcMain.handle('join-videos', async (event, { inputPaths, outputPath, options }) => {
   try {
@@ -222,7 +222,7 @@ ipcMain.handle('join-videos', async (event, { inputPaths, outputPath, options })
 });
 
 /**
- * Reorder and join clips
+ * Reordenar y unir clips
  */
 ipcMain.handle('reorder-join', async (event, { clips, outputPath, options }) => {
   try {
@@ -237,7 +237,7 @@ ipcMain.handle('reorder-join', async (event, { clips, outputPath, options }) => 
 });
 
 /**
- * Split video
+ * Dividir video
  */
 ipcMain.handle('split-video', async (event, { inputPath, segments, outputDir }) => {
   try {
@@ -252,7 +252,7 @@ ipcMain.handle('split-video', async (event, { inputPath, segments, outputDir }) 
 });
 
 /**
- * Export with preset
+ * Exportar con preset
  */
 ipcMain.handle('export-preset', async (event, { inputPath, outputPath, presetKey, options }) => {
   try {
@@ -267,7 +267,7 @@ ipcMain.handle('export-preset', async (event, { inputPath, outputPath, presetKey
 });
 
 /**
- * Export with custom settings
+ * Exportar con configuración personalizada
  */
 ipcMain.handle('export-custom', async (event, { inputPath, outputPath, settings }) => {
   try {
@@ -282,7 +282,7 @@ ipcMain.handle('export-custom', async (event, { inputPath, outputPath, settings 
 });
 
 /**
- * Export for multiple platforms
+ * Exportar para múltiples plataformas
  */
 ipcMain.handle('export-multiple', async (event, { inputPath, outputDir, presetKeys }) => {
   try {
@@ -297,7 +297,7 @@ ipcMain.handle('export-multiple', async (event, { inputPath, outputDir, presetKe
 });
 
 /**
- * Generate thumbnail
+ * Generar miniatura
  */
 ipcMain.handle('generate-thumbnail', async (event, { inputPath, outputPath, options }) => {
   try {
@@ -310,7 +310,7 @@ ipcMain.handle('generate-thumbnail', async (event, { inputPath, outputPath, opti
 });
 
 /**
- * Get available presets
+ * Obtener presets disponibles
  */
 ipcMain.handle('get-presets', async () => {
   try {
@@ -322,7 +322,7 @@ ipcMain.handle('get-presets', async () => {
 });
 
 /**
- * Get preset info
+ * Obtener información del preset
  */
 ipcMain.handle('get-preset-info', async (event, presetKey) => {
   try {
@@ -334,7 +334,7 @@ ipcMain.handle('get-preset-info', async (event, presetKey) => {
 });
 
 /**
- * Estimate output size
+ * Estimar tamaño de salida
  */
 ipcMain.handle('estimate-size', async (event, { inputPath, presetKey }) => {
   try {
@@ -347,7 +347,7 @@ ipcMain.handle('estimate-size', async (event, { inputPath, presetKey }) => {
 });
 
 /**
- * Check format compatibility
+ * Verificar compatibilidad de formatos
  */
 ipcMain.handle('check-compatibility', async (event, filePaths) => {
   try {
@@ -360,14 +360,14 @@ ipcMain.handle('check-compatibility', async (event, filePaths) => {
 });
 
 /**
- * Get supported extensions
+ * Obtener extensiones soportadas
  */
 ipcMain.handle('get-supported-extensions', async () => {
   return formatDetector.getSupportedExtensions();
 });
 
 /**
- * Open external link
+ * Abrir enlace externo
  */
 ipcMain.handle('open-external', async (event, url) => {
   if (url.startsWith('https://')) {
@@ -378,7 +378,7 @@ ipcMain.handle('open-external', async (event, url) => {
 });
 
 /**
- * Show item in folder
+ * Mostrar elemento en carpeta
  */
 ipcMain.handle('show-in-folder', async (event, filePath) => {
   if (fs.existsSync(filePath)) {
@@ -389,14 +389,14 @@ ipcMain.handle('show-in-folder', async (event, filePath) => {
 });
 
 /**
- * Get app version
+ * Obtener versión de la aplicación
  */
 ipcMain.handle('get-app-version', async () => {
   return app.getVersion();
 });
 
 /**
- * Get platform info
+ * Obtener información de la plataforma
  */
 ipcMain.handle('get-platform-info', async () => {
   return {
@@ -407,12 +407,12 @@ ipcMain.handle('get-platform-info', async () => {
 });
 
 // ============================================
-// Auto-Edit Feature - Smart Automatic Editing
+// Función Auto-Edit - Edición Automática Inteligente
 // ============================================
 
 /**
- * Analyze video content for auto-editing
- * Detects interesting moments, scene changes, and audio peaks
+ * Analizar contenido de video para auto-edición
+ * Detecta momentos interesantes, cambios de escena y picos de audio
  */
 ipcMain.handle('analyze-content', async (event, { inputPath, options }) => {
   try {
@@ -440,8 +440,8 @@ ipcMain.handle('analyze-content', async (event, { inputPath, options }) => {
 });
 
 /**
- * Perform automatic video editing
- * Analyzes content and creates an optimized edit automatically
+ * Realizar edición automática de video
+ * Analiza contenido y crea una edición optimizada automáticamente
  */
 ipcMain.handle('auto-edit', async (event, { inputPath, outputPath, options }) => {
   try {
@@ -464,7 +464,7 @@ ipcMain.handle('auto-edit', async (event, { inputPath, outputPath, options }) =>
 });
 
 /**
- * Get available auto-edit styles
+ * Obtener estilos de auto-edición disponibles
  */
 ipcMain.handle('get-auto-edit-styles', async () => {
   try {
@@ -476,7 +476,7 @@ ipcMain.handle('get-auto-edit-styles', async () => {
 });
 
 /**
- * Estimate auto-edit processing time
+ * Estimar tiempo de procesamiento de auto-edición
  */
 ipcMain.handle('estimate-auto-edit-time', async (event, { duration }) => {
   try {
@@ -488,7 +488,7 @@ ipcMain.handle('estimate-auto-edit-time', async (event, { duration }) => {
 });
 
 /**
- * Get analysis summary
+ * Obtener resumen del análisis
  */
 ipcMain.handle('get-analysis-summary', async (event, { analysis }) => {
   try {

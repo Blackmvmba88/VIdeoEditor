@@ -1,35 +1,35 @@
 /**
- * Video Editor Pro - Preload Script
- * Exposes safe APIs to renderer process
+ * Video Editor Pro - Script de Precarga
+ * Expone APIs seguras al proceso de renderizado
  */
 
 const { contextBridge, ipcRenderer } = require('electron');
 
 /**
- * Safe API for renderer process
+ * API segura para proceso de renderizado
  */
 contextBridge.exposeInMainWorld('videoEditorAPI', {
   // FFmpeg
   checkFFmpeg: () => ipcRenderer.invoke('check-ffmpeg'),
 
-  // Dialogs
+  // Diálogos
   openFileDialog: (options) => ipcRenderer.invoke('open-file-dialog', options),
   saveFileDialog: (options) => ipcRenderer.invoke('save-file-dialog', options),
   selectFolderDialog: () => ipcRenderer.invoke('select-folder-dialog'),
 
-  // Video info
+  // Información del video
   getVideoInfo: (filePath) => ipcRenderer.invoke('get-video-info', filePath),
   validateFiles: (filePaths) => ipcRenderer.invoke('validate-files', filePaths),
   checkCompatibility: (filePaths) => ipcRenderer.invoke('check-compatibility', filePaths),
   getSupportedExtensions: () => ipcRenderer.invoke('get-supported-extensions'),
 
-  // Video processing
+  // Procesamiento de video
   cutVideo: (params) => ipcRenderer.invoke('cut-video', params),
   joinVideos: (params) => ipcRenderer.invoke('join-videos', params),
   reorderJoin: (params) => ipcRenderer.invoke('reorder-join', params),
   splitVideo: (params) => ipcRenderer.invoke('split-video', params),
 
-  // Export
+  // Exportación
   exportWithPreset: (params) => ipcRenderer.invoke('export-preset', params),
   exportCustom: (params) => ipcRenderer.invoke('export-custom', params),
   exportMultiplePlatforms: (params) => ipcRenderer.invoke('export-multiple', params),
@@ -40,20 +40,20 @@ contextBridge.exposeInMainWorld('videoEditorAPI', {
   getPresets: () => ipcRenderer.invoke('get-presets'),
   getPresetInfo: (presetKey) => ipcRenderer.invoke('get-preset-info', presetKey),
 
-  // Auto-Edit - Automatic Video Editing
+  // Auto-Edit - Edición Automática de Video
   analyzeContent: (params) => ipcRenderer.invoke('analyze-content', params),
   autoEdit: (params) => ipcRenderer.invoke('auto-edit', params),
   getAutoEditStyles: () => ipcRenderer.invoke('get-auto-edit-styles'),
   estimateAutoEditTime: (params) => ipcRenderer.invoke('estimate-auto-edit-time', params),
   getAnalysisSummary: (params) => ipcRenderer.invoke('get-analysis-summary', params),
 
-  // Utilities
+  // Utilidades
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
   showInFolder: (filePath) => ipcRenderer.invoke('show-in-folder', filePath),
   getAppVersion: () => ipcRenderer.invoke('get-app-version'),
   getPlatformInfo: () => ipcRenderer.invoke('get-platform-info'),
 
-  // Events
+  // Eventos
   onProgress: (callback) => {
     ipcRenderer.on('progress', (event, data) => callback(data));
   },

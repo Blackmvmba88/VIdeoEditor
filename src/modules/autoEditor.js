@@ -1,7 +1,7 @@
 /**
- * Auto Editor Module
- * Automatically edits videos based on content analysis
- * Saves time for editors by creating optimized edits automatically
+ * Módulo de Auto Editor
+ * Edita videos automáticamente basándose en análisis de contenido
+ * Ahorra tiempo a los editores creando ediciones optimizadas automáticamente
  */
 
 const path = require('path');
@@ -12,10 +12,10 @@ const ExportPresets = require('./exportPresets');
 const FFmpegWrapper = require('./ffmpegWrapper');
 const { v4: uuidv4 } = require('uuid');
 
-// Processing time estimation multipliers (seconds per second of video)
-const ANALYSIS_TIME_MULTIPLIER = 0.1;    // Analysis takes ~10% of video duration
-const CUTTING_TIME_MULTIPLIER = 0.2;     // Cutting takes ~20% of video duration
-const JOINING_TIME_MULTIPLIER = 0.3;     // Joining takes ~30% of video duration
+// Multiplicadores de estimación de tiempo de procesamiento (segundos por segundo de video)
+const ANALYSIS_TIME_MULTIPLIER = 0.1;    // El análisis toma ~10% de la duración del video
+const CUTTING_TIME_MULTIPLIER = 0.2;     // El corte toma ~20% de la duración del video
+const JOINING_TIME_MULTIPLIER = 0.3;     // La unión toma ~30% de la duración del video
 
 class AutoEditor {
   constructor() {
@@ -28,7 +28,7 @@ class AutoEditor {
   }
 
   /**
-   * Ensure temporary directory exists
+   * Asegurar que el directorio temporal existe
    */
   ensureTempDir() {
     if (!fs.existsSync(this.tempDir)) {
@@ -37,12 +37,12 @@ class AutoEditor {
   }
 
   /**
-   * Automatically edit a video based on content analysis
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output video path
-   * @param {Object} options - Auto-edit options
-   * @param {Function} onProgress - Progress callback
-   * @returns {Promise<Object>} Result with output path and statistics
+   * Editar automáticamente un video basándose en análisis de contenido
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Object} options - Opciones de auto-edición
+   * @param {Function} onProgress - Callback de progreso
+   * @returns {Promise<Object>} Resultado con ruta de salida y estadísticas
    */
   async autoEdit(inputPath, outputPath, options = {}, onProgress = null) {
     if (!fs.existsSync(inputPath)) {
@@ -60,12 +60,12 @@ class AutoEditor {
       ...options
     };
 
-    // Report initial progress
+    // Reportar progreso inicial
     if (onProgress) {
       onProgress({ stage: 'analyzing', percent: 5, message: 'Analizando contenido del video...' });
     }
 
-    // Analyze video content
+    // Analizar contenido del video
     const analysis = await this.contentAnalyzer.analyzeContent(inputPath, {
       targetDuration: config.targetDuration,
       minMomentDuration: config.minClipDuration,
@@ -84,7 +84,7 @@ class AutoEditor {
       });
     }
 
-    // Apply the selected editing style
+    // Aplicar el estilo de edición seleccionado
     let clips;
     switch (config.style) {
     case 'highlights':
@@ -108,7 +108,7 @@ class AutoEditor {
       });
     }
 
-    // Create individual clip files
+    // Crear archivos de clips individuales
     const clipPaths = [];
     for (let i = 0; i < clips.length; i++) {
       const clip = clips[i];
@@ -142,9 +142,9 @@ class AutoEditor {
       });
     }
 
-    // Join clips together
+    // Unir clips juntos
     if (clipPaths.length === 1) {
-      // Only one clip, just copy it
+      // Solo un clip, simplemente copiarlo
       fs.copyFileSync(clipPaths[0], outputPath);
     } else {
       await this.videoProcessor.joinVideos(
@@ -163,14 +163,14 @@ class AutoEditor {
       });
     }
 
-    // Clean up temporary files
+    // Limpiar archivos temporales
     for (const clipPath of clipPaths) {
       if (fs.existsSync(clipPath)) {
         fs.unlinkSync(clipPath);
       }
     }
 
-    // Get summary statistics
+    // Obtener estadísticas de resumen
     const summary = this.contentAnalyzer.getAnalysisSummary(analysis);
     
     if (onProgress) {
@@ -196,13 +196,13 @@ class AutoEditor {
   }
 
   /**
-   * Select highlight clips based on score
-   * @param {Array} suggestedClips - Clips from analysis
-   * @param {Object} config - Configuration
-   * @returns {Array} Selected clips
+   * Seleccionar clips destacados basándose en puntuación
+   * @param {Array} suggestedClips - Clips del análisis
+   * @param {Object} config - Configuración
+   * @returns {Array} Clips seleccionados
    */
   selectHighlights(suggestedClips, config) {
-    // Sort by score and take the best clips
+    // Ordenar por puntuación y tomar los mejores clips
     const sorted = [...suggestedClips].sort((a, b) => b.score - a.score);
     
     let totalDuration = 0;
@@ -216,18 +216,18 @@ class AutoEditor {
       totalDuration += clip.duration;
     }
 
-    // Re-sort by start time for chronological order
+    // Re-ordenar por tiempo de inicio para orden cronológico
     selected.sort((a, b) => a.start - b.start);
     
     return selected;
   }
 
   /**
-   * Create a summary by selecting evenly distributed clips
-   * @param {Array} suggestedClips - Clips from analysis
-   * @param {number} totalDuration - Original video duration
-   * @param {Object} config - Configuration
-   * @returns {Array} Selected clips
+   * Crear un resumen seleccionando clips distribuidos uniformemente
+   * @param {Array} suggestedClips - Clips del análisis
+   * @param {number} totalDuration - Duración original del video
+   * @param {Object} config - Configuración
+   * @returns {Array} Clips seleccionados
    */
   createSummary(suggestedClips, totalDuration, config) {
     const targetDuration = config.targetDuration || totalDuration * 0.2;
@@ -240,13 +240,13 @@ class AutoEditor {
       const segmentStart = i * segmentLength;
       const segmentEnd = (i + 1) * segmentLength;
 
-      // Find the best clip in this segment
+      // Encontrar el mejor clip en este segmento
       const clipsInSegment = suggestedClips.filter(
         c => c.start >= segmentStart && c.start < segmentEnd
       );
 
       if (clipsInSegment.length > 0) {
-        // Pick the highest scoring clip in this segment
+        // Elegir el clip con mayor puntuación en este segmento
         const best = clipsInSegment.reduce(
           (prev, curr) => curr.score > prev.score ? curr : prev
         );
@@ -254,25 +254,25 @@ class AutoEditor {
       }
     }
 
-    // Sort by start time
+    // Ordenar por tiempo de inicio
     selected.sort((a, b) => a.start - b.start);
 
     return selected;
   }
 
   /**
-   * Select action-focused moments (high activity)
-   * @param {Array} suggestedClips - Clips from analysis
-   * @param {Object} config - Configuration
-   * @returns {Array} Selected clips
+   * Seleccionar momentos enfocados en acción (alta actividad)
+   * @param {Array} suggestedClips - Clips del análisis
+   * @param {Object} config - Configuración
+   * @returns {Array} Clips seleccionados
    */
   selectActionMoments(suggestedClips, config) {
-    // Filter for clips with combined visual and audio activity
+    // Filtrar clips con actividad combinada visual y de audio
     const actionClips = suggestedClips.filter(
       clip => clip.source === 'combined' || clip.score > 0.7
     );
 
-    // If not enough action clips, include high-score clips
+    // Si no hay suficientes clips de acción, incluir clips de alta puntuación
     if (actionClips.length < 3) {
       const additionalClips = suggestedClips
         .filter(c => !actionClips.includes(c))
@@ -281,10 +281,10 @@ class AutoEditor {
       actionClips.push(...additionalClips);
     }
 
-    // Sort by start time
+    // Ordenar por tiempo de inicio
     actionClips.sort((a, b) => a.start - b.start);
 
-    // Apply target duration limit
+    // Aplicar límite de duración objetivo
     if (config.targetDuration) {
       let totalDuration = 0;
       const limited = [];
@@ -300,8 +300,8 @@ class AutoEditor {
   }
 
   /**
-   * Get available auto-edit styles
-   * @returns {Array} Available styles
+   * Obtener estilos de auto-edición disponibles
+   * @returns {Array} Estilos disponibles
    */
   getAvailableStyles() {
     return [
@@ -330,12 +330,12 @@ class AutoEditor {
   }
 
   /**
-   * Estimate auto-edit processing time
-   * @param {number} videoDuration - Duration of input video in seconds
-   * @returns {Object} Estimated processing times
+   * Estimar tiempo de procesamiento de auto-edición
+   * @param {number} videoDuration - Duración del video de entrada en segundos
+   * @returns {Object} Tiempos de procesamiento estimados
    */
   estimateProcessingTime(videoDuration) {
-    // Rough estimates based on typical processing speeds
+    // Estimaciones aproximadas basadas en velocidades típicas de procesamiento
     const analysisTime = Math.ceil(videoDuration * ANALYSIS_TIME_MULTIPLIER);
     const cuttingTime = Math.ceil(videoDuration * CUTTING_TIME_MULTIPLIER);
     const joiningTime = Math.ceil(videoDuration * JOINING_TIME_MULTIPLIER);
@@ -351,9 +351,9 @@ class AutoEditor {
   }
 
   /**
-   * Format duration in seconds to human-readable string
-   * @param {number} seconds - Duration in seconds
-   * @returns {string} Formatted duration
+   * Formatear duración en segundos a cadena legible
+   * @param {number} seconds - Duración en segundos
+   * @returns {string} Duración formateada
    */
   formatDuration(seconds) {
     if (seconds < 60) {
@@ -368,7 +368,7 @@ class AutoEditor {
   }
 
   /**
-   * Clean up temporary files
+   * Limpiar archivos temporales
    */
   cleanup() {
     this.contentAnalyzer.cleanup();
@@ -380,7 +380,7 @@ class AutoEditor {
         try {
           fs.unlinkSync(filePath);
         } catch {
-          // Ignore cleanup errors
+          // Ignorar errores de limpieza
         }
       }
     }

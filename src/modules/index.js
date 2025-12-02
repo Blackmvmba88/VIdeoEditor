@@ -1,17 +1,17 @@
 /**
- * BlackMamba Studio - Modules Index
- * Central export for all modules
+ * BlackMamba Studio - Índice de Módulos
+ * Exportación central de todos los módulos
  * 
- * Core Modules (v1.0):
+ * Módulos Core (v1.0):
  *   - FFmpegWrapper, VideoProcessor, FormatDetector, FileValidator
  *   - ExportPresets, ExportRenderer, ContentAnalyzer, AutoEditor
  * 
- * Phase Modules (v1.1+):
- *   - Phase1: Performance, Essential Tools, Transitions & Effects
- *   - Phase2: AI Advanced features
+ * Módulos de Fases (v1.1+):
+ *   - Fase1: Rendimiento, Herramientas Esenciales, Transiciones y Efectos
+ *   - Fase2: Características avanzadas de IA
  */
 
-// Core modules (v1.0)
+// Módulos core (v1.0)
 const FFmpegWrapper = require('./ffmpegWrapper');
 const VideoProcessor = require('./videoProcessor');
 const FormatDetector = require('./formatDetector');
@@ -22,11 +22,11 @@ const ContentAnalyzer = require('./contentAnalyzer');
 const AutoEditor = require('./autoEditor');
 const { VideoEditorError, ErrorCodes, ErrorMessages, ErrorHandler } = require('./errorHandler');
 
-// Phase modules (v1.1+)
+// Módulos de fases (v1.1+)
 const Phases = require('./phases');
 
 module.exports = {
-  // Core modules (v1.0)
+  // Módulos core (v1.0)
   FFmpegWrapper,
   VideoProcessor,
   FormatDetector,
@@ -40,10 +40,10 @@ module.exports = {
   ErrorMessages,
   ErrorHandler,
   
-  // Phase modules - organized by phase
+  // Módulos de fases - organizados por fase
   Phases,
   
-  // Phase 1 modules (v1.1 - v1.3) - direct access
+  // Módulos de Fase 1 (v1.1 - v1.3) - acceso directo
   ProxyManager: Phases.ProxyManager,
   HardwareAccelerator: Phases.HardwareAccelerator,
   MemoryManager: Phases.MemoryManager,
@@ -55,7 +55,7 @@ module.exports = {
   ColorCorrection: Phases.ColorCorrection,
   SpeedController: Phases.SpeedController,
   
-  // Phase 2 modules (v2.0 - v2.1) - direct access
+  // Módulos de Fase 2 (v2.0 - v2.1) - acceso directo
   SmartChapters: Phases.SmartChapters,
   BeatSync: Phases.BeatSync,
   SpeechToText: Phases.SpeechToText

@@ -1,6 +1,6 @@
 /**
- * Proxy Manager Module - Phase 1.1
- * Generates and manages proxy files for smoother editing of high-resolution videos
+ * Módulo Administrador de Proxy - Fase 1.1
+ * Genera y administra archivos proxy para edición más fluida de videos de alta resolución
  */
 
 const path = require('path');
@@ -8,7 +8,7 @@ const fs = require('fs');
 const FFmpegWrapper = require('../../ffmpegWrapper');
 const { v4: uuidv4 } = require('uuid');
 
-// Proxy generation settings
+// Configuración de generación de proxy
 const PROXY_RESOLUTION_PRESETS = {
   low: { width: 640, height: 360, bitrate: '1M' },
   medium: { width: 1280, height: 720, bitrate: '2M' },
@@ -27,7 +27,7 @@ class ProxyManager {
   }
 
   /**
-   * Ensure proxy directory exists
+   * Asegurar que el directorio de proxy existe
    */
   ensureProxyDir() {
     if (!fs.existsSync(this.proxyDir)) {
@@ -36,11 +36,11 @@ class ProxyManager {
   }
 
   /**
-   * Generate a proxy file for a video
-   * @param {string} inputPath - Original video path
-   * @param {Object} options - Proxy generation options
-   * @param {Function} onProgress - Progress callback
-   * @returns {Promise<Object>} Result with proxy path
+   * Generar un archivo proxy para un video
+   * @param {string} inputPath - Ruta del video original
+   * @param {Object} options - Opciones de generación de proxy
+   * @param {Function} onProgress - Callback de progreso
+   * @returns {Promise<Object>} Resultado con ruta del proxy
    */
   async generateProxy(inputPath, options = {}, onProgress = null) {
     if (!fs.existsSync(inputPath)) {
@@ -77,7 +77,7 @@ class ProxyManager {
     try {
       await this.ffmpeg.execute(args, onProgress);
       
-      // Store mapping
+      // Almacenar mapeo
       this.proxyMap.set(inputPath, {
         proxyPath,
         resolution: config.resolution,
@@ -100,9 +100,9 @@ class ProxyManager {
   }
 
   /**
-   * Get proxy path for an original file
-   * @param {string} originalPath - Original video path
-   * @returns {string|null} Proxy path or null if not found
+   * Obtener ruta de proxy para un archivo original
+   * @param {string} originalPath - Ruta del video original
+   * @returns {string|null} Ruta del proxy o null si no se encuentra
    */
   getProxy(originalPath) {
     const proxyInfo = this.proxyMap.get(originalPath);
@@ -113,9 +113,9 @@ class ProxyManager {
   }
 
   /**
-   * Check if proxy exists for a file
-   * @param {string} originalPath - Original video path
-   * @returns {boolean} True if proxy exists
+   * Verificar si existe proxy para un archivo
+   * @param {string} originalPath - Ruta del video original
+   * @returns {boolean} True si el proxy existe
    */
   hasProxy(originalPath) {
     const proxyInfo = this.proxyMap.get(originalPath);
@@ -123,9 +123,9 @@ class ProxyManager {
   }
 
   /**
-   * Delete proxy for a file
-   * @param {string} originalPath - Original video path
-   * @returns {boolean} True if proxy was deleted
+   * Eliminar proxy para un archivo
+   * @param {string} originalPath - Ruta del video original
+   * @returns {boolean} True si el proxy fue eliminado
    */
   deleteProxy(originalPath) {
     const proxyInfo = this.proxyMap.get(originalPath);
@@ -138,16 +138,16 @@ class ProxyManager {
   }
 
   /**
-   * Get available resolution presets
-   * @returns {Object} Resolution presets
+   * Obtener presets de resolución disponibles
+   * @returns {Object} Presets de resolución
    */
   getResolutionPresets() {
     return { ...PROXY_RESOLUTION_PRESETS };
   }
 
   /**
-   * Get all active proxies
-   * @returns {Array} List of proxy mappings
+   * Obtener todos los proxies activos
+   * @returns {Array} Lista de mapeos de proxy
    */
   getAllProxies() {
     const proxies = [];
@@ -163,7 +163,7 @@ class ProxyManager {
   }
 
   /**
-   * Clean up all proxy files
+   * Limpiar todos los archivos proxy
    */
   cleanup() {
     for (const [, proxyInfo] of this.proxyMap) {
@@ -171,7 +171,7 @@ class ProxyManager {
         try {
           fs.unlinkSync(proxyInfo.proxyPath);
         } catch {
-          // Ignore cleanup errors
+          // Ignorar errores de limpieza
         }
       }
     }

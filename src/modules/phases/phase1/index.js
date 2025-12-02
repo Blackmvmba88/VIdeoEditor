@@ -1,52 +1,52 @@
 /**
- * Phase 1 Modules Index - BlackMamba Studio
+ * Índice de Módulos de Fase 1 - BlackMamba Studio
  * 
- * Phase 1.1 - Performance Improvements (v1.1)
- *   - ProxyManager: Generates proxy files for smoother editing
- *   - HardwareAccelerator: GPU acceleration support
- *   - MemoryManager: Intelligent memory management
- *   - BackgroundProcessor: Background rendering tasks
+ * Fase 1.1 - Mejoras de Rendimiento (v1.1)
+ *   - ProxyManager: Genera archivos proxy para edición más fluida
+ *   - HardwareAccelerator: Soporte de aceleración por GPU
+ *   - MemoryManager: Gestión inteligente de memoria
+ *   - BackgroundProcessor: Tareas de renderizado en segundo plano
  * 
- * Phase 1.2 - Essential Editing Tools (v1.2)
- *   - MultiTrackManager: Multiple video/audio tracks
- *   - AudioMixer: Audio mixing with levels
- *   - KeyframeManager: Property animation
+ * Fase 1.2 - Herramientas de Edición Esenciales (v1.2)
+ *   - MultiTrackManager: Múltiples pistas de video/audio
+ *   - AudioMixer: Mezcla de audio con niveles
+ *   - KeyframeManager: Animación de propiedades
  * 
- * Phase 1.3 - Transitions and Effects (v1.3)
- *   - TransitionsManager: Professional transitions
- *   - ColorCorrection: Basic color adjustments
- *   - SpeedController: Speed control and time manipulation
+ * Fase 1.3 - Transiciones y Efectos (v1.3)
+ *   - TransitionsManager: Transiciones profesionales
+ *   - ColorCorrection: Ajustes básicos de color
+ *   - SpeedController: Control de velocidad y manipulación de tiempo
  */
 
-// Phase 1.1 - Performance Improvements
+// Fase 1.1 - Mejoras de Rendimiento
 const ProxyManager = require('./proxyManager');
 const HardwareAccelerator = require('./hardwareAccelerator');
 const MemoryManager = require('./memoryManager');
 const BackgroundProcessor = require('./backgroundProcessor');
 
-// Phase 1.2 - Essential Editing Tools
+// Fase 1.2 - Herramientas de Edición Esenciales
 const MultiTrackManager = require('./multiTrackManager');
 const AudioMixer = require('./audioMixer');
 const KeyframeManager = require('./keyframeManager');
 
-// Phase 1.3 - Transitions and Effects
+// Fase 1.3 - Transiciones y Efectos
 const TransitionsManager = require('./transitionsManager');
 const ColorCorrection = require('./colorCorrection');
 const SpeedController = require('./speedController');
 
 module.exports = {
-  // Phase 1.1
+  // Fase 1.1
   ProxyManager,
   HardwareAccelerator,
   MemoryManager,
   BackgroundProcessor,
   
-  // Phase 1.2
+  // Fase 1.2
   MultiTrackManager,
   AudioMixer,
   KeyframeManager,
   
-  // Phase 1.3
+  // Fase 1.3
   TransitionsManager,
   ColorCorrection,
   SpeedController

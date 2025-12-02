@@ -1,6 +1,6 @@
 /**
- * Format Detector Module
- * Detects and validates video/audio formats
+ * Módulo Detector de Formatos
+ * Detecta y valida formatos de video/audio
  */
 
 const path = require('path');
@@ -36,9 +36,9 @@ class FormatDetector {
   }
 
   /**
-   * Detect format from file
-   * @param {string} filePath - Path to media file
-   * @returns {Promise<Object>} Detected format information
+   * Detectar formato desde archivo
+   * @param {string} filePath - Ruta al archivo multimedia
+   * @returns {Promise<Object>} Información de formato detectada
    */
   async detectFormat(filePath) {
     if (!fs.existsSync(filePath)) {
@@ -75,9 +75,9 @@ class FormatDetector {
   }
 
   /**
-   * Check if format is supported
-   * @param {string} ext - File extension
-   * @param {Object} info - Format info from FFprobe
+   * Verificar si el formato es compatible
+   * @param {string} ext - Extensión del archivo
+   * @param {Object} info - Información de formato desde FFprobe
    * @returns {boolean}
    */
   isSupported(ext, info) {
@@ -106,8 +106,8 @@ class FormatDetector {
   }
 
   /**
-   * Check if file extension is supported
-   * @param {string} filePath - File path
+   * Verificar si la extensión del archivo es compatible
+   * @param {string} filePath - Ruta del archivo
    * @returns {boolean}
    */
   isSupportedExtension(filePath) {
@@ -117,8 +117,8 @@ class FormatDetector {
   }
 
   /**
-   * Check if file is a video
-   * @param {string} filePath - File path
+   * Verificar si el archivo es un video
+   * @param {string} filePath - Ruta del archivo
    * @returns {boolean}
    */
   isVideoExtension(filePath) {
@@ -127,8 +127,8 @@ class FormatDetector {
   }
 
   /**
-   * Check if file is audio only
-   * @param {string} filePath - File path
+   * Verificar si el archivo es solo audio
+   * @param {string} filePath - Ruta del archivo
    * @returns {boolean}
    */
   isAudioExtension(filePath) {
@@ -137,10 +137,10 @@ class FormatDetector {
   }
 
   /**
-   * Get video resolution category
-   * @param {number} width - Video width
-   * @param {number} height - Video height
-   * @returns {string} Resolution category
+   * Obtener categoría de resolución de video
+   * @param {number} width - Ancho del video
+   * @param {number} height - Alto del video
+   * @returns {string} Categoría de resolución
    */
   getResolutionCategory(width, height) {
     const pixels = width * height;
@@ -156,9 +156,9 @@ class FormatDetector {
   }
 
   /**
-   * Get format compatibility report
-   * @param {string[]} filePaths - Array of file paths
-   * @returns {Promise<Object>} Compatibility report
+   * Obtener reporte de compatibilidad de formato
+   * @param {string[]} filePaths - Array de rutas de archivos
+   * @returns {Promise<Object>} Reporte de compatibilidad
    */
   async checkCompatibility(filePaths) {
     const formats = [];
@@ -222,7 +222,7 @@ class FormatDetector {
   }
 
   /**
-   * Get supported extensions list
+   * Obtener lista de extensiones compatibles
    * @returns {Object}
    */
   getSupportedExtensions() {

@@ -1,10 +1,10 @@
 /**
- * Error Handler Module
- * Centralized error handling and user-friendly messages
+ * Módulo Manejador de Errores
+ * Manejo centralizado de errores y mensajes amigables al usuario
  */
 
 /**
- * Custom application error class
+ * Clase de error personalizado de la aplicación
  */
 class VideoEditorError extends Error {
   constructor(message, code, details = null) {
@@ -27,10 +27,10 @@ class VideoEditorError extends Error {
 }
 
 /**
- * Error codes enumeration
+ * Enumeración de códigos de error
  */
 const ErrorCodes = {
-  // File errors (1000-1999)
+  // Errores de archivo (1000-1999)
   FILE_NOT_FOUND: 1001,
   FILE_READ_ERROR: 1002,
   FILE_WRITE_ERROR: 1003,
@@ -39,71 +39,71 @@ const ErrorCodes = {
   FILE_TOO_LARGE: 1006,
   FILE_CORRUPTED: 1007,
 
-  // FFmpeg errors (2000-2999)
+  // Errores de FFmpeg (2000-2999)
   FFMPEG_NOT_FOUND: 2001,
   FFMPEG_EXECUTION_ERROR: 2002,
   FFMPEG_INVALID_INPUT: 2003,
   FFMPEG_CODEC_NOT_SUPPORTED: 2004,
   FFMPEG_OUTPUT_ERROR: 2005,
 
-  // Processing errors (3000-3999)
+  // Errores de procesamiento (3000-3999)
   PROCESSING_FAILED: 3001,
   PROCESSING_CANCELLED: 3002,
   PROCESSING_TIMEOUT: 3003,
   INVALID_TIME_RANGE: 3004,
   INCOMPATIBLE_FORMATS: 3005,
 
-  // Validation errors (4000-4999)
+  // Errores de validación (4000-4999)
   VALIDATION_FAILED: 4001,
   INVALID_PARAMETER: 4002,
   MISSING_REQUIRED_FIELD: 4003,
 
-  // System errors (5000-5999)
+  // Errores del sistema (5000-5999)
   SYSTEM_ERROR: 5001,
   OUT_OF_MEMORY: 5002,
   DISK_FULL: 5003,
 
-  // Unknown
+  // Desconocido
   UNKNOWN_ERROR: 9999
 };
 
 /**
- * User-friendly error messages
+ * Mensajes de error amigables al usuario
  */
 const ErrorMessages = {
-  [ErrorCodes.FILE_NOT_FOUND]: 'The specified file could not be found. Please check the file path.',
-  [ErrorCodes.FILE_READ_ERROR]: 'Unable to read the file. Please check file permissions.',
-  [ErrorCodes.FILE_WRITE_ERROR]: 'Unable to write to the output location. Please check permissions and available disk space.',
-  [ErrorCodes.FILE_PERMISSION_DENIED]: 'Access denied. Please check your permissions for this file or directory.',
-  [ErrorCodes.FILE_INVALID_FORMAT]: 'The file format is not supported. Please use a supported video format.',
-  [ErrorCodes.FILE_TOO_LARGE]: 'The file is too large to process. Please use a smaller file.',
-  [ErrorCodes.FILE_CORRUPTED]: 'The file appears to be corrupted or incomplete.',
+  [ErrorCodes.FILE_NOT_FOUND]: 'No se pudo encontrar el archivo especificado. Por favor verifique la ruta del archivo.',
+  [ErrorCodes.FILE_READ_ERROR]: 'No se puede leer el archivo. Por favor verifique los permisos del archivo.',
+  [ErrorCodes.FILE_WRITE_ERROR]: 'No se puede escribir en la ubicación de salida. Por favor verifique los permisos y el espacio en disco disponible.',
+  [ErrorCodes.FILE_PERMISSION_DENIED]: 'Acceso denegado. Por favor verifique sus permisos para este archivo o directorio.',
+  [ErrorCodes.FILE_INVALID_FORMAT]: 'El formato de archivo no es compatible. Por favor use un formato de video compatible.',
+  [ErrorCodes.FILE_TOO_LARGE]: 'El archivo es demasiado grande para procesar. Por favor use un archivo más pequeño.',
+  [ErrorCodes.FILE_CORRUPTED]: 'El archivo parece estar corrupto o incompleto.',
 
-  [ErrorCodes.FFMPEG_NOT_FOUND]: 'FFmpeg is not installed or not found in PATH. Please install FFmpeg to use this application.',
-  [ErrorCodes.FFMPEG_EXECUTION_ERROR]: 'An error occurred while processing the video. Please try again.',
-  [ErrorCodes.FFMPEG_INVALID_INPUT]: 'The input file cannot be processed. It may be corrupted or in an unsupported format.',
-  [ErrorCodes.FFMPEG_CODEC_NOT_SUPPORTED]: 'The video codec is not supported. Please convert to a supported format.',
-  [ErrorCodes.FFMPEG_OUTPUT_ERROR]: 'Failed to create the output file. Please check the output path.',
+  [ErrorCodes.FFMPEG_NOT_FOUND]: 'FFmpeg no está instalado o no se encuentra en el PATH. Por favor instale FFmpeg para usar esta aplicación.',
+  [ErrorCodes.FFMPEG_EXECUTION_ERROR]: 'Ocurrió un error al procesar el video. Por favor intente de nuevo.',
+  [ErrorCodes.FFMPEG_INVALID_INPUT]: 'El archivo de entrada no puede procesarse. Puede estar corrupto o en un formato no compatible.',
+  [ErrorCodes.FFMPEG_CODEC_NOT_SUPPORTED]: 'El códec de video no es compatible. Por favor convierta a un formato compatible.',
+  [ErrorCodes.FFMPEG_OUTPUT_ERROR]: 'Error al crear el archivo de salida. Por favor verifique la ruta de salida.',
 
-  [ErrorCodes.PROCESSING_FAILED]: 'Video processing failed. Please try again with different settings.',
-  [ErrorCodes.PROCESSING_CANCELLED]: 'Processing was cancelled.',
-  [ErrorCodes.PROCESSING_TIMEOUT]: 'Processing timed out. The file may be too large or complex.',
-  [ErrorCodes.INVALID_TIME_RANGE]: 'Invalid time range specified. End time must be greater than start time.',
-  [ErrorCodes.INCOMPATIBLE_FORMATS]: 'The selected files have incompatible formats. Re-encoding may be required.',
+  [ErrorCodes.PROCESSING_FAILED]: 'El procesamiento de video falló. Por favor intente de nuevo con diferentes configuraciones.',
+  [ErrorCodes.PROCESSING_CANCELLED]: 'El procesamiento fue cancelado.',
+  [ErrorCodes.PROCESSING_TIMEOUT]: 'El procesamiento agotó el tiempo de espera. El archivo puede ser demasiado grande o complejo.',
+  [ErrorCodes.INVALID_TIME_RANGE]: 'Rango de tiempo no válido especificado. El tiempo final debe ser mayor que el tiempo inicial.',
+  [ErrorCodes.INCOMPATIBLE_FORMATS]: 'Los archivos seleccionados tienen formatos incompatibles. Puede ser necesaria la recodificación.',
 
-  [ErrorCodes.VALIDATION_FAILED]: 'Validation failed. Please check your input.',
-  [ErrorCodes.INVALID_PARAMETER]: 'Invalid parameter provided.',
-  [ErrorCodes.MISSING_REQUIRED_FIELD]: 'A required field is missing.',
+  [ErrorCodes.VALIDATION_FAILED]: 'La validación falló. Por favor verifique su entrada.',
+  [ErrorCodes.INVALID_PARAMETER]: 'Se proporcionó un parámetro no válido.',
+  [ErrorCodes.MISSING_REQUIRED_FIELD]: 'Falta un campo requerido.',
 
-  [ErrorCodes.SYSTEM_ERROR]: 'A system error occurred. Please restart the application.',
-  [ErrorCodes.OUT_OF_MEMORY]: 'Out of memory. Please close other applications and try again.',
-  [ErrorCodes.DISK_FULL]: 'Not enough disk space available. Please free up some space.',
+  [ErrorCodes.SYSTEM_ERROR]: 'Ocurrió un error del sistema. Por favor reinicie la aplicación.',
+  [ErrorCodes.OUT_OF_MEMORY]: 'Sin memoria. Por favor cierre otras aplicaciones e intente de nuevo.',
+  [ErrorCodes.DISK_FULL]: 'No hay suficiente espacio en disco disponible. Por favor libere algo de espacio.',
 
-  [ErrorCodes.UNKNOWN_ERROR]: 'An unknown error occurred. Please try again.'
+  [ErrorCodes.UNKNOWN_ERROR]: 'Ocurrió un error desconocido. Por favor intente de nuevo.'
 };
 
 /**
- * Error Handler Class
+ * Clase Manejador de Errores
  */
 class ErrorHandler {
   constructor() {
@@ -113,10 +113,10 @@ class ErrorHandler {
   }
 
   /**
-   * Create a VideoEditorError
-   * @param {number} code - Error code
-   * @param {string} customMessage - Optional custom message
-   * @param {*} details - Optional error details
+   * Crear un VideoEditorError
+   * @param {number} code - Código de error
+   * @param {string} customMessage - Mensaje personalizado opcional
+   * @param {*} details - Detalles opcionales del error
    * @returns {VideoEditorError}
    */
   createError(code, customMessage = null, details = null) {
@@ -125,8 +125,8 @@ class ErrorHandler {
   }
 
   /**
-   * Handle an error
-   * @param {Error} error - Error to handle
+   * Manejar un error
+   * @param {Error} error - Error a manejar
    * @returns {VideoEditorError}
    */
   handle(error) {
@@ -148,8 +148,8 @@ class ErrorHandler {
   }
 
   /**
-   * Parse native error to VideoEditorError
-   * @param {Error} error - Native error
+   * Parsear error nativo a VideoEditorError
+   * @param {Error} error - Error nativo
    * @returns {VideoEditorError}
    */
   parseError(error) {
@@ -183,8 +183,8 @@ class ErrorHandler {
   }
 
   /**
-   * Log error
-   * @param {VideoEditorError} error - Error to log
+   * Registrar error
+   * @param {VideoEditorError} error - Error a registrar
    */
   logError(error) {
     this.errorLog.push(error.toJSON());
@@ -197,7 +197,7 @@ class ErrorHandler {
   }
 
   /**
-   * Get error log
+   * Obtener registro de errores
    * @returns {Object[]}
    */
   getErrorLog() {
@@ -205,23 +205,23 @@ class ErrorHandler {
   }
 
   /**
-   * Clear error log
+   * Limpiar registro de errores
    */
   clearErrorLog() {
     this.errorLog = [];
   }
 
   /**
-   * Set error callback
-   * @param {Function} callback - Error callback
+   * Establecer callback de error
+   * @param {Function} callback - Callback de error
    */
   setErrorCallback(callback) {
     this.onError = callback;
   }
 
   /**
-   * Get user-friendly message for error code
-   * @param {number} code - Error code
+   * Obtener mensaje amigable para código de error
+   * @param {number} code - Código de error
    * @returns {string}
    */
   getUserMessage(code) {
@@ -229,8 +229,8 @@ class ErrorHandler {
   }
 
   /**
-   * Check if error is recoverable
-   * @param {VideoEditorError} error - Error to check
+   * Verificar si el error es recuperable
+   * @param {VideoEditorError} error - Error a verificar
    * @returns {boolean}
    */
   isRecoverable(error) {
@@ -245,7 +245,7 @@ class ErrorHandler {
   }
 
   /**
-   * Get recovery suggestions for error
+   * Obtener sugerencias de recuperación para error
    * @param {VideoEditorError} error - Error
    * @returns {string[]}
    */
@@ -254,39 +254,39 @@ class ErrorHandler {
 
     switch (error.code) {
     case ErrorCodes.FILE_NOT_FOUND:
-      suggestions.push('Check if the file path is correct');
-      suggestions.push('Ensure the file has not been moved or deleted');
+      suggestions.push('Verifique si la ruta del archivo es correcta');
+      suggestions.push('Asegúrese de que el archivo no haya sido movido o eliminado');
       break;
 
     case ErrorCodes.FILE_PERMISSION_DENIED:
-      suggestions.push('Run the application with administrator privileges');
-      suggestions.push('Check file and folder permissions');
+      suggestions.push('Ejecute la aplicación con privilegios de administrador');
+      suggestions.push('Verifique los permisos del archivo y la carpeta');
       break;
 
     case ErrorCodes.FFMPEG_NOT_FOUND:
-      suggestions.push('Install FFmpeg from https://ffmpeg.org');
-      suggestions.push('Add FFmpeg to your system PATH');
+      suggestions.push('Instale FFmpeg desde https://ffmpeg.org');
+      suggestions.push('Agregue FFmpeg al PATH del sistema');
       break;
 
     case ErrorCodes.FILE_INVALID_FORMAT:
-      suggestions.push('Convert the file to a supported format (MP4, MOV, AVI)');
-      suggestions.push('Check if the file is corrupted');
+      suggestions.push('Convierta el archivo a un formato compatible (MP4, MOV, AVI)');
+      suggestions.push('Verifique si el archivo está corrupto');
       break;
 
     case ErrorCodes.DISK_FULL:
-      suggestions.push('Free up disk space');
-      suggestions.push('Choose a different output location');
+      suggestions.push('Libere espacio en disco');
+      suggestions.push('Elija una ubicación de salida diferente');
       break;
 
     case ErrorCodes.OUT_OF_MEMORY:
-      suggestions.push('Close other applications');
-      suggestions.push('Restart the application');
-      suggestions.push('Process smaller files');
+      suggestions.push('Cierre otras aplicaciones');
+      suggestions.push('Reinicie la aplicación');
+      suggestions.push('Procese archivos más pequeños');
       break;
 
     default:
-      suggestions.push('Try again with different settings');
-      suggestions.push('Restart the application');
+      suggestions.push('Intente de nuevo con diferentes configuraciones');
+      suggestions.push('Reinicie la aplicación');
     }
 
     return suggestions;

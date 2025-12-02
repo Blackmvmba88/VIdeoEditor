@@ -1,6 +1,6 @@
 /**
- * Video Processor Module
- * Handles video operations: join, cut, and order clips
+ * Módulo Procesador de Video
+ * Maneja operaciones de video: unir, cortar y ordenar clips
  */
 
 const path = require('path');
@@ -16,16 +16,16 @@ class VideoProcessor {
   }
 
   /**
-   * Escape file path for FFmpeg concat file format
-   * @param {string} filePath - File path to escape
-   * @returns {string} Escaped path
+   * Escapar ruta de archivo para formato de archivo concat de FFmpeg
+   * @param {string} filePath - Ruta del archivo a escapar
+   * @returns {string} Ruta escapada
    */
   escapePath(filePath) {
     return filePath.replace(/'/g, '\'\\\'\'');
   }
 
   /**
-   * Ensure temporary directory exists
+   * Asegurar que el directorio temporal existe
    */
   ensureTempDir() {
     if (!fs.existsSync(this.tempDir)) {
@@ -34,12 +34,12 @@ class VideoProcessor {
   }
 
   /**
-   * Cut a video clip
-   * @param {string} inputPath - Input video path
-   * @param {number} startTime - Start time in seconds
-   * @param {number} endTime - End time in seconds
-   * @param {string} outputPath - Output video path
-   * @param {Function} onProgress - Progress callback
+   * Cortar un clip de video
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {number} startTime - Tiempo de inicio en segundos
+   * @param {number} endTime - Tiempo de fin en segundos
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async cutVideo(inputPath, startTime, endTime, outputPath, onProgress = null) {
@@ -71,11 +71,11 @@ class VideoProcessor {
   }
 
   /**
-   * Join multiple video clips
-   * @param {string[]} inputPaths - Array of input video paths
-   * @param {string} outputPath - Output video path
-   * @param {Object} options - Join options
-   * @param {Function} onProgress - Progress callback
+   * Unir múltiples clips de video
+   * @param {string[]} inputPaths - Array de rutas de videos de entrada
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Object} options - Opciones de unión
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async joinVideos(inputPaths, outputPath, options = {}, onProgress = null) {
@@ -130,11 +130,11 @@ class VideoProcessor {
   }
 
   /**
-   * Reorder clips and join them
-   * @param {Array<{path: string, order: number}>} clips - Clips with order
-   * @param {string} outputPath - Output video path
-   * @param {Object} options - Processing options
-   * @param {Function} onProgress - Progress callback
+   * Reordenar clips y unirlos
+   * @param {Array<{path: string, order: number}>} clips - Clips con orden
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Object} options - Opciones de procesamiento
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async reorderAndJoin(clips, outputPath, options = {}, onProgress = null) {
@@ -155,11 +155,11 @@ class VideoProcessor {
   }
 
   /**
-   * Split video into multiple parts
-   * @param {string} inputPath - Input video path
-   * @param {Array<{start: number, end: number}>} segments - Segments to extract
-   * @param {string} outputDir - Output directory
-   * @param {Function} onProgress - Progress callback
+   * Dividir video en múltiples partes
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {Array<{start: number, end: number}>} segments - Segmentos a extraer
+   * @param {string} outputDir - Directorio de salida
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPaths: string[]}>}
    */
   async splitVideo(inputPath, segments, outputDir, onProgress = null) {
@@ -198,10 +198,10 @@ class VideoProcessor {
   }
 
   /**
-   * Extract audio from video
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output audio path
-   * @param {Object} options - Extraction options
+   * Extraer audio del video
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta del audio de salida
+   * @param {Object} options - Opciones de extracción
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async extractAudio(inputPath, outputPath, options = {}) {
@@ -226,9 +226,9 @@ class VideoProcessor {
   }
 
   /**
-   * Remove audio from video
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output video path
+   * Remover audio del video
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta del video de salida
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async removeAudio(inputPath, outputPath) {
@@ -248,11 +248,11 @@ class VideoProcessor {
   }
 
   /**
-   * Add audio to video
-   * @param {string} videoPath - Input video path
-   * @param {string} audioPath - Input audio path
-   * @param {string} outputPath - Output video path
-   * @param {Object} options - Options
+   * Agregar audio al video
+   * @param {string} videoPath - Ruta del video de entrada
+   * @param {string} audioPath - Ruta del audio de entrada
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Object} options - Opciones
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async addAudio(videoPath, audioPath, outputPath, options = {}) {
@@ -281,7 +281,7 @@ class VideoProcessor {
   }
 
   /**
-   * Clean up temporary files
+   * Limpiar archivos temporales
    */
   cleanup() {
     if (fs.existsSync(this.tempDir)) {

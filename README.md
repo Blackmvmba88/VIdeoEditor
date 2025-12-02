@@ -9,6 +9,7 @@
 [![Version](https://img.shields.io/badge/version-1.0.0-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor/releases)
 [![License](https://img.shields.io/badge/license-MIT-00d4ff?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor)
+[![Windows](https://img.shields.io/badge/Windows-Verified%20✓-00d4ff?style=for-the-badge&logo=windows)](https://github.com/Blackmvmba88/VIdeoEditor)
 [![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-00d4ff?style=for-the-badge)](https://nodejs.org/)
 
 [🚀 **Ver Roadmap Completo**](ROADMAP.md) • [📦 Releases](https://github.com/Blackmvmba88/VIdeoEditor/releases) • [🐛 Reportar Bug](https://github.com/Blackmvmba88/VIdeoEditor/issues)
@@ -57,7 +58,7 @@ A cinematic video editing application built with Electron and Node.js, featuring
 ### Technical Features
 - **FFmpeg Integration** - Full FFmpeg support for video processing
 - **File Validation** - Comprehensive input validation and error handling
-- **Cross-Platform** - Works on Windows and macOS
+- **Cross-Platform** - Works on Windows and macOS (Windows verified ✓)
 - **Modular Architecture** - Clean, maintainable codebase
 
 ## 🚀 Getting Started

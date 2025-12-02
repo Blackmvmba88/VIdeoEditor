@@ -672,7 +672,7 @@ function updateTrimControls(item) {
  */
 async function applyTrim() {
   if (!selectedClip) {
-    showNotification('Selecciona un clip primero', 'warning');
+    showNotification('Seleccione un clip primero', 'warning');
     return;
   }
 
@@ -779,7 +779,7 @@ function updateExportButton() {
  */
 async function exportVideo() {
   if (timelineClips.length === 0) {
-    showNotification('Agrega clips a la línea de tiempo primero', 'warning');
+    showNotification('Agregue clips a la línea de tiempo primero', 'warning');
     return;
   }
 

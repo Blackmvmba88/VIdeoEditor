@@ -6,6 +6,12 @@
  *   - FFmpegWrapper, VideoProcessor, FormatDetector, FileValidator
  *   - ExportPresets, ExportRenderer, ContentAnalyzer, AutoEditor
  * 
+ * Sistema de Agentes Inteligentes (BMIC):
+ *   - FileValidator (Agente Validator): Validación pre-proceso avanzada
+ *   - Optimizer (Agente Optimizer): Pipeline inteligente de FFmpeg
+ *   - AutoImprove (Agente Auto-Improve): Análisis post-proceso y mejoras
+ *   - BMIC (BlackMamba Intelligence Core): Motor de decisión maestro
+ * 
  * Módulos de Fases (v1.1+):
  *   - Fase1: Rendimiento, Herramientas Esenciales, Transiciones y Efectos
  *   - Fase2: Características avanzadas de IA
@@ -21,6 +27,11 @@ const ExportRenderer = require('./exportRenderer');
 const ContentAnalyzer = require('./contentAnalyzer');
 const AutoEditor = require('./autoEditor');
 const { VideoEditorError, ErrorCodes, ErrorMessages, ErrorHandler } = require('./errorHandler');
+
+// Sistema de Agentes Inteligentes (BMIC)
+const Optimizer = require('./optimizer');
+const AutoImprove = require('./autoImprove');
+const BMIC = require('./bmic');
 
 // Módulos de fases (v1.1+)
 const Phases = require('./phases');
@@ -39,6 +50,11 @@ module.exports = {
   ErrorCodes,
   ErrorMessages,
   ErrorHandler,
+  
+  // Sistema de Agentes Inteligentes (BMIC)
+  Optimizer,
+  AutoImprove,
+  BMIC,
   
   // Módulos de fases - organizados por fase
   Phases,

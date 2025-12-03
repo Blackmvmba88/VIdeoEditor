@@ -1,15 +1,15 @@
 /**
- * Phase 2 Modules Index - BlackMamba Studio
+ * Índice de Módulos de Fase 2 - BlackMamba Studio
  * 
- * Phase 2.0 - Auto-Edit 2.0 (v2.0)
- *   - SmartChapters: Automatic chapter division
- *   - BeatSync: Music beat synchronization
+ * Fase 2.0 - Auto-Edit 2.0 (v2.0)
+ *   - SmartChapters: División automática de capítulos
+ *   - BeatSync: Sincronización de ritmo musical
  * 
- * Phase 2.1 - Transcription & Subtitles (v2.1)
- *   - SpeechToText: Automatic transcription
+ * Fase 2.1 - Transcripción y Subtítulos (v2.1)
+ *   - SpeechToText: Transcripción automática
  * 
- * Note: Some Phase 2 features require external AI services for full functionality.
- * The modules provide the infrastructure and interfaces for integration.
+ * Nota: Algunas características de Fase 2 requieren servicios externos de IA para funcionalidad completa.
+ * Los módulos proporcionan la infraestructura e interfaces para integración.
  */
 
 const SmartChapters = require('./smartChapters');
@@ -17,10 +17,10 @@ const BeatSync = require('./beatSync');
 const SpeechToText = require('./speechToText');
 
 module.exports = {
-  // Phase 2.0 - Auto-Edit 2.0
+  // Fase 2.0 - Auto-Edit 2.0
   SmartChapters,
   BeatSync,
   
-  // Phase 2.1 - Transcription & Subtitles
+  // Fase 2.1 - Transcripción y Subtítulos
   SpeechToText
 };

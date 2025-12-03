@@ -1,6 +1,6 @@
 /**
- * Export Presets Module
- * Contains predefined export settings for different use cases
+ * Módulo de Presets de Exportación
+ * Contiene configuraciones de exportación predefinidas para diferentes casos de uso
  */
 
 const presets = {
@@ -289,7 +289,7 @@ const presets = {
 };
 
 /**
- * Export Presets Manager Class
+ * Clase Administrador de Presets de Exportación
  */
 class ExportPresets {
   constructor() {
@@ -298,7 +298,7 @@ class ExportPresets {
   }
 
   /**
-   * Get all available presets
+   * Obtener todos los presets disponibles
    * @returns {Object}
    */
   getAllPresets() {
@@ -306,8 +306,8 @@ class ExportPresets {
   }
 
   /**
-   * Get preset by key
-   * @param {string} key - Preset key
+   * Obtener preset por clave
+   * @param {string} key - Clave del preset
    * @returns {Object|null}
    */
   getPreset(key) {
@@ -315,8 +315,8 @@ class ExportPresets {
   }
 
   /**
-   * Get presets by category
-   * @param {string} category - Category name
+   * Obtener presets por categoría
+   * @param {string} category - Nombre de la categoría
    * @returns {Object}
    */
   getPresetsByCategory(category) {
@@ -341,9 +341,9 @@ class ExportPresets {
   }
 
   /**
-   * Create custom preset
-   * @param {string} key - Preset key
-   * @param {Object} preset - Preset configuration
+   * Crear preset personalizado
+   * @param {string} key - Clave del preset
+   * @param {Object} preset - Configuración del preset
    */
   createCustomPreset(key, preset) {
     if (!preset.name) {
@@ -357,17 +357,17 @@ class ExportPresets {
   }
 
   /**
-   * Delete custom preset
-   * @param {string} key - Preset key
+   * Eliminar preset personalizado
+   * @param {string} key - Clave del preset
    */
   deleteCustomPreset(key) {
     delete this.customPresets[key];
   }
 
   /**
-   * Generate FFmpeg arguments from preset
-   * @param {string} presetKey - Preset key
-   * @param {Object} overrides - Optional parameter overrides
+   * Generar argumentos de FFmpeg desde preset
+   * @param {string} presetKey - Clave del preset
+   * @param {Object} overrides - Sobreescrituras opcionales de parámetros
    * @returns {string[]}
    */
   generateFFmpegArgs(presetKey, overrides = {}) {
@@ -444,8 +444,8 @@ class ExportPresets {
   }
 
   /**
-   * Get default output extension for preset
-   * @param {string} presetKey - Preset key
+   * Obtener extensión de salida por defecto para preset
+   * @param {string} presetKey - Clave del preset
    * @returns {string}
    */
   getOutputExtension(presetKey) {

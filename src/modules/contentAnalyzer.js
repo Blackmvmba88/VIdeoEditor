@@ -1,7 +1,7 @@
 /**
- * Content Analyzer Module
- * Analyzes video content to detect the best moments for automatic editing
- * Helps editors save time by identifying interesting segments
+ * Módulo Analizador de Contenido
+ * Analiza contenido de video para detectar los mejores momentos para edición automática
+ * Ayuda a los editores a ahorrar tiempo identificando segmentos interesantes
  */
 
 const FFmpegWrapper = require('./ffmpegWrapper');
@@ -9,11 +9,11 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-// Configuration constants
-const FALLBACK_SCENE_INTERVAL = 5;       // Seconds between estimated scene changes
-const MAX_FALLBACK_SCENES = 20;          // Maximum number of fallback scene changes
-const FALLBACK_AUDIO_INTERVAL = 10;      // Seconds between estimated audio peaks
-const MAX_FALLBACK_AUDIO_PEAKS = 10;     // Maximum number of fallback audio peaks
+// Constantes de configuración
+const FALLBACK_SCENE_INTERVAL = 5;       // Segundos entre cambios de escena estimados
+const MAX_FALLBACK_SCENES = 20;          // Número máximo de cambios de escena de respaldo
+const FALLBACK_AUDIO_INTERVAL = 10;      // Segundos entre picos de audio estimados
+const MAX_FALLBACK_AUDIO_PEAKS = 10;     // Número máximo de picos de audio de respaldo
 
 class ContentAnalyzer {
   constructor() {
@@ -23,7 +23,7 @@ class ContentAnalyzer {
   }
 
   /**
-   * Ensure temporary directory exists
+   * Asegurar que el directorio temporal existe
    */
   ensureTempDir() {
     if (!fs.existsSync(this.tempDir)) {
@@ -32,10 +32,10 @@ class ContentAnalyzer {
   }
 
   /**
-   * Analyze video content and detect interesting moments
-   * @param {string} inputPath - Path to video file
-   * @param {Object} options - Analysis options
-   * @returns {Promise<Object>} Analysis results with detected moments
+   * Analizar contenido de video y detectar momentos interesantes
+   * @param {string} inputPath - Ruta al archivo de video
+   * @param {Object} options - Opciones de análisis
+   * @returns {Promise<Object>} Resultados del análisis con momentos detectados
    */
   async analyzeContent(inputPath, options = {}) {
     if (!fs.existsSync(inputPath)) {
@@ -45,7 +45,7 @@ class ContentAnalyzer {
     const videoInfo = await this.ffmpeg.getVideoInfo(inputPath);
     const duration = videoInfo.duration;
 
-    // Default options
+    // Opciones por defecto
     const config = {
       detectSceneChanges: options.detectSceneChanges !== false,
       detectAudioPeaks: options.detectAudioPeaks !== false,
@@ -66,7 +66,7 @@ class ContentAnalyzer {
       suggestedClips: []
     };
 
-    // Detect scene changes
+    // Detectar cambios de escena
     if (config.detectSceneChanges) {
       results.sceneChanges = await this.detectSceneChanges(
         inputPath,
@@ -75,7 +75,7 @@ class ContentAnalyzer {
       );
     }
 
-    // Detect audio peaks
+    // Detectar picos de audio
     if (config.detectAudioPeaks) {
       results.audioPeaks = await this.detectAudioPeaks(
         inputPath,
@@ -84,7 +84,7 @@ class ContentAnalyzer {
       );
     }
 
-    // Combine analysis to find interesting moments
+    // Combinar análisis para encontrar momentos interesantes
     results.interestingMoments = this.identifyInterestingMoments(
       results.sceneChanges,
       results.audioPeaks,
@@ -92,7 +92,7 @@ class ContentAnalyzer {
       config
     );
 
-    // Generate suggested clips based on analysis
+    // Generar clips sugeridos basándose en el análisis
     results.suggestedClips = this.generateSuggestedClips(
       results.interestingMoments,
       duration,
@@ -103,17 +103,17 @@ class ContentAnalyzer {
   }
 
   /**
-   * Detect scene changes in video
-   * @param {string} inputPath - Video file path
-   * @param {number} duration - Video duration
-   * @param {number} threshold - Scene change threshold (0.0 - 1.0)
-   * @returns {Promise<Array>} Array of scene change timestamps
+   * Detectar cambios de escena en video
+   * @param {string} inputPath - Ruta del archivo de video
+   * @param {number} duration - Duración del video
+   * @param {number} threshold - Umbral de cambio de escena (0.0 - 1.0)
+   * @returns {Promise<Array>} Array de marcas de tiempo de cambios de escena
    */
   async detectSceneChanges(inputPath, duration, threshold) {
     const sceneChanges = [];
     
     try {
-      // Use FFmpeg to detect scene changes
+      // Usar FFmpeg para detectar cambios de escena
       const outputFile = path.join(this.tempDir, `scenes_${uuidv4()}.txt`);
       
       const args = [
@@ -125,7 +125,7 @@ class ContentAnalyzer {
 
       const result = await this.ffmpeg.execute(args);
       
-      // Parse FFmpeg output for scene detection
+      // Parsear salida de FFmpeg para detección de escenas
       const lines = result.output.split('\n');
       for (const line of lines) {
         const match = line.match(/pts_time:([\d.]+)/);
@@ -141,13 +141,13 @@ class ContentAnalyzer {
         }
       }
 
-      // Clean up
+      // Limpiar
       if (fs.existsSync(outputFile)) {
         fs.unlinkSync(outputFile);
       }
     } catch (error) {
-      // If scene detection fails, generate estimated scene changes
-      // based on video duration (fallback method)
+      // Si la detección de escenas falla, generar cambios de escena estimados
+      // basándose en la duración del video (método de respaldo)
       const estimatedChanges = Math.floor(duration / FALLBACK_SCENE_INTERVAL);
       for (let i = 1; i <= estimatedChanges && i <= MAX_FALLBACK_SCENES; i++) {
         sceneChanges.push({
@@ -162,17 +162,17 @@ class ContentAnalyzer {
   }
 
   /**
-   * Detect audio peaks in video
-   * @param {string} inputPath - Video file path
-   * @param {number} duration - Video duration  
-   * @param {number} threshold - Audio peak threshold in dB
-   * @returns {Promise<Array>} Array of audio peak timestamps
+   * Detectar picos de audio en video
+   * @param {string} inputPath - Ruta del archivo de video
+   * @param {number} duration - Duración del video  
+   * @param {number} threshold - Umbral de pico de audio en dB
+   * @returns {Promise<Array>} Array de marcas de tiempo de picos de audio
    */
   async detectAudioPeaks(inputPath, duration, threshold) {
     const audioPeaks = [];
     
     try {
-      // Use FFmpeg to analyze audio levels
+      // Usar FFmpeg para analizar niveles de audio
       const args = [
         '-i', inputPath,
         '-af', `silencedetect=noise=${threshold}dB:d=0.5`,
@@ -182,7 +182,7 @@ class ContentAnalyzer {
 
       const result = await this.ffmpeg.execute(args);
       
-      // Parse silence detection output to find non-silent (interesting) parts
+      // Parsear salida de detección de silencio para encontrar partes no silenciosas (interesantes)
       const lines = result.output.split('\n');
       let lastSilenceEnd = 0;
 
@@ -203,7 +203,7 @@ class ContentAnalyzer {
         const silenceStartMatch = line.match(/silence_start: ([\d.]+)/);
         if (silenceStartMatch) {
           const time = parseFloat(silenceStartMatch[1]);
-          // Mark the period before silence as potentially interesting
+          // Marcar el período antes del silencio como potencialmente interesante
           if (time > 1 && time < duration) {
             audioPeaks.push({
               time: Math.max(0, time - 1),
@@ -214,7 +214,7 @@ class ContentAnalyzer {
         }
       }
     } catch (error) {
-      // Fallback: estimate audio peaks based on duration
+      // Respaldo: estimar picos de audio basándose en la duración
       const estimatedPeaks = Math.floor(duration / FALLBACK_AUDIO_INTERVAL);
       for (let i = 1; i <= estimatedPeaks && i <= MAX_FALLBACK_AUDIO_PEAKS; i++) {
         audioPeaks.push({
@@ -229,18 +229,18 @@ class ContentAnalyzer {
   }
 
   /**
-   * Identify interesting moments by combining different analysis results
-   * @param {Array} sceneChanges - Scene change timestamps
-   * @param {Array} audioPeaks - Audio peak timestamps
-   * @param {number} duration - Video duration
-   * @param {Object} config - Analysis configuration
-   * @returns {Array} Sorted array of interesting moments
+   * Identificar momentos interesantes combinando diferentes resultados de análisis
+   * @param {Array} sceneChanges - Marcas de tiempo de cambios de escena
+   * @param {Array} audioPeaks - Marcas de tiempo de picos de audio
+   * @param {number} duration - Duración del video
+   * @param {Object} config - Configuración del análisis
+   * @returns {Array} Array ordenado de momentos interesantes
    */
   identifyInterestingMoments(sceneChanges, audioPeaks, duration, config) {
     const moments = [];
     const processedTimes = new Set();
 
-    // Add scene changes
+    // Agregar cambios de escena
     for (const scene of sceneChanges) {
       const roundedTime = Math.round(scene.time);
       if (!processedTimes.has(roundedTime)) {
@@ -254,7 +254,7 @@ class ContentAnalyzer {
       }
     }
 
-    // Add audio peaks, boost score if near scene change
+    // Agregar picos de audio, aumentar puntuación si está cerca de un cambio de escena
     for (const peak of audioPeaks) {
       const roundedTime = Math.round(peak.time);
       const existingMoment = moments.find(m => 
@@ -262,7 +262,7 @@ class ContentAnalyzer {
       );
 
       if (existingMoment) {
-        // Boost score when visual and audio align
+        // Aumentar puntuación cuando visual y audio coinciden
         existingMoment.score = Math.min(1.0, existingMoment.score + 0.3);
         existingMoment.source = 'combined';
       } else if (!processedTimes.has(roundedTime)) {
@@ -276,18 +276,18 @@ class ContentAnalyzer {
       }
     }
 
-    // Sort by score (highest first)
+    // Ordenar por puntuación (más alta primero)
     moments.sort((a, b) => b.score - a.score);
 
     return moments;
   }
 
   /**
-   * Generate suggested clips based on interesting moments
-   * @param {Array} moments - Interesting moments
-   * @param {number} duration - Video duration
-   * @param {Object} config - Configuration options
-   * @returns {Array} Suggested clips with start/end times
+   * Generar clips sugeridos basándose en momentos interesantes
+   * @param {Array} moments - Momentos interesantes
+   * @param {number} duration - Duración del video
+   * @param {Object} config - Opciones de configuración
+   * @returns {Array} Clips sugeridos con tiempos de inicio/fin
    */
   generateSuggestedClips(moments, duration, config) {
     const clips = [];
@@ -307,7 +307,7 @@ class ContentAnalyzer {
       let start = Math.max(0, moment.time - clipDuration / 2);
       let end = Math.min(duration, moment.time + clipDuration / 2);
 
-      // Ensure minimum duration
+      // Asegurar duración mínima
       if (end - start < config.minMomentDuration) {
         if (start === 0) {
           end = Math.min(duration, config.minMomentDuration);
@@ -316,7 +316,7 @@ class ContentAnalyzer {
         }
       }
 
-      // Check for overlap with existing clips
+      // Verificar superposición con clips existentes
       const overlaps = usedRanges.some(range => 
         (start >= range.start && start < range.end) ||
         (end > range.start && end <= range.end) ||
@@ -338,16 +338,16 @@ class ContentAnalyzer {
       }
     }
 
-    // Sort clips by start time for sequential editing
+    // Ordenar clips por tiempo de inicio para edición secuencial
     clips.sort((a, b) => a.start - b.start);
 
     return clips;
   }
 
   /**
-   * Get analysis summary for display
-   * @param {Object} analysis - Analysis results
-   * @returns {Object} Summary statistics
+   * Obtener resumen del análisis para mostrar
+   * @param {Object} analysis - Resultados del análisis
+   * @returns {Object} Estadísticas de resumen
    */
   getAnalysisSummary(analysis) {
     const totalMoments = analysis.interestingMoments.length;
@@ -373,7 +373,7 @@ class ContentAnalyzer {
   }
 
   /**
-   * Clean up temporary files
+   * Limpiar archivos temporales
    */
   cleanup() {
     if (fs.existsSync(this.tempDir)) {
@@ -383,7 +383,7 @@ class ContentAnalyzer {
         try {
           fs.unlinkSync(filePath);
         } catch {
-          // Ignore cleanup errors
+          // Ignorar errores de limpieza
         }
       }
     }

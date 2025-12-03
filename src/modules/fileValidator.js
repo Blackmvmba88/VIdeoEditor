@@ -1,6 +1,6 @@
 /**
- * File Validator Module
- * Validates video files before processing
+ * Módulo Validador de Archivos
+ * Valida archivos de video antes de procesarlos
  */
 
 const fs = require('fs');
@@ -16,8 +16,8 @@ class FileValidator {
   }
 
   /**
-   * Validate a single file
-   * @param {string} filePath - Path to file
+   * Validar un solo archivo
+   * @param {string} filePath - Ruta al archivo
    * @returns {Promise<{valid: boolean, errors: string[], warnings: string[]}>}
    */
   async validateFile(filePath) {
@@ -92,8 +92,8 @@ class FileValidator {
   }
 
   /**
-   * Validate multiple files
-   * @param {string[]} filePaths - Array of file paths
+   * Validar múltiples archivos
+   * @param {string[]} filePaths - Array de rutas de archivos
    * @returns {Promise<{allValid: boolean, results: Object[]}>}
    */
   async validateFiles(filePaths) {
@@ -127,8 +127,8 @@ class FileValidator {
   }
 
   /**
-   * Validate output path
-   * @param {string} outputPath - Output file path
+   * Validar ruta de salida
+   * @param {string} outputPath - Ruta del archivo de salida
    * @returns {{valid: boolean, errors: string[]}}
    */
   validateOutputPath(outputPath) {
@@ -176,7 +176,7 @@ class FileValidator {
   }
 
   /**
-   * Format bytes to human readable
+   * Formatear bytes a formato legible
    * @param {number} bytes - Bytes
    * @returns {string}
    */
@@ -194,8 +194,8 @@ class FileValidator {
   }
 
   /**
-   * Set maximum file size
-   * @param {number} sizeInBytes - Max size in bytes
+   * Establecer tamaño máximo de archivo
+   * @param {number} sizeInBytes - Tamaño máximo en bytes
    */
   setMaxFileSize(sizeInBytes) {
     if (sizeInBytes > 0) {
@@ -204,9 +204,9 @@ class FileValidator {
   }
 
   /**
-   * Check if path is safe (no path traversal)
-   * @param {string} filePath - File path
-   * @param {string} basePath - Base directory
+   * Verificar si la ruta es segura (sin traversal de ruta)
+   * @param {string} filePath - Ruta del archivo
+   * @param {string} basePath - Directorio base
    * @returns {boolean}
    */
   isSafePath(filePath, basePath) {

@@ -1,6 +1,6 @@
 /**
- * FFmpeg Wrapper Module
- * Handles all FFmpeg operations for video processing
+ * Módulo Wrapper de FFmpeg
+ * Maneja todas las operaciones de FFmpeg para procesamiento de video
  */
 
 const { spawn } = require('child_process');
@@ -13,8 +13,8 @@ class FFmpegWrapper {
   }
 
   /**
-   * Detect FFmpeg installation path
-   * @returns {string} Path to FFmpeg executable
+   * Detectar ruta de instalación de FFmpeg
+   * @returns {string} Ruta al ejecutable de FFmpeg
    */
   detectFFmpegPath() {
     const possiblePaths = [
@@ -36,8 +36,8 @@ class FFmpegWrapper {
   }
 
   /**
-   * Detect FFprobe installation path
-   * @returns {string} Path to FFprobe executable
+   * Detectar ruta de instalación de FFprobe
+   * @returns {string} Ruta al ejecutable de FFprobe
    */
   detectFFprobePath() {
     const possiblePaths = [
@@ -59,8 +59,8 @@ class FFmpegWrapper {
   }
 
   /**
-   * Check if an executable is available
-   * @param {string} execPath - Path to executable
+   * Verificar si un ejecutable está disponible
+   * @param {string} execPath - Ruta al ejecutable
    * @returns {boolean}
    */
   isExecutableAvailable(execPath) {
@@ -76,9 +76,9 @@ class FFmpegWrapper {
   }
 
   /**
-   * Execute FFmpeg command
-   * @param {string[]} args - Command arguments
-   * @param {Function} onProgress - Progress callback
+   * Ejecutar comando de FFmpeg
+   * @param {string[]} args - Argumentos del comando
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, output: string}>}
    */
   execute(args, onProgress = null) {
@@ -123,9 +123,9 @@ class FFmpegWrapper {
   }
 
   /**
-   * Get video information using FFprobe
-   * @param {string} filePath - Path to video file
-   * @returns {Promise<Object>} Video metadata
+   * Obtener información del video usando FFprobe
+   * @param {string} filePath - Ruta al archivo de video
+   * @returns {Promise<Object>} Metadatos del video
    */
   getVideoInfo(filePath) {
     return new Promise((resolve, reject) => {
@@ -169,9 +169,9 @@ class FFmpegWrapper {
   }
 
   /**
-   * Parse FFprobe output into structured format
-   * @param {Object} rawInfo - Raw FFprobe JSON output
-   * @returns {Object} Parsed video information
+   * Parsear salida de FFprobe a formato estructurado
+   * @param {Object} rawInfo - Salida JSON cruda de FFprobe
+   * @returns {Object} Información de video parseada
    */
   parseVideoInfo(rawInfo) {
     const videoStream = rawInfo.streams?.find(s => s.codec_type === 'video');
@@ -200,9 +200,9 @@ class FFmpegWrapper {
   }
 
   /**
-   * Parse FPS from FFprobe format
-   * @param {string} fpsStr - FPS string (e.g., "30/1")
-   * @returns {number} FPS value
+   * Parsear FPS desde formato de FFprobe
+   * @param {string} fpsStr - Cadena de FPS (ej., "30/1")
+   * @returns {number} Valor de FPS
    */
   parseFPS(fpsStr) {
     if (!fpsStr) return 0;
@@ -214,7 +214,7 @@ class FFmpegWrapper {
   }
 
   /**
-   * Check if FFmpeg is available
+   * Verificar si FFmpeg está disponible
    * @returns {Promise<boolean>}
    */
   async isAvailable() {
@@ -227,7 +227,7 @@ class FFmpegWrapper {
   }
 
   /**
-   * Get FFmpeg version
+   * Obtener versión de FFmpeg
    * @returns {Promise<string>}
    */
   async getVersion() {

@@ -1,11 +1,11 @@
 /**
- * BlackMamba Studio - Renderer Script
- * Professional Video Editor with Cinematic UI
+ * BlackMamba Studio - Script de Renderizado
+ * Editor de Video Profesional con UI Cinematográfica
  */
 
 const { videoEditorAPI } = window;
 
-// State
+// Estado
 let mediaLibrary = [];
 let timelineClips = [];
 let selectedClip = null;
@@ -15,16 +15,16 @@ let isPlaying = false;
 let currentSection = 'edit'; // eslint-disable-line no-unused-vars
 let renderStartTime = null;
 
-// Auto-Edit State
+// Estado de Auto-Edit
 let autoEditStyles = [];
 let selectedAutoEditStyle = 'highlights';
 let contentAnalysis = null;
 
-// DOM Elements
+// Elementos del DOM
 const elements = {};
 
 /**
- * Initialize application
+ * Inicializar aplicación
  */
 async function init() {
   cacheElements();
@@ -42,7 +42,7 @@ async function init() {
 }
 
 /**
- * Cache DOM elements
+ * Cachear elementos del DOM
  */
 function cacheElements() {
   elements.splashScreen = document.getElementById('splash-screen');
@@ -75,7 +75,7 @@ function cacheElements() {
   elements.clipProperties = document.getElementById('clip-properties');
   elements.qualityDisplay = document.getElementById('quality-display');
   
-  // Auto-Edit elements
+  // Elementos de Auto-Edit
   elements.styleCards = document.getElementById('style-cards');
   elements.btnAnalyze = document.getElementById('btn-analyze');
   elements.btnAutoEdit = document.getElementById('btn-auto-edit');
@@ -91,14 +91,14 @@ function cacheElements() {
 }
 
 /**
- * Show splash screen
+ * Mostrar pantalla de inicio
  */
 function showSplash() {
   elements.splashStatus.textContent = 'Initializing...';
 }
 
 /**
- * Hide splash screen with animation
+ * Ocultar pantalla de inicio con animación
  */
 function hideSplash() {
   setTimeout(() => {
@@ -108,7 +108,7 @@ function hideSplash() {
 }
 
 /**
- * Update splash status
+ * Actualizar estado de la pantalla de inicio
  */
 function updateSplashStatus(text) {
   if (elements.splashStatus) {
@@ -117,7 +117,7 @@ function updateSplashStatus(text) {
 }
 
 /**
- * Check FFmpeg availability
+ * Verificar disponibilidad de FFmpeg
  */
 async function checkFFmpeg() {
   updateSplashStatus('Checking FFmpeg...');
@@ -135,7 +135,7 @@ async function checkFFmpeg() {
 }
 
 /**
- * Load export presets
+ * Cargar presets de exportación
  */
 async function loadPresets() {
   updateSplashStatus('Loading presets...');
@@ -147,7 +147,7 @@ async function loadPresets() {
 }
 
 /**
- * Load auto-edit styles
+ * Cargar estilos de auto-edición
  */
 async function loadAutoEditStyles() {
   updateSplashStatus('Loading auto-edit styles...');
@@ -159,7 +159,7 @@ async function loadAutoEditStyles() {
 }
 
 /**
- * Load app info
+ * Cargar información de la aplicación
  */
 async function loadAppInfo() {
   updateSplashStatus('Starting BlackMamba Studio...');
@@ -168,58 +168,58 @@ async function loadAppInfo() {
 }
 
 /**
- * Setup event listeners
+ * Configurar escuchadores de eventos
  */
 function setupEventListeners() {
-  // Toolbar navigation
+  // Navegación de barra de herramientas
   document.querySelectorAll('.tool-btn[data-section]').forEach(btn => {
     btn.addEventListener('click', () => switchSection(btn.dataset.section));
   });
 
-  // Drop zone
+  // Zona de soltar
   const dropZone = elements.dropZone;
   dropZone.addEventListener('click', () => importFiles());
   dropZone.addEventListener('dragover', handleDragOver);
   dropZone.addEventListener('dragleave', handleDragLeave);
   dropZone.addEventListener('drop', handleDrop);
 
-  // Import button
+  // Botón de importar
   document.getElementById('btn-import-media').addEventListener('click', () => importFiles(true));
 
-  // Panel tabs
+  // Pestañas del panel
   document.querySelectorAll('.panel-tab').forEach(tab => {
     tab.addEventListener('click', () => switchPanelTab(tab.dataset.tab));
   });
 
-  // Preview controls
+  // Controles de vista previa
   document.getElementById('btn-play').addEventListener('click', togglePlay);
   document.getElementById('btn-prev-frame').addEventListener('click', prevFrame);
   document.getElementById('btn-next-frame').addEventListener('click', nextFrame);
 
-  // Timeline zoom
+  // Zoom de línea de tiempo
   document.getElementById('btn-zoom-in').addEventListener('click', () => zoomTimeline(1));
   document.getElementById('btn-zoom-out').addEventListener('click', () => zoomTimeline(-1));
   document.getElementById('timeline-zoom').addEventListener('input', handleZoomSlider);
 
-  // Export
+  // Exportación
   document.getElementById('btn-export').addEventListener('click', exportVideo);
   document.getElementById('export-quality').addEventListener('input', (e) => {
     elements.qualityDisplay.textContent = `${e.target.value}%`;
   });
 
-  // Success modal
+  // Modal de éxito
   document.getElementById('btn-reveal').addEventListener('click', revealExportedFile);
   document.getElementById('btn-close-success').addEventListener('click', closeSuccessModal);
 
-  // Properties sliders
+  // Deslizadores de propiedades
   document.querySelectorAll('.prop-slider').forEach(slider => {
     slider.addEventListener('input', handlePropertySlider);
   });
 
-  // Trim button
+  // Botón de recorte
   document.getElementById('btn-apply-trim').addEventListener('click', applyTrim);
 
-  // Auto-Edit controls
+  // Controles de Auto-Edit
   elements.btnAnalyze.addEventListener('click', analyzeContent);
   elements.btnAutoEdit.addEventListener('click', runAutoEdit);
   elements.minClipDuration.addEventListener('input', (e) => {
@@ -231,7 +231,7 @@ function setupEventListeners() {
 }
 
 /**
- * Setup progress listener
+ * Configurar escuchador de progreso
  */
 function setupProgressListener() {
   videoEditorAPI.onProgress((data) => {
@@ -245,7 +245,7 @@ function setupProgressListener() {
 }
 
 /**
- * Switch toolbar section
+ * Cambiar sección de barra de herramientas
  */
 function switchSection(section) {
   document.querySelectorAll('.tool-btn[data-section]').forEach(btn => {
@@ -253,7 +253,7 @@ function switchSection(section) {
   });
   currentSection = section;
 
-  // Handle section-specific UI updates
+  // Manejar actualizaciones de UI específicas de sección
   if (section === 'export') {
     switchPanelTab('export');
   }
@@ -263,7 +263,7 @@ function switchSection(section) {
 }
 
 /**
- * Switch panel tab
+ * Cambiar pestaña del panel
  */
 function switchPanelTab(tab) {
   document.querySelectorAll('.panel-tab').forEach(t => {
@@ -275,7 +275,7 @@ function switchPanelTab(tab) {
 }
 
 /**
- * Handle drag over
+ * Manejar arrastre sobre zona
  */
 function handleDragOver(e) {
   e.preventDefault();
@@ -283,14 +283,14 @@ function handleDragOver(e) {
 }
 
 /**
- * Handle drag leave
+ * Manejar salida de arrastre
  */
 function handleDragLeave(e) {
   e.currentTarget.classList.remove('dragover');
 }
 
 /**
- * Handle file drop
+ * Manejar soltar archivo
  */
 async function handleDrop(e) {
   e.preventDefault();
@@ -303,7 +303,7 @@ async function handleDrop(e) {
 }
 
 /**
- * Import files using dialog
+ * Importar archivos usando diálogo
  */
 async function importFiles(multiple = true) {
   const filePaths = await videoEditorAPI.openFileDialog({ multiple });
@@ -315,10 +315,10 @@ async function importFiles(multiple = true) {
 }
 
 /**
- * Add media file to library
+ * Agregar archivo multimedia a la biblioteca
  */
 async function addMediaFile(filePath) {
-  // Check if already imported
+  // Verificar si ya está importado
   if (mediaLibrary.find(f => f.path === filePath)) {
     showNotification('File already imported', 'warning');
     return;
@@ -344,7 +344,7 @@ async function addMediaFile(filePath) {
       updateExportButton();
       setStatus(`Imported: ${mediaItem.name}`);
 
-      // Auto-add to timeline
+      // Agregar automáticamente a línea de tiempo
       addToTimeline(mediaItem);
     } else {
       showNotification(`Failed to import: ${result.error?.message || 'Unknown error'}`, 'error');
@@ -355,7 +355,7 @@ async function addMediaFile(filePath) {
 }
 
 /**
- * Render media library
+ * Renderizar biblioteca de medios
  */
 function renderMediaLibrary() {
   const container = elements.mediaLibrary;
@@ -402,7 +402,7 @@ function renderMediaLibrary() {
 }
 
 /**
- * Select media item
+ * Seleccionar elemento multimedia
  */
 function selectMedia(item) {
   selectedClip = item;
@@ -412,7 +412,7 @@ function selectMedia(item) {
 }
 
 /**
- * Remove media from library
+ * Remover multimedia de biblioteca
  */
 function removeMedia(id) {
   mediaLibrary = mediaLibrary.filter(m => m.id !== id);
@@ -431,10 +431,10 @@ function removeMedia(id) {
 }
 
 /**
- * Add clip to timeline
+ * Agregar clip a línea de tiempo
  */
 function addToTimeline(item) {
-  // Avoid duplicates
+  // Evitar duplicados
   if (timelineClips.find(c => c.id === item.id)) {
     showNotification('Clip already in timeline', 'info');
     return;
@@ -451,7 +451,7 @@ function addToTimeline(item) {
 }
 
 /**
- * Render timeline
+ * Renderizar línea de tiempo
  */
 function renderTimeline() {
   const container = elements.videoTrackContent;
@@ -500,21 +500,21 @@ function renderTimeline() {
 }
 
 /**
- * Handle clip drag start
+ * Manejar inicio de arrastre de clip
  */
 function handleClipDragStart(e) {
   e.dataTransfer.setData('text/plain', e.target.dataset.index);
 }
 
 /**
- * Handle clip drag over
+ * Manejar arrastre sobre clip
  */
 function handleClipDragOver(e) {
   e.preventDefault();
 }
 
 /**
- * Handle clip drop (reorder)
+ * Manejar soltar clip (reordenar)
  */
 function handleClipDrop(e) {
   e.preventDefault();
@@ -530,7 +530,7 @@ function handleClipDrop(e) {
 }
 
 /**
- * Load preview video
+ * Cargar video de vista previa
  */
 function loadPreview(item) {
   const video = elements.previewVideo;
@@ -552,7 +552,7 @@ function loadPreview(item) {
 }
 
 /**
- * Clear preview
+ * Limpiar vista previa
  */
 function clearPreview() {
   const video = elements.previewVideo;
@@ -566,7 +566,7 @@ function clearPreview() {
 }
 
 /**
- * Toggle play/pause
+ * Alternar reproducir/pausar
  */
 function togglePlay() {
   const video = elements.previewVideo;
@@ -582,7 +582,7 @@ function togglePlay() {
 }
 
 /**
- * Previous frame
+ * Fotograma anterior
  */
 function prevFrame() {
   const video = elements.previewVideo;
@@ -591,7 +591,7 @@ function prevFrame() {
 }
 
 /**
- * Next frame
+ * Siguiente fotograma
  */
 function nextFrame() {
   const video = elements.previewVideo;
@@ -600,26 +600,26 @@ function nextFrame() {
 }
 
 /**
- * Zoom timeline
+ * Zoom de línea de tiempo
  */
 function zoomTimeline(direction) {
   const slider = document.getElementById('timeline-zoom');
   const newValue = parseInt(slider.value, 10) + direction;
   if (newValue >= 1 && newValue <= 10) {
     slider.value = newValue;
-    // Apply zoom effect here
+    // Aplicar efecto de zoom aquí
   }
 }
 
 /**
- * Handle zoom slider
+ * Manejar deslizador de zoom
  */
 function handleZoomSlider(_e) {
-  // Apply zoom effect based on value
+  // Aplicar efecto de zoom basado en valor
 }
 
 /**
- * Update clip properties panel
+ * Actualizar panel de propiedades del clip
  */
 function updateClipProperties(item) {
   const container = elements.clipProperties;
@@ -653,14 +653,14 @@ function updateClipProperties(item) {
 }
 
 /**
- * Clear clip properties
+ * Limpiar propiedades del clip
  */
 function clearClipProperties() {
   elements.clipProperties.innerHTML = '<p class="no-selection">No clip selected</p>';
 }
 
 /**
- * Update trim controls
+ * Actualizar controles de recorte
  */
 function updateTrimControls(item) {
   document.getElementById('trim-in').value = formatTimecode(0);
@@ -668,15 +668,15 @@ function updateTrimControls(item) {
 }
 
 /**
- * Apply trim
+ * Aplicar recorte
  */
 async function applyTrim() {
   if (!selectedClip) {
-    showNotification('Select a clip first', 'warning');
+    showNotification('Seleccione un clip primero', 'warning');
     return;
   }
 
-  // Parse timecodes
+  // Parsear códigos de tiempo
   const inTime = parseTimecode(document.getElementById('trim-in').value);
   const outTime = parseTimecode(document.getElementById('trim-out').value);
 
@@ -711,7 +711,7 @@ async function applyTrim() {
 }
 
 /**
- * Handle property slider
+ * Manejar deslizador de propiedades
  */
 function handlePropertySlider(e) {
   const value = e.target.value;
@@ -726,7 +726,7 @@ function handlePropertySlider(e) {
 }
 
 /**
- * Render preset cards
+ * Renderizar tarjetas de preset
  */
 function renderPresetCards() {
   const container = elements.presetCards;
@@ -767,7 +767,7 @@ function renderPresetCards() {
 }
 
 /**
- * Update export button state
+ * Actualizar estado del botón de exportación
  */
 function updateExportButton() {
   elements.btnExport.disabled = timelineClips.length === 0;
@@ -775,11 +775,11 @@ function updateExportButton() {
 }
 
 /**
- * Export video
+ * Exportar video
  */
 async function exportVideo() {
   if (timelineClips.length === 0) {
-    showNotification('Add clips to timeline first', 'warning');
+    showNotification('Agregue clips a la línea de tiempo primero', 'warning');
     return;
   }
 
@@ -799,14 +799,14 @@ async function exportVideo() {
   let result;
 
   if (timelineClips.length === 1) {
-    // Single clip export
+    // Exportación de un solo clip
     result = await videoEditorAPI.exportWithPreset({
       inputPath: timelineClips[0].path,
       outputPath,
       presetKey: selectedPreset
     });
   } else {
-    // Multiple clips - join then export
+    // Múltiples clips - unir y luego exportar
     const clips = timelineClips.map((clip, index) => ({
       path: clip.path,
       order: index
@@ -828,7 +828,7 @@ async function exportVideo() {
 }
 
 /**
- * Show progress modal
+ * Mostrar modal de progreso
  */
 function showProgressModal(title) {
   elements.progressTitle.textContent = title;
@@ -841,21 +841,21 @@ function showProgressModal(title) {
 }
 
 /**
- * Update progress
+ * Actualizar progreso
  */
 function updateProgress(data) {
   const percent = Math.min(data.seconds ? Math.round(data.seconds * 2) : 0, 100);
   elements.progressFill.style.width = `${percent}%`;
   elements.renderPercent.textContent = `${percent}%`;
-  elements.progressStatus.textContent = `Processing... ${data.seconds || 0}s`;
+  elements.progressStatus.textContent = `Procesando... ${data.seconds || 0}s`;
 
-  // Update elapsed time
+  // Actualizar tiempo transcurrido
   if (renderStartTime) {
     const elapsed = Math.floor((Date.now() - renderStartTime) / 1000);
     elements.progressTime.textContent = `Elapsed: ${formatDuration(elapsed)}`;
   }
 
-  // Update SVG ring
+  // Actualizar anillo SVG
   const ring = document.querySelector('.ring-progress');
   if (ring) {
     const offset = 283 - (283 * percent / 100);
@@ -864,14 +864,14 @@ function updateProgress(data) {
 }
 
 /**
- * Hide progress modal
+ * Ocultar modal de progreso
  */
 function hideProgressModal() {
   elements.progressModal.style.display = 'none';
 }
 
 /**
- * Show success modal
+ * Mostrar modal de éxito
  */
 function showSuccessModal(outputPath) {
   hideProgressModal();
@@ -881,14 +881,14 @@ function showSuccessModal(outputPath) {
 }
 
 /**
- * Close success modal
+ * Cerrar modal de éxito
  */
 function closeSuccessModal() {
   elements.successModal.style.display = 'none';
 }
 
 /**
- * Reveal exported file
+ * Revelar archivo exportado
  */
 async function revealExportedFile() {
   const path = elements.successModal.dataset.path;
@@ -899,7 +899,7 @@ async function revealExportedFile() {
 }
 
 /**
- * Show notification
+ * Mostrar notificación
  */
 function showNotification(message, type = 'info') {
   setStatus(message);
@@ -907,14 +907,14 @@ function showNotification(message, type = 'info') {
 }
 
 /**
- * Set status bar message
+ * Establecer mensaje de barra de estado
  */
 function setStatus(message) {
   elements.statusMessage.textContent = message;
 }
 
 /**
- * Update file count
+ * Actualizar conteo de archivos
  */
 function updateFileCount() {
   const count = mediaLibrary.length;
@@ -922,14 +922,14 @@ function updateFileCount() {
 }
 
 /**
- * Generate unique ID
+ * Generar ID único
  */
 function generateId() {
   return `clip_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**
- * Format duration (seconds to MM:SS)
+ * Formatear duración (segundos a MM:SS)
  */
 function formatDuration(seconds) {
   if (!seconds || isNaN(seconds)) return '00:00';
@@ -939,7 +939,7 @@ function formatDuration(seconds) {
 }
 
 /**
- * Format timecode (HH:MM:SS:FF)
+ * Formatear código de tiempo (HH:MM:SS:FF)
  */
 function formatTimecode(seconds) {
   if (!seconds || isNaN(seconds)) return '00:00:00:00';
@@ -951,7 +951,7 @@ function formatTimecode(seconds) {
 }
 
 /**
- * Parse timecode to seconds
+ * Parsear código de tiempo a segundos
  */
 function parseTimecode(timecode) {
   const parts = timecode.split(':').map(p => parseInt(p, 10));
@@ -962,11 +962,11 @@ function parseTimecode(timecode) {
 }
 
 // ============================================
-// Auto-Edit Feature Functions
+// Funciones de Característica Auto-Edit
 // ============================================
 
 /**
- * Render auto-edit style cards
+ * Renderizar tarjetas de estilo de auto-edición
  */
 function renderStyleCards() {
   const container = elements.styleCards;
@@ -998,7 +998,7 @@ function renderStyleCards() {
 }
 
 /**
- * Update auto-edit buttons state
+ * Actualizar estado de botones de auto-edición
  */
 function updateAutoEditButtons() {
   const hasClips = mediaLibrary.length > 0;
@@ -1007,7 +1007,7 @@ function updateAutoEditButtons() {
 }
 
 /**
- * Analyze video content
+ * Analizar contenido de video
  */
 async function analyzeContent() {
   if (mediaLibrary.length === 0) {
@@ -1049,7 +1049,7 @@ async function analyzeContent() {
 }
 
 /**
- * Show analysis results
+ * Mostrar resultados del análisis
  */
 function showAnalysisResults(result) {
   elements.analysisResults.style.display = 'block';
@@ -1061,7 +1061,7 @@ function showAnalysisResults(result) {
 }
 
 /**
- * Run automatic video editing
+ * Ejecutar edición automática de video
  */
 async function runAutoEdit() {
   if (mediaLibrary.length === 0) {
@@ -1111,7 +1111,7 @@ async function runAutoEdit() {
 }
 
 /**
- * Show auto-edit statistics
+ * Mostrar estadísticas de auto-edición
  */
 function showAutoEditStats(stats) {
   if (stats) {
@@ -1122,5 +1122,5 @@ function showAutoEditStats(stats) {
   }
 }
 
-// Initialize on DOM ready
+// Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', init);

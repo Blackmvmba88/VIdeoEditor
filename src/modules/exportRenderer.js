@@ -1,6 +1,6 @@
 /**
- * Export Renderer Module
- * Handles final video export and rendering
+ * Módulo de Renderizado de Exportación
+ * Maneja la exportación final de video y renderizado
  */
 
 const path = require('path');
@@ -17,12 +17,12 @@ class ExportRenderer {
   }
 
   /**
-   * Export video with preset
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output video path
-   * @param {string} presetKey - Preset key
-   * @param {Object} options - Additional options
-   * @param {Function} onProgress - Progress callback
+   * Exportar video con preset
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {string} presetKey - Clave del preset
+   * @param {Object} options - Opciones adicionales
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async exportWithPreset(inputPath, outputPath, presetKey, options = {}, onProgress = null) {
@@ -50,11 +50,11 @@ class ExportRenderer {
   }
 
   /**
-   * Export with custom settings
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output video path
-   * @param {Object} settings - Custom export settings
-   * @param {Function} onProgress - Progress callback
+   * Exportar con configuración personalizada
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta del video de salida
+   * @param {Object} settings - Configuración de exportación personalizada
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async exportCustom(inputPath, outputPath, settings = {}, onProgress = null) {
@@ -121,11 +121,11 @@ class ExportRenderer {
   }
 
   /**
-   * Export for multiple platforms at once
-   * @param {string} inputPath - Input video path
-   * @param {string} outputDir - Output directory
-   * @param {string[]} presetKeys - Array of preset keys
-   * @param {Function} onProgress - Progress callback
+   * Exportar para múltiples plataformas a la vez
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputDir - Directorio de salida
+   * @param {string[]} presetKeys - Array de claves de preset
+   * @param {Function} onProgress - Callback de progreso
    * @returns {Promise<{success: boolean, outputs: Object[]}>}
    */
   async exportMultiplePlatforms(inputPath, outputDir, presetKeys, onProgress = null) {
@@ -185,10 +185,10 @@ class ExportRenderer {
   }
 
   /**
-   * Generate thumbnail from video
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output image path
-   * @param {Object} options - Thumbnail options
+   * Generar miniatura de video
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta de la imagen de salida
+   * @param {Object} options - Opciones de miniatura
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async generateThumbnail(inputPath, outputPath, options = {}) {
@@ -210,10 +210,10 @@ class ExportRenderer {
   }
 
   /**
-   * Generate video preview/proxy
-   * @param {string} inputPath - Input video path
-   * @param {string} outputPath - Output preview path
-   * @param {Object} options - Preview options
+   * Generar vista previa/proxy de video
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} outputPath - Ruta de la vista previa de salida
+   * @param {Object} options - Opciones de vista previa
    * @returns {Promise<{success: boolean, outputPath: string}>}
    */
   async generatePreview(inputPath, outputPath, options = {}) {
@@ -238,9 +238,9 @@ class ExportRenderer {
   }
 
   /**
-   * Estimate output file size
-   * @param {string} inputPath - Input video path
-   * @param {string} presetKey - Preset key
+   * Estimar tamaño del archivo de salida
+   * @param {string} inputPath - Ruta del video de entrada
+   * @param {string} presetKey - Clave del preset
    * @returns {Promise<{estimatedSize: number, estimatedSizeFormatted: string}>}
    */
   async estimateOutputSize(inputPath, presetKey) {
@@ -292,7 +292,7 @@ class ExportRenderer {
   }
 
   /**
-   * Get available presets
+   * Obtener presets disponibles
    * @returns {Object}
    */
   getAvailablePresets() {
@@ -300,8 +300,8 @@ class ExportRenderer {
   }
 
   /**
-   * Get preset info
-   * @param {string} presetKey - Preset key
+   * Obtener información del preset
+   * @param {string} presetKey - Clave del preset
    * @returns {Object|null}
    */
   getPresetInfo(presetKey) {

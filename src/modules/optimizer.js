@@ -788,6 +788,7 @@ class Optimizer {
     case 'k': value *= 1000; break;
     case 'm': value *= 1000000; break;
     case 'g': value *= 1000000000; break;
+    default: break; // No unit, value is already in bps
     }
     
     return Math.round(value);

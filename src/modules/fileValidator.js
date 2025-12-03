@@ -827,5 +827,3 @@ class FileValidator {
 }
 
 module.exports = FileValidator;
-
-module.exports = FileValidator;

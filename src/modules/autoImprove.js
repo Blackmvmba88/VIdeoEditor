@@ -511,6 +511,7 @@ class AutoImprove {
       const result = await this.ffmpeg.execute(args);
       
       // Parsear detección de negro (indicador de saltos)
+      // matchAll returns an iterator which is compatible with for...of in Node.js
       const blackMatches = result.output.matchAll(/black_start:([\d.]+)\s+black_end:([\d.]+)/g);
       for (const match of blackMatches) {
         const start = parseFloat(match[1]);
@@ -722,10 +723,14 @@ class AutoImprove {
       onProgress({ stage: 'improving', percent: 0, message: 'Aplicando mejoras...' });
     }
 
+    // Progress estimation factor: FFmpeg reports progress in seconds, 
+    // we estimate 10 seconds of processing as 100% for short operations
+    const PROGRESS_ESTIMATION_FACTOR = 10;
+
     try {
       await this.ffmpeg.execute(args, (progress) => {
         if (onProgress) {
-          const percent = Math.min(95, Math.round(progress / 10 * 100)); // Aproximación
+          const percent = Math.min(95, Math.round((progress / PROGRESS_ESTIMATION_FACTOR) * 100));
           onProgress({ stage: 'improving', percent, message: `Procesando: ${percent}%` });
         }
       });

@@ -278,8 +278,10 @@ class BMIC {
         decision,
         (progress) => {
           if (onProgress) {
-            const percent = 40 + Math.round(progress * 0.4);
-            onProgress({ phase: 'processing', percent, message: `Procesando: ${progress.toFixed(0)}%` });
+            // progress is a number representing current progress percentage
+            const progressValue = typeof progress === 'number' ? progress : 0;
+            const percent = 40 + Math.round(progressValue * 0.4);
+            onProgress({ phase: 'processing', percent, message: `Procesando: ${Math.round(progressValue)}%` });
           }
         }
       );
@@ -505,8 +507,13 @@ class BMIC {
 
     this.log(decision, 'info', `Aplicando ${improvements.length} mejoras automáticas...`);
 
-    // Crear archivo temporal para la versión mejorada
-    const tempPath = outputPath.replace(/(\.[^.]+)$/, '_improved$1');
+    // Crear archivo temporal para la versión mejorada using robust path manipulation
+    const parsedPath = path.parse(outputPath);
+    const tempPath = path.format({
+      dir: parsedPath.dir,
+      name: `${parsedPath.name}_improved`,
+      ext: parsedPath.ext || '.mp4'
+    });
 
     try {
       await this.autoImprove.applyImprovements(outputPath, tempPath, improvements);

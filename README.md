@@ -159,6 +159,8 @@ npm test
 
 BlackMamba Studio now includes a **web-based interface** for basic video editing that runs in your browser!
 
+![Web UI Screenshot](https://github.com/user-attachments/assets/36eeba28-f7df-4bf2-8d51-9d35de394046)
+
 ```bash
 # Start the web server
 npm run web
@@ -173,6 +175,7 @@ npm run web
 - ✂️ Trim and cut videos
 - 🔗 Join multiple clips
 - 💾 Download processed videos
+- 🔒 Secure with rate limiting
 
 **Perfect for:**
 - Quick edits without opening the full app

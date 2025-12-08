@@ -20,6 +20,10 @@
 
 A cinematic video editing application built with Electron and Node.js, featuring FFmpeg integration for professional video processing.
 
+**🎯 Two Ways to Edit:**
+- **Desktop App** (Electron) - Full-featured professional editor with AI tools
+- **Web UI** (Browser) - Basic editing interface accessible from any browser
+
 ![BlackMamba Studio](https://img.shields.io/badge/BlackMamba-Studio-00d4ff?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjMDBkNGZmIiBkPSJNNTAgNSBDMjUgNSAxMCAyNSAxMCA0NSBDMTAgNTUgMTUgNjUgMjUgNzAgTDIwIDkwIEMyMCA5NSAyNSA5OCAzMCA5NSBMNTAgODAgTDcwIDk1IEM3NSA5OCA4MCA5NSA4MCA5MCBMNSA3MCBDODUgNjUgOTAgNTUgOTAgNDUgQzkwIDI1IDc1IDUgNTAgNSBaIE0zNSA0MCBDMzggNDAgNDAgNDIgNDAgNDUgQzQwIDQ4IDM4IDUwIDM1IDUwIEMzMiA1MCAzMCA0OCAzMCA0NSBDM Agog== MCAzMiA0MCAzNSA0MCBaIE02NSA0MCBDNjggNDAgNzAgNDIgNzAgNDUgQzcwIDQ4IDY4IDUwIDY1IDUwIEM2MiA1MCA2MCA0OCA2MCA0NSBDNjAgNDIgNjIgNDAgNjUgNDAgWiIvPjwvc3ZnPg==)
 
 ## ✨ Features
@@ -138,8 +142,11 @@ npm start
 ### Development
 
 ```bash
-# Run in development mode
+# Run in development mode (Electron app)
 npm start
+
+# Run Web UI (browser-based)
+npm run web
 
 # Lint code
 npm run lint
@@ -147,6 +154,35 @@ npm run lint
 # Run tests
 npm test
 ```
+
+### Web UI
+
+BlackMamba Studio now includes a **web-based interface** for basic video editing that runs in your browser!
+
+![Web UI Screenshot](https://github.com/user-attachments/assets/36eeba28-f7df-4bf2-8d51-9d35de394046)
+
+```bash
+# Start the web server
+npm run web
+
+# Then open your browser at:
+# http://localhost:3000
+```
+
+**Features:**
+- 🌐 Browser-based - No installation required
+- 📤 Upload videos with drag & drop
+- ✂️ Trim and cut videos
+- 🔗 Join multiple clips
+- 💾 Download processed videos
+- 🔒 Secure with rate limiting
+
+**Perfect for:**
+- Quick edits without opening the full app
+- Remote access to video editing
+- Sharing editing capabilities with others
+
+For detailed Web UI documentation, see [src/web/README.md](src/web/README.md)
 
 ## 📦 Building Installers
 

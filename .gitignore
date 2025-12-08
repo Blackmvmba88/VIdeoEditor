@@ -35,6 +35,9 @@ tmp/
 temp/
 *.tmp
 
+# Web UI uploads
+src/web/uploads/
+
 # Environment
 .env
 .env.local

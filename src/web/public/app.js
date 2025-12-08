@@ -331,13 +331,13 @@ function renderTimeline() {
         <div class="clip-duration">Duración: ${formatDuration(clip.duration)}</div>
       </div>
       <div class="clip-actions">
-        <button class="clip-btn" onclick="moveClipUp(${index})" ${index === 0 ? 'disabled' : ''}>
+        <button class="clip-btn clip-up" data-index="${index}" ${index === 0 ? 'disabled' : ''}>
           ↑
         </button>
-        <button class="clip-btn" onclick="moveClipDown(${index})" ${index === timelineClips.length - 1 ? 'disabled' : ''}>
+        <button class="clip-btn clip-down" data-index="${index}" ${index === timelineClips.length - 1 ? 'disabled' : ''}>
           ↓
         </button>
-        <button class="clip-btn" onclick="removeClip(${index})">
+        <button class="clip-btn clip-remove" data-index="${index}">
           🗑️
         </button>
       </div>
@@ -346,33 +346,51 @@ function renderTimeline() {
 }
 
 /**
+ * Handle clip actions via event delegation
+ */
+elements.clipsContainer.addEventListener('click', (e) => {
+  const target = e.target;
+  const index = parseInt(target.dataset.index);
+  
+  if (isNaN(index)) return;
+  
+  if (target.classList.contains('clip-up')) {
+    moveClipUp(index);
+  } else if (target.classList.contains('clip-down')) {
+    moveClipDown(index);
+  } else if (target.classList.contains('clip-remove')) {
+    removeClip(index);
+  }
+});
+
+/**
  * Move clip up in timeline
  */
-window.moveClipUp = function(index) {
+function moveClipUp(index) {
   if (index > 0) {
     [timelineClips[index], timelineClips[index - 1]] = [timelineClips[index - 1], timelineClips[index]];
     renderTimeline();
   }
-};
+}
 
 /**
  * Move clip down in timeline
  */
-window.moveClipDown = function(index) {
+function moveClipDown(index) {
   if (index < timelineClips.length - 1) {
     [timelineClips[index], timelineClips[index + 1]] = [timelineClips[index + 1], timelineClips[index]];
     renderTimeline();
   }
-};
+}
 
 /**
  * Remove clip from timeline
  */
-window.removeClip = function(index) {
+function removeClip(index) {
   timelineClips.splice(index, 1);
   renderTimeline();
   elements.btnJoin.disabled = timelineClips.length < 2;
-};
+}
 
 /**
  * Join clips

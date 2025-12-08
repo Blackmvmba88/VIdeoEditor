@@ -8,6 +8,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { v4: uuidv4 } = require('uuid');
 
 // Import video processing modules
@@ -24,6 +25,24 @@ const ffmpeg = new FFmpegWrapper();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Rate limiting for file operations
+const fileOperationLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Rate limiting for upload
+const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limit uploads to 10 per 15 minutes per IP
+  message: 'Too many upload requests, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -62,7 +81,7 @@ const upload = multer({
  */
 app.get('/api/health', async (req, res) => {
   try {
-    const ffmpegAvailable = await ffmpeg.checkFFmpeg();
+    const ffmpegAvailable = ffmpeg.isExecutableAvailable(ffmpeg.ffmpegPath);
     res.json({
       status: 'ok',
       ffmpeg: ffmpegAvailable,
@@ -79,7 +98,7 @@ app.get('/api/health', async (req, res) => {
 /**
  * Upload video file
  */
-app.post('/api/upload', upload.single('video'), async (req, res) => {
+app.post('/api/upload', uploadLimiter, upload.single('video'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No video file provided' });
@@ -111,7 +130,7 @@ app.post('/api/upload', upload.single('video'), async (req, res) => {
 /**
  * Trim video
  */
-app.post('/api/trim', async (req, res) => {
+app.post('/api/trim', fileOperationLimiter, async (req, res) => {
   try {
     const { filename, startTime, endTime } = req.body;
 
@@ -149,7 +168,7 @@ app.post('/api/trim', async (req, res) => {
 /**
  * Join multiple videos
  */
-app.post('/api/join', async (req, res) => {
+app.post('/api/join', fileOperationLimiter, async (req, res) => {
   try {
     const { clips } = req.body;
 
@@ -191,7 +210,7 @@ app.post('/api/join', async (req, res) => {
 /**
  * Download processed video
  */
-app.get('/api/download/:filename', (req, res) => {
+app.get('/api/download/:filename', fileOperationLimiter, (req, res) => {
   try {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, 'uploads', filename);
@@ -215,7 +234,7 @@ app.get('/api/download/:filename', (req, res) => {
 /**
  * Get video info
  */
-app.get('/api/info/:filename', async (req, res) => {
+app.get('/api/info/:filename', fileOperationLimiter, async (req, res) => {
   try {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, 'uploads', filename);
@@ -242,7 +261,7 @@ app.get('/api/info/:filename', async (req, res) => {
 /**
  * List uploaded videos
  */
-app.get('/api/videos', (req, res) => {
+app.get('/api/videos', fileOperationLimiter, (req, res) => {
   try {
     const uploadsDir = path.join(__dirname, 'uploads');
     
@@ -279,7 +298,7 @@ app.get('/api/videos', (req, res) => {
 /**
  * Delete video
  */
-app.delete('/api/delete/:filename', (req, res) => {
+app.delete('/api/delete/:filename', fileOperationLimiter, async (req, res) => {
   try {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, 'uploads', filename);
@@ -288,7 +307,7 @@ app.delete('/api/delete/:filename', (req, res) => {
       return res.status(404).json({ error: 'File not found' });
     }
 
-    fs.unlinkSync(filePath);
+    await fs.promises.unlink(filePath);
 
     res.json({
       success: true,
@@ -309,8 +328,8 @@ app.listen(PORT, () => {
   console.log('║   🐍 BlackMamba Studio - Web UI           ║');
   console.log('║   Basic Video Editing Interface           ║');
   console.log('╠════════════════════════════════════════════╣');
-  console.log(`║   Server running on port ${PORT}          ║`);
-  console.log(`║   Open: http://localhost:${PORT}          ║`);
+  console.log(`║   Server running on port ${PORT.toString().padEnd(4)}           ║`);
+  console.log(`║   Open: http://localhost:${PORT.toString().padEnd(4)}          ║`);
   console.log('╚════════════════════════════════════════════╝');
 });
 

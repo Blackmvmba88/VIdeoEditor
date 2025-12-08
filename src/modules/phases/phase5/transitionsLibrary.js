@@ -1,9 +1,9 @@
 /**
- * BlackMamba Studio - transitions Library
+ * BlackMamba Studio - Transitions Library
  * 
  * Advanced feature for scalable video production.
  * 
- * @module 
+ * @module TransitionsLibrary
  */
 
 const { VideoEditorError, ErrorCodes } = require('../../errorHandler');

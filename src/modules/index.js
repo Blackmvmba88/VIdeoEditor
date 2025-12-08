@@ -74,5 +74,56 @@ module.exports = {
   // Módulos de Fase 2 (v2.0 - v2.1) - acceso directo
   SmartChapters: Phases.SmartChapters,
   BeatSync: Phases.BeatSync,
-  SpeechToText: Phases.SpeechToText
+  SpeechToText: Phases.SpeechToText,
+  
+  // Módulos de Fase 3 (v3.0 - v3.1) - acceso directo
+  MotionGraphics: Phases.MotionGraphics,
+  LowerThirds: Phases.LowerThirds,
+  AnimatedTitles: Phases.AnimatedTitles,
+  EmojisCallouts: Phases.EmojisCallouts,
+  SocialBanners: Phases.SocialBanners,
+  AudioAI: Phases.AudioAI,
+  AudioDenoise: Phases.AudioDenoise,
+  AutoEQ: Phases.AutoEQ,
+  AudioMixing: Phases.AudioMixing,
+  VolumeNormalizer: Phases.VolumeNormalizer,
+  MusicSync: Phases.MusicSync,
+  
+  // Módulos de Fase 4 (v4.0 - v4.1) - acceso directo
+  PluginSystem: Phases.PluginSystem,
+  PluginLoader: Phases.PluginLoader,
+  PluginAPI: Phases.PluginAPI,
+  CloudSync: Phases.CloudSync,
+  CloudRender: Phases.CloudRender,
+  Collaboration: Phases.Collaboration,
+  MultiCamSync: Phases.MultiCamSync,
+  AudioWaveformSync: Phases.AudioWaveformSync,
+  MultiCamEditor: Phases.MultiCamEditor,
+  
+  // Módulos de Fase 5 (v5.0 - v5.3) - acceso directo
+  AIStudio: Phases.AIStudio,
+  MultiLangTranscription: Phases.MultiLangTranscription,
+  KaraokeSubtitles: Phases.KaraokeSubtitles,
+  NarrativeSummary: Phases.NarrativeSummary,
+  EnhancedChaptering: Phases.EnhancedChaptering,
+  StorytellingAI: Phases.StorytellingAI,
+  RenderFarm: Phases.RenderFarm,
+  RenderAPI: Phases.RenderAPI,
+  APIManager: Phases.APIManager,
+  ScalableRenderer: Phases.ScalableRenderer,
+  AssetLibrary: Phases.AssetLibrary,
+  AnimatedLoops: Phases.AnimatedLoops,
+  TransitionsLibrary: Phases.TransitionsLibrary,
+  AnimatedEmojis: Phases.AnimatedEmojis,
+  GlitchEffects: Phases.GlitchEffects,
+  LottieSupport: Phases.LottieSupport,
+  AnimatedSVG: Phases.AnimatedSVG,
+  AIAssets: Phases.AIAssets,
+  Marketplace: Phases.Marketplace,
+  PresetsStore: Phases.PresetsStore,
+  TemplatesStore: Phases.TemplatesStore,
+  LUTsStore: Phases.LUTsStore,
+  EffectsStore: Phases.EffectsStore,
+  MusicLibrary: Phases.MusicLibrary,
+  CreatorMonetization: Phases.CreatorMonetization
 };

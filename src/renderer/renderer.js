@@ -94,7 +94,7 @@ function cacheElements() {
  * Mostrar pantalla de inicio
  */
 function showSplash() {
-  elements.splashStatus.textContent = 'Initializing...';
+  elements.splashStatus.textContent = 'Inicializando...';
 }
 
 /**
@@ -342,7 +342,7 @@ async function addMediaFile(filePath) {
       renderMediaLibrary();
       updateFileCount();
       updateExportButton();
-      setStatus(`Imported: ${mediaItem.name}`);
+      setStatus(`Importado: ${mediaItem.name}`);
 
       // Agregar automáticamente a línea de tiempo
       addToTimeline(mediaItem);

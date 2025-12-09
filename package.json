@@ -2,7 +2,7 @@
   "name": "blackmamba-studio",
   "productName": "BlackMamba Studio",
   "version": "1.0.0",
-  "description": "Professional cross-platform video editor with FFmpeg integration - Join, cut, and order clips with a cinematic interface",
+  "description": "Editor de video profesional multiplataforma con integración de FFmpeg - Une, corta y ordena clips con una interfaz cinematográfica",
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",

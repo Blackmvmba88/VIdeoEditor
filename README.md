@@ -209,6 +209,8 @@ npm run build:mac
 
 Build outputs are saved to the `dist/` directory.
 
+**📖 For detailed build instructions, troubleshooting, and advanced options, see [BUILD.md](BUILD.md)**
+
 ## 🎨 Export Presets
 
 | Preset | Resolution | Use Case |

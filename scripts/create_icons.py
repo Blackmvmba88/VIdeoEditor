@@ -5,6 +5,7 @@ Generates a simple but professional-looking icon
 """
 
 from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
 import struct
 import os
 import sys
@@ -104,7 +105,6 @@ def create_icns(output_path):
         img = create_base_icon(size)
         
         # Convert to PNG bytes
-        from io import BytesIO
         png_buffer = BytesIO()
         img.save(png_buffer, format='PNG')
         png_data = png_buffer.getvalue()

@@ -7,6 +7,12 @@ Generates a simple but professional-looking icon
 from PIL import Image, ImageDraw, ImageFont
 import struct
 import os
+import sys
+
+# Configuration constants
+GRADIENT_ITERATIONS = 10
+DEFAULT_ICON_SIZE = 512
+BRAND_COLOR = (0, 212, 255)  # Electric blue from BlackMamba branding
 
 def create_base_icon(size):
     """Create a base icon with BlackMamba Studio branding"""
@@ -18,11 +24,11 @@ def create_base_icon(size):
     center = size // 2
     
     # Draw background circle - dark purple/blue
-    for i in range(10):
+    for i in range(GRADIENT_ITERATIONS):
         radius = max(1, center - i * 2)
         if radius > 0:
-            alpha = int(255 * (1 - i/10))
-            color = (0, 212, 255, alpha)  # Electric blue from branding
+            alpha = int(255 * (1 - i/GRADIENT_ITERATIONS))
+            color = BRAND_COLOR + (alpha,)  # Add alpha to RGB tuple
             draw.ellipse(
                 [center - radius, center - radius, center + radius, center + radius],
                 fill=color
@@ -116,14 +122,33 @@ def create_icns(output_path):
     
     print(f"✓ Created macOS icon: {output_path}")
 
-def create_png(output_path, size=512):
+def create_png(output_path, size=DEFAULT_ICON_SIZE):
     """Create a high-resolution PNG icon"""
     img = create_base_icon(size)
     img.save(output_path, format='PNG')
     print(f"✓ Created PNG icon: {output_path}")
 
+def get_output_directory():
+    """Get the output directory for icons, relative to script location"""
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Go up one level to project root, then to assets
+    project_root = os.path.dirname(script_dir)
+    output_dir = os.path.join(project_root, 'assets')
+    
+    # Create assets directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    return output_dir
+
 if __name__ == '__main__':
-    output_dir = '/home/runner/work/VIdeoEditor/VIdeoEditor/assets'
+    # Allow custom output directory via command line argument
+    if len(sys.argv) > 1:
+        output_dir = sys.argv[1]
+        # Create custom directory if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+    else:
+        output_dir = get_output_directory()
     
     print("🐍 Creating BlackMamba Studio Icons...")
     print("=" * 50)

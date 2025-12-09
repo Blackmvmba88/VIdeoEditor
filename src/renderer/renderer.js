@@ -120,7 +120,7 @@ function updateSplashStatus(text) {
  * Verificar disponibilidad de FFmpeg
  */
 async function checkFFmpeg() {
-  updateSplashStatus('Checking FFmpeg...');
+  updateSplashStatus('Verificando FFmpeg...');
   const result = await videoEditorAPI.checkFFmpeg();
   const statusEl = elements.ffmpegStatus;
 
@@ -129,8 +129,8 @@ async function checkFFmpeg() {
     statusEl.querySelector('.status-text').textContent = `FFmpeg ${result.version}`;
   } else {
     statusEl.classList.add('error');
-    statusEl.querySelector('.status-text').textContent = 'FFmpeg not found';
-    showNotification('FFmpeg is required. Please install FFmpeg to use this application.', 'error');
+    statusEl.querySelector('.status-text').textContent = 'FFmpeg no encontrado';
+    showNotification('FFmpeg es requerido. Por favor instala FFmpeg para usar esta aplicación.', 'error');
   }
 }
 
@@ -138,7 +138,7 @@ async function checkFFmpeg() {
  * Cargar presets de exportación
  */
 async function loadPresets() {
-  updateSplashStatus('Loading presets...');
+  updateSplashStatus('Cargando presets...');
   const result = await videoEditorAPI.getPresets();
   if (result.success) {
     availablePresets = result.presets;
@@ -150,7 +150,7 @@ async function loadPresets() {
  * Cargar estilos de auto-edición
  */
 async function loadAutoEditStyles() {
-  updateSplashStatus('Loading auto-edit styles...');
+  updateSplashStatus('Cargando estilos de auto-edición...');
   const result = await videoEditorAPI.getAutoEditStyles();
   if (result.success) {
     autoEditStyles = result.styles;
@@ -162,7 +162,7 @@ async function loadAutoEditStyles() {
  * Cargar información de la aplicación
  */
 async function loadAppInfo() {
-  updateSplashStatus('Starting BlackMamba Studio...');
+  updateSplashStatus('Iniciando BlackMamba Studio...');
   const version = await videoEditorAPI.getAppVersion();
   elements.appVersion.textContent = `v${version}`;
 }
@@ -320,11 +320,11 @@ async function importFiles(multiple = true) {
 async function addMediaFile(filePath) {
   // Verificar si ya está importado
   if (mediaLibrary.find(f => f.path === filePath)) {
-    showNotification('File already imported', 'warning');
+    showNotification('Archivo ya importado', 'warning');
     return;
   }
 
-  setStatus('Analyzing media...');
+  setStatus('Analizando medio...');
 
   try {
     const result = await videoEditorAPI.getVideoInfo(filePath);
@@ -347,10 +347,10 @@ async function addMediaFile(filePath) {
       // Agregar automáticamente a línea de tiempo
       addToTimeline(mediaItem);
     } else {
-      showNotification(`Failed to import: ${result.error?.message || 'Unknown error'}`, 'error');
+      showNotification(`Error al importar: ${result.error?.message || 'Error desconocido'}`, 'error');
     }
   } catch (error) {
-    showNotification(`Import error: ${error.message}`, 'error');
+    showNotification(`Error de importación: ${error.message}`, 'error');
   }
 }
 
@@ -383,8 +383,8 @@ function renderMediaLibrary() {
         </div>
       </div>
       <div class="media-actions">
-        <button class="media-action-btn" data-action="add" title="Add to Timeline">+</button>
-        <button class="media-action-btn" data-action="remove" title="Remove">×</button>
+        <button class="media-action-btn" data-action="add" title="Agregar a Línea de Tiempo">+</button>
+        <button class="media-action-btn" data-action="remove" title="Eliminar">×</button>
       </div>
     `;
 
@@ -436,7 +436,7 @@ function removeMedia(id) {
 function addToTimeline(item) {
   // Evitar duplicados
   if (timelineClips.find(c => c.id === item.id)) {
-    showNotification('Clip already in timeline', 'info');
+    showNotification('Clip ya está en la línea de tiempo', 'info');
     return;
   }
 
@@ -447,7 +447,7 @@ function addToTimeline(item) {
 
   renderTimeline();
   updateExportButton();
-  showNotification('Added to timeline', 'success');
+  showNotification('Agregado a la línea de tiempo', 'success');
 }
 
 /**
@@ -457,8 +457,8 @@ function renderTimeline() {
   const container = elements.videoTrackContent;
 
   if (timelineClips.length === 0) {
-    container.innerHTML = '<div class="empty-track-message">Drag clips here to start editing</div>';
-    elements.timelineDuration.textContent = 'Duration: 00:00:00';
+    container.innerHTML = '<div class="empty-track-message">Arrastra clips aquí para comenzar a editar</div>';
+    elements.timelineDuration.textContent = 'Duración: 00:00:00';
     return;
   }
 
@@ -496,7 +496,7 @@ function renderTimeline() {
     container.appendChild(el);
   });
 
-  elements.timelineDuration.textContent = `Duration: ${formatTimecode(totalDuration)}`;
+  elements.timelineDuration.textContent = `Duración: ${formatTimecode(totalDuration)}`;
 }
 
 /**
@@ -626,15 +626,15 @@ function updateClipProperties(item) {
 
   container.innerHTML = `
     <div class="prop-item">
-      <span class="prop-label">Name:</span>
+      <span class="prop-label">Nombre:</span>
       <span class="prop-data">${item.name}</span>
     </div>
     <div class="prop-item">
-      <span class="prop-label">Duration:</span>
+      <span class="prop-label">Duración:</span>
       <span class="prop-data">${formatTimecode(item.info.duration)}</span>
     </div>
     <div class="prop-item">
-      <span class="prop-label">Resolution:</span>
+      <span class="prop-label">Resolución:</span>
       <span class="prop-data">${item.info.video?.resolution || 'N/A'}</span>
     </div>
     <div class="prop-item">
@@ -642,12 +642,12 @@ function updateClipProperties(item) {
       <span class="prop-data">${item.info.video?.fps || 'N/A'}</span>
     </div>
     <div class="prop-item">
-      <span class="prop-label">Codec:</span>
+      <span class="prop-label">Códec:</span>
       <span class="prop-data">${item.info.video?.codec || 'N/A'}</span>
     </div>
     <div class="prop-item">
       <span class="prop-label">Audio:</span>
-      <span class="prop-data">${item.info.audio?.codec || 'None'}</span>
+      <span class="prop-data">${item.info.audio?.codec || 'Ninguno'}</span>
     </div>
   `;
 }
@@ -656,7 +656,7 @@ function updateClipProperties(item) {
  * Limpiar propiedades del clip
  */
 function clearClipProperties() {
-  elements.clipProperties.innerHTML = '<p class="no-selection">No clip selected</p>';
+  elements.clipProperties.innerHTML = '<p class="no-selection">Ningún clip seleccionado</p>';
 }
 
 /**
@@ -681,7 +681,7 @@ async function applyTrim() {
   const outTime = parseTimecode(document.getElementById('trim-out').value);
 
   if (outTime <= inTime) {
-    showNotification('Out point must be after in point', 'error');
+    showNotification('El punto de salida debe ser después del punto de entrada', 'error');
     return;
   }
 
@@ -693,7 +693,7 @@ async function applyTrim() {
 
   if (!outputPath) return;
 
-  showProgressModal('Trimming your clip...');
+  showProgressModal('Recortando tu clip...');
 
   const result = await videoEditorAPI.cutVideo({
     inputPath: selectedClip.path,
@@ -706,7 +706,7 @@ async function applyTrim() {
     showSuccessModal(result.outputPath);
   } else {
     hideProgressModal();
-    showNotification(`Trim failed: ${result.error?.message}`, 'error');
+    showNotification(`Error al recortar: ${result.error?.message}`, 'error');
   }
 }
 
@@ -717,9 +717,9 @@ function handlePropertySlider(e) {
   const value = e.target.value;
   const propValue = e.target.parentElement.querySelector('.prop-value');
   if (propValue) {
-    if (e.target.parentElement.querySelector('label').textContent.includes('Scale')) {
+    if (e.target.parentElement.querySelector('label').textContent.includes('Escala')) {
       propValue.textContent = `${value}%`;
-    } else if (e.target.parentElement.querySelector('label').textContent.includes('Rotation')) {
+    } else if (e.target.parentElement.querySelector('label').textContent.includes('Rotación')) {
       propValue.textContent = `${value}°`;
     }
   }
@@ -793,7 +793,7 @@ async function exportVideo() {
 
   if (!outputPath) return;
 
-  showProgressModal('Rendering your vision...');
+  showProgressModal('Renderizando tu visión...');
   renderStartTime = Date.now();
 
   let result;
@@ -823,7 +823,7 @@ async function exportVideo() {
     showSuccessModal(result.outputPath);
   } else {
     hideProgressModal();
-    showNotification(`Export failed: ${result.error?.message}`, 'error');
+    showNotification(`Error al exportar: ${result.error?.message}`, 'error');
   }
 }
 
@@ -832,11 +832,11 @@ async function exportVideo() {
  */
 function showProgressModal(title) {
   elements.progressTitle.textContent = title;
-  elements.progressStatus.textContent = 'Preparing...';
+  elements.progressStatus.textContent = 'Preparando...';
   elements.progressFill.style.width = '0%';
   elements.renderPercent.textContent = '0%';
-  elements.progressTime.textContent = 'Elapsed: 00:00';
-  elements.progressEta.textContent = 'ETA: Calculating...';
+  elements.progressTime.textContent = 'Transcurrido: 00:00';
+  elements.progressEta.textContent = 'Tiempo Estimado: Calculando...';
   elements.progressModal.style.display = 'flex';
 }
 
@@ -852,7 +852,7 @@ function updateProgress(data) {
   // Actualizar tiempo transcurrido
   if (renderStartTime) {
     const elapsed = Math.floor((Date.now() - renderStartTime) / 1000);
-    elements.progressTime.textContent = `Elapsed: ${formatDuration(elapsed)}`;
+    elements.progressTime.textContent = `Transcurrido: ${formatDuration(elapsed)}`;
   }
 
   // Actualizar anillo SVG

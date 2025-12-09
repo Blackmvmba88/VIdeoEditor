@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,12 +23,12 @@
           <path fill="url(#logoGrad)" d="M50 5 C25 5 10 25 10 45 C10 55 15 65 25 70 L20 90 C20 95 25 98 30 95 L50 80 L70 95 C75 98 80 95 80 90 L75 70 C85 65 90 55 90 45 C90 25 75 5 50 5 Z M35 40 C38 40 40 42 40 45 C40 48 38 50 35 50 C32 50 30 48 30 45 C30 42 32 40 35 40 Z M65 40 C68 40 70 42 70 45 C70 48 68 50 65 50 C62 50 60 48 60 45 C60 42 62 40 65 40 Z"/>
         </svg>
         <h1 class="splash-title">BlackMamba Studio</h1>
-        <p class="splash-subtitle">Professional Video Editing</p>
+        <p class="splash-subtitle">Edición de Video Profesional</p>
       </div>
       <div class="splash-loader">
         <div class="loader-bar"></div>
       </div>
-      <p class="splash-status">Initializing...</p>
+      <p class="splash-status">Inicializando...</p>
     </div>
   </div>
 
@@ -49,10 +49,10 @@
           <span class="logo-text">BlackMamba <span class="logo-accent">Studio</span></span>
         </div>
         <nav class="toolbar">
-          <button class="tool-btn" data-section="media" title="Media Browser">
+          <button class="tool-btn" data-section="media" title="Explorador de Medios">
             <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z"/></svg>
           </button>
-          <button class="tool-btn active" data-section="edit" title="Edit">
+          <button class="tool-btn active" data-section="edit" title="Editar">
             <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
           </button>
           <button class="tool-btn" data-section="auto" title="Auto Edit - Edición Automática">
@@ -65,7 +65,7 @@
             <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
           </button>
           <div class="toolbar-divider"></div>
-          <button class="tool-btn" data-section="export" title="Export">
+          <button class="tool-btn" data-section="export" title="Exportar">
             <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/></svg>
           </button>
         </nav>
@@ -73,14 +73,14 @@
       <div class="top-bar-center">
         <div class="project-name">
           <span class="project-icon">🎬</span>
-          <span id="project-title">Untitled Project</span>
+          <span id="project-title">Proyecto Sin Título</span>
         </div>
       </div>
       <div class="top-bar-right">
         <div class="system-info">
           <span id="ffmpeg-status" class="status-indicator">
             <span class="status-dot"></span>
-            <span class="status-text">Checking...</span>
+            <span class="status-text">Verificando...</span>
           </span>
         </div>
         <span id="app-version" class="version-badge"></span>
@@ -92,8 +92,8 @@
       <!-- Left Panel - Media Browser -->
       <aside class="panel panel-left" id="panel-left">
         <div class="panel-header">
-          <h3>Media Browser</h3>
-          <button class="panel-btn" id="btn-import-media" title="Import Media">
+          <h3>Explorador de Medios</h3>
+          <button class="panel-btn" id="btn-import-media" title="Importar Medios">
             <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
           </button>
         </div>
@@ -110,8 +110,8 @@
                   </linearGradient>
                 </defs>
               </svg>
-              <p class="drop-text">Drop your clips here</p>
-              <p class="drop-subtext">or click to browse</p>
+              <p class="drop-text">Arrastra tus clips aquí</p>
+              <p class="drop-subtext">o haz clic para seleccionar</p>
             </div>
           </div>
           <div id="media-library" class="media-library"></div>
@@ -127,7 +127,7 @@
               <svg viewBox="0 0 24 24" width="64" height="64" opacity="0.3">
                 <path fill="currentColor" d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
               </svg>
-              <p>Select a clip to preview</p>
+              <p>Selecciona un clip para previsualizar</p>
             </div>
             <video id="preview-video" style="display:none;"></video>
             <div class="preview-overlay">
@@ -135,13 +135,13 @@
             </div>
           </div>
           <div class="preview-controls">
-            <button class="preview-btn" id="btn-prev-frame" title="Previous Frame">
+            <button class="preview-btn" id="btn-prev-frame" title="Cuadro Anterior">
               <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
             </button>
-            <button class="preview-btn play-btn" id="btn-play" title="Play">
+            <button class="preview-btn play-btn" id="btn-play" title="Reproducir">
               <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
             </button>
-            <button class="preview-btn" id="btn-next-frame" title="Next Frame">
+            <button class="preview-btn" id="btn-next-frame" title="Cuadro Siguiente">
               <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
             </button>
             <div class="preview-time">
@@ -160,23 +160,23 @@
         <div class="timeline-section">
           <div class="timeline-toolbar">
             <div class="timeline-tools">
-              <button class="timeline-tool active" title="Select">
+              <button class="timeline-tool active" title="Seleccionar">
                 <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg>
               </button>
-              <button class="timeline-tool" title="Razor">
+              <button class="timeline-tool" title="Cortar">
                 <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64z"/></svg>
               </button>
               <div class="tool-divider"></div>
-              <button class="timeline-tool" id="btn-zoom-out" title="Zoom Out">
+              <button class="timeline-tool" id="btn-zoom-out" title="Alejar">
                 <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"/></svg>
               </button>
               <input type="range" class="zoom-slider" id="timeline-zoom" min="1" max="10" value="5">
-              <button class="timeline-tool" id="btn-zoom-in" title="Zoom In">
+              <button class="timeline-tool" id="btn-zoom-in" title="Acercar">
                 <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
               </button>
             </div>
             <div class="timeline-info">
-              <span id="timeline-duration">Duration: 00:00:00</span>
+              <span id="timeline-duration">Duración: 00:00:00</span>
             </div>
           </div>
           <div class="timeline-ruler" id="timeline-ruler">
@@ -191,7 +191,7 @@
                   <span class="track-name">Video 1</span>
                 </div>
                 <div class="track-content" id="video-track-content">
-                  <div class="empty-track-message">Drag clips here to start editing</div>
+                  <div class="empty-track-message">Arrastra clips aquí para comenzar a editar</div>
                 </div>
               </div>
               <div class="track audio-track" data-track="audio">
@@ -209,53 +209,53 @@
       <!-- Right Panel - Properties & Export -->
       <aside class="panel panel-right" id="panel-right">
         <div class="panel-tabs">
-          <button class="panel-tab active" data-tab="properties">Properties</button>
-          <button class="panel-tab" data-tab="autoedit">Auto Edit</button>
-          <button class="panel-tab" data-tab="export">Export</button>
+          <button class="panel-tab active" data-tab="properties">Propiedades</button>
+          <button class="panel-tab" data-tab="autoedit">Auto Edición</button>
+          <button class="panel-tab" data-tab="export">Exportar</button>
         </div>
 
         <!-- Properties Tab -->
         <div class="panel-tab-content active" id="tab-properties">
           <div class="properties-section">
-            <h4>Clip Properties</h4>
+            <h4>Propiedades del Clip</h4>
             <div id="clip-properties" class="properties-content">
-              <p class="no-selection">No clip selected</p>
+              <p class="no-selection">Ningún clip seleccionado</p>
             </div>
           </div>
           <div class="properties-section">
-            <h4>Transform</h4>
+            <h4>Transformar</h4>
             <div class="property-row">
-              <label>Position X</label>
+              <label>Posición X</label>
               <input type="number" class="prop-input" value="0">
             </div>
             <div class="property-row">
-              <label>Position Y</label>
+              <label>Posición Y</label>
               <input type="number" class="prop-input" value="0">
             </div>
             <div class="property-row">
-              <label>Scale</label>
+              <label>Escala</label>
               <input type="range" class="prop-slider" min="10" max="200" value="100">
               <span class="prop-value">100%</span>
             </div>
             <div class="property-row">
-              <label>Rotation</label>
+              <label>Rotación</label>
               <input type="range" class="prop-slider" min="-180" max="180" value="0">
               <span class="prop-value">0°</span>
             </div>
           </div>
           <div class="properties-section">
-            <h4>Trim</h4>
+            <h4>Recortar</h4>
             <div class="trim-controls">
               <div class="trim-input-group">
-                <label>In Point</label>
+                <label>Punto de Entrada</label>
                 <input type="text" class="timecode-input" id="trim-in" value="00:00:00:00">
               </div>
               <div class="trim-input-group">
-                <label>Out Point</label>
+                <label>Punto de Salida</label>
                 <input type="text" class="timecode-input" id="trim-out" value="00:00:00:00">
               </div>
             </div>
-            <button class="btn-nle" id="btn-apply-trim">Apply Trim</button>
+            <button class="btn-nle" id="btn-apply-trim">Aplicar Recorte</button>
           </div>
         </div>
 
@@ -350,15 +350,15 @@
         <!-- Export Tab -->
         <div class="panel-tab-content" id="tab-export">
           <div class="export-header">
-            <h4>Export Settings</h4>
+            <h4>Configuración de Exportación</h4>
           </div>
           <div class="preset-cards" id="preset-cards">
             <!-- Presets will be rendered here -->
           </div>
           <div class="custom-export-settings" id="custom-export">
-            <h5>Custom Settings</h5>
+            <h5>Configuración Personalizada</h5>
             <div class="setting-group">
-              <label>Format</label>
+              <label>Formato</label>
               <select class="nle-select" id="export-format">
                 <option value="mp4">MP4 (H.264)</option>
                 <option value="mov">MOV (ProRes)</option>
@@ -367,16 +367,16 @@
               </select>
             </div>
             <div class="setting-group">
-              <label>Resolution</label>
+              <label>Resolución</label>
               <select class="nle-select" id="export-resolution">
-                <option value="">Source</option>
+                <option value="">Original</option>
                 <option value="3840x2160">4K UHD</option>
                 <option value="1920x1080">1080p HD</option>
                 <option value="1280x720">720p HD</option>
               </select>
             </div>
             <div class="setting-group">
-              <label>Quality</label>
+              <label>Calidad</label>
               <div class="quality-slider-container">
                 <input type="range" class="quality-slider" id="export-quality" min="1" max="100" value="80">
                 <span class="quality-value" id="quality-display">80%</span>
@@ -386,7 +386,7 @@
           <div class="export-actions">
             <button class="btn-nle btn-export" id="btn-export" disabled>
               <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/></svg>
-              Export Masterpiece
+              Exportar Obra Maestra
             </button>
           </div>
         </div>
@@ -396,7 +396,7 @@
     <!-- Status Bar -->
     <footer class="status-bar">
       <div class="status-left">
-        <span id="status-message" class="status-msg">Ready to create</span>
+        <span id="status-message" class="status-msg">Listo para crear</span>
       </div>
       <div class="status-center">
         <span id="render-status"></span>
@@ -420,15 +420,15 @@
             </svg>
             <div class="render-percent" id="render-percent">0%</div>
           </div>
-          <h3 id="progress-title" class="modal-title">Rendering your vision...</h3>
-          <p id="progress-status" class="modal-status">Preparing...</p>
+          <h3 id="progress-title" class="modal-title">Renderizando tu visión...</h3>
+          <p id="progress-status" class="modal-status">Preparando...</p>
           <div class="progress-bar-cinematic">
             <div class="progress-glow"></div>
             <div id="progress-fill" class="progress-fill-cinematic"></div>
           </div>
           <div class="progress-details">
-            <span id="progress-time">Elapsed: 00:00</span>
-            <span id="progress-eta">ETA: Calculating...</span>
+            <span id="progress-time">Transcurrido: 00:00</span>
+            <span id="progress-eta">Tiempo Estimado: Calculando...</span>
           </div>
         </div>
       </div>
@@ -443,14 +443,14 @@
             <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
           </svg>
         </div>
-        <h2 class="success-title">Your Masterpiece is Ready</h2>
+        <h2 class="success-title">Tu Obra Maestra Está Lista</h2>
         <p class="success-subtitle" id="success-path"></p>
         <div class="success-actions">
           <button class="btn-nle btn-reveal" id="btn-reveal">
             <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
-            Reveal in Folder
+            Mostrar en Carpeta
           </button>
-          <button class="btn-nle btn-close-modal" id="btn-close-success">Continue Editing</button>
+          <button class="btn-nle btn-close-modal" id="btn-close-success">Continuar Editando</button>
         </div>
       </div>
     </div>

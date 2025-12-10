@@ -4,8 +4,8 @@
  */
 
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 
 const {
   VideoProcessor,
@@ -49,9 +49,7 @@ function initializeModules() {
   codecManager = new CodecManager(ffmpeg);
 
   errorHandler.setErrorCallback((error) => {
-    if (mainWindow && mainWindow.webContents) {
-      mainWindow.webContents.send('error', error.toJSON());
-    }
+    mainWindow?.webContents?.send('error', error.toJSON());
   });
 }
 
@@ -59,9 +57,7 @@ function initializeModules() {
  * Enviar progreso de forma segura (verificando que mainWindow existe)
  */
 function sendProgress(data) {
-  if (mainWindow && mainWindow.webContents) {
-    mainWindow.webContents.send('progress', data);
-  }
+  mainWindow?.webContents?.send('progress', data);
 }
 
 /**

@@ -4,8 +4,8 @@
  * Ahorra tiempo a los editores creando ediciones optimizadas automáticamente
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const VideoProcessor = require('./videoProcessor');
 const ContentAnalyzer = require('./contentAnalyzer');
 const ExportPresets = require('./exportPresets');
@@ -23,7 +23,7 @@ class AutoEditor {
     this.contentAnalyzer = new ContentAnalyzer();
     this.exportPresets = new ExportPresets();
     this.ffmpeg = new FFmpegWrapper();
-    this.tempDir = path.join(require('os').tmpdir(), 'video-editor-auto');
+    this.tempDir = path.join(require('node:os').tmpdir(), 'video-editor-auto');
     this.ensureTempDir();
   }
 

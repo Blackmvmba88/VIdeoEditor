@@ -10,7 +10,7 @@
  * - Reescribe comandos usando heurísticas y análisis del clip
  */
 
-const os = require('os');
+const os = require('node:os');
 const FFmpegWrapper = require('./ffmpegWrapper');
 const HardwareAccelerator = require('./phases/phase1/hardwareAccelerator');
 

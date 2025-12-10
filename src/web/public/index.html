@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlackMamba Studio - Web UI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 100 100" width="32" height="32">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00d4ff"/>
+              <stop offset="100%" style="stop-color:#7b2cbf"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#logoGrad)" d="M50 5 C25 5 10 25 10 45 C10 55 15 65 25 70 L20 90 C20 95 25 98 30 95 L50 80 L70 95 C75 98 80 95 80 90 L75 70 C85 65 90 55 90 45 C90 25 75 5 50 5 Z M35 40 C38 40 40 42 40 45 C40 48 38 50 35 50 C32 50 30 48 30 45 C30 42 32 40 35 40 Z M65 40 C68 40 70 42 70 45 C70 48 68 50 65 50 C62 50 60 48 60 45 C60 42 62 40 65 40 Z"/>
+        </svg>
+        <h1>BlackMamba <span class="accent">Studio</span></h1>
+      </div>
+      <div class="status">
+        <span id="status-indicator" class="status-dot"></span>
+        <span id="status-text">Conectando...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Upload Section -->
+    <section class="section upload-section">
+      <h2>📤 Subir Video</h2>
+      <div class="upload-area" id="upload-area">
+        <input type="file" id="file-input" accept="video/*" hidden>
+        <div class="upload-content">
+          <svg class="upload-icon" viewBox="0 0 24 24" width="64" height="64">
+            <path fill="currentColor" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+          </svg>
+          <p class="upload-text">Arrastra tu video aquí</p>
+          <p class="upload-subtext">o haz clic para seleccionar</p>
+          <button class="btn btn-primary" id="btn-browse">Seleccionar Video</button>
+        </div>
+      </div>
+      <div id="upload-progress" class="upload-progress" style="display: none;">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p id="progress-text">Subiendo...</p>
+      </div>
+    </section>
+
+    <!-- Video Preview & Controls -->
+    <section class="section video-section" id="video-section" style="display: none;">
+      <h2>🎬 Editor de Video</h2>
+      
+      <div class="video-container">
+        <div class="video-player">
+          <video id="video-player" controls></video>
+        </div>
+        
+        <div class="video-info" id="video-info">
+          <p><strong>Archivo:</strong> <span id="video-filename">-</span></p>
+          <p><strong>Duración:</strong> <span id="video-duration">-</span></p>
+          <p><strong>Formato:</strong> <span id="video-format">-</span></p>
+        </div>
+      </div>
+
+      <!-- Trim Controls -->
+      <div class="controls-section">
+        <h3>✂️ Recortar Video</h3>
+        <div class="trim-controls">
+          <div class="control-group">
+            <label for="start-time">Inicio (segundos):</label>
+            <input type="number" id="start-time" value="0" min="0" step="0.1">
+          </div>
+          <div class="control-group">
+            <label for="end-time">Fin (segundos):</label>
+            <input type="number" id="end-time" value="10" min="0" step="0.1">
+          </div>
+          <button class="btn btn-secondary" id="btn-set-current-start">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+            </svg>
+            Usar Tiempo Actual como Inicio
+          </button>
+          <button class="btn btn-secondary" id="btn-set-current-end">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+            </svg>
+            Usar Tiempo Actual como Fin
+          </button>
+        </div>
+        <button class="btn btn-primary btn-large" id="btn-trim">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64z"/>
+          </svg>
+          Recortar Video
+        </button>
+      </div>
+
+      <!-- Timeline Section -->
+      <div class="timeline-section">
+        <h3>📹 Clips en la Línea de Tiempo</h3>
+        <div class="clips-container" id="clips-container">
+          <p class="empty-message">No hay clips agregados aún</p>
+        </div>
+        <div class="timeline-actions">
+          <button class="btn btn-secondary" id="btn-add-to-timeline">
+            ➕ Agregar a Línea de Tiempo
+          </button>
+          <button class="btn btn-primary" id="btn-join" disabled>
+            🔗 Unir Clips
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section results-section" id="results-section" style="display: none;">
+      <h2>✅ Resultado</h2>
+      <div class="result-container">
+        <div class="result-video">
+          <video id="result-player" controls></video>
+        </div>
+        <div class="result-actions">
+          <button class="btn btn-success btn-large" id="btn-download">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
+            </svg>
+            Descargar Video
+          </button>
+          <button class="btn btn-secondary" id="btn-new">
+            🔄 Nuevo Proyecto
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Processing Modal -->
+  <div id="processing-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="spinner"></div>
+      <h3 id="processing-title">Procesando video...</h3>
+      <p id="processing-message">Por favor espera mientras procesamos tu video</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>BlackMamba Studio Web UI v1.0.0 | Hecho con 💜 por BlackMamba Team</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

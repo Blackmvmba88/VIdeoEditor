@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out/
+build/
+
+# Electron
+.electron/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Web UI uploads
+src/web/uploads/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Package lock (optional - some prefer to commit this)
+# package-lock.json
+
+# Compiled files
+*.js.map

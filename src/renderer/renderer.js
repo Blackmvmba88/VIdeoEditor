@@ -563,8 +563,8 @@ function handleClipDragOver(e) {
  */
 function handleClipDrop(e) {
   e.preventDefault();
-  const fromIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
-  const toIndex = parseInt(e.target.closest('.timeline-clip').dataset.index, 10);
+  const fromIndex = Number.parseInt(e.dataTransfer.getData('text/plain'), 10);
+  const toIndex = Number.parseInt(e.target.closest('.timeline-clip').dataset.index, 10);
 
   if (fromIndex !== toIndex) {
     const [moved] = timelineClips.splice(fromIndex, 1);
@@ -649,7 +649,7 @@ function nextFrame() {
  */
 function zoomTimeline(direction) {
   const slider = document.getElementById('timeline-zoom');
-  const newValue = parseInt(slider.value, 10) + direction;
+  const newValue = Number.parseInt(slider.value, 10) + direction;
   if (newValue >= 1 && newValue <= 10) {
     slider.value = newValue;
     // Aplicar efecto de zoom aquí
@@ -981,7 +981,7 @@ function generateId() {
  * Formatear duración (segundos a MM:SS)
  */
 function formatDuration(seconds) {
-  if (!seconds || isNaN(seconds)) return '00:00';
+  if (!seconds || Number.isNaN(seconds)) return '00:00';
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
@@ -991,7 +991,7 @@ function formatDuration(seconds) {
  * Formatear código de tiempo (HH:MM:SS:FF)
  */
 function formatTimecode(seconds) {
-  if (!seconds || isNaN(seconds)) return '00:00:00:00';
+  if (!seconds || Number.isNaN(seconds)) return '00:00:00:00';
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
@@ -1003,7 +1003,7 @@ function formatTimecode(seconds) {
  * Parsear código de tiempo a segundos
  */
 function parseTimecode(timecode) {
-  const parts = timecode.split(':').map(p => parseInt(p, 10));
+  const parts = timecode.split(':').map(p => Number.parseInt(p, 10));
   if (parts.length === 4) {
     return parts[0] * 3600 + parts[1] * 60 + parts[2] + parts[3] / 30;
   }
@@ -1070,10 +1070,10 @@ async function analyzeContent() {
 
   try {
     const options = {
-      minMomentDuration: parseInt(elements.minClipDuration.value, 10),
-      maxMomentDuration: parseInt(elements.maxClipDuration.value, 10),
+      minMomentDuration: Number.parseInt(elements.minClipDuration.value, 10),
+      maxMomentDuration: Number.parseInt(elements.maxClipDuration.value, 10),
       targetDuration: elements.targetDuration.value 
-        ? parseInt(elements.targetDuration.value, 10) 
+        ? Number.parseInt(elements.targetDuration.value, 10) 
         : null
     };
 
@@ -1133,10 +1133,10 @@ async function runAutoEdit() {
   try {
     const options = {
       style: selectedAutoEditStyle,
-      minClipDuration: parseInt(elements.minClipDuration.value, 10),
-      maxClipDuration: parseInt(elements.maxClipDuration.value, 10),
+      minClipDuration: Number.parseInt(elements.minClipDuration.value, 10),
+      maxClipDuration: Number.parseInt(elements.maxClipDuration.value, 10),
       targetDuration: elements.targetDuration.value 
-        ? parseInt(elements.targetDuration.value, 10) 
+        ? Number.parseInt(elements.targetDuration.value, 10) 
         : null
     };
 

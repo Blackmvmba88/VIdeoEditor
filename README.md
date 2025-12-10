@@ -127,7 +127,7 @@ BlackMamba's Auto-Edit feature analyzes your footage and automatically creates p
 </td>
 <td width="40%">
 
-```
+```text
 ┌─────────────────────────┐
 │  🎥 Import Video        │
 │           ↓             │
@@ -163,7 +163,7 @@ BlackMamba's Auto-Edit feature analyzes your footage and automatically creates p
 
 **Supported Formats (25+):**
 
-```
+```text
 Video: mp4, mov, avi, mkv, webm, m4v,
        wmv, flv, 3gp, mpeg, ts, mts...
 
@@ -185,6 +185,7 @@ Image: jpg, png, gif, bmp, tiff, webp...
 <td width="33%">
 
 #### 🎬 Video Editing
+
 - Multi-track timeline
 - Frame-accurate trimming
 - Drag & drop reordering
@@ -195,6 +196,7 @@ Image: jpg, png, gif, bmp, tiff, webp...
 <td width="33%">
 
 #### 🎨 Color Grading
+
 - Color wheels (lift/gamma/gain)
 - LUT support
 - Scopes (waveform, vectorscope)
@@ -205,6 +207,7 @@ Image: jpg, png, gif, bmp, tiff, webp...
 <td width="33%">
 
 #### 🔊 Audio Processing
+
 - Multi-channel mixing
 - AI denoise
 - Auto-EQ
@@ -290,6 +293,7 @@ class MyPlugin extends PluginBase {
 <td width="50%">
 
 ### Project
+
 | Shortcut | Action |
 |----------|--------|
 | `⌘/Ctrl + N` | New Project |
@@ -302,6 +306,7 @@ class MyPlugin extends PluginBase {
 <td width="50%">
 
 ### Playback
+
 | Shortcut | Action |
 |----------|--------|
 | `Space` | Play/Pause |
@@ -318,7 +323,7 @@ class MyPlugin extends PluginBase {
 
 ## 🏗️ Architecture
 
-```
+```text
 BlackMamba Studio
 ├── 🖥️  Electron Main Process
 │   ├── Window Management
@@ -363,6 +368,7 @@ npm test -- --testPathPattern=projectManager
 ```
 
 **Current Stats:**
+
 - ✅ **559 tests** passing
 - 📊 **16 test suites**
 - ⏱️ ~22s execution time
@@ -426,7 +432,7 @@ We love contributions! Here's how you can help:
 
 ### Commit Convention
 
-```
+```text
 ✨ feat: Add new feature
 🐛 fix: Bug fix
 📝 docs: Documentation
@@ -442,7 +448,7 @@ We love contributions! Here's how you can help:
 
 **MIT License** — Free forever for personal and commercial use.
 
-```
+```text
 Copyright (c) 2025 BlackMamba Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

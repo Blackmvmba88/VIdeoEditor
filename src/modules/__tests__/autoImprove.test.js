@@ -241,9 +241,9 @@ describe('AutoImprove', () => {
     });
 
     it('should throw error for empty improvements list', async () => {
-      const fs = require('fs');
-      const path = require('path');
-      const tempFile = path.join(require('os').tmpdir(), 'test_empty.mp4');
+      const fs = require('node:fs');
+      const path = require('node:path');
+      const tempFile = path.join(require('node:os').tmpdir(), 'test_empty.mp4');
       
       // Create a mock file
       fs.writeFileSync(tempFile, Buffer.alloc(2048, 'x'));

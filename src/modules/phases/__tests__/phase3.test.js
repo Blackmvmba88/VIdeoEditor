@@ -416,7 +416,7 @@ describe('Phase 3.2 - Color Grading', () => {
 
     it('should throw error for invalid LUT format', () => {
       // Create a mock file check scenario
-      const fs = require('fs');
+      const fs = require('node:fs');
       const originalExistsSync = fs.existsSync;
       fs.existsSync = jest.fn().mockReturnValue(true);
       

@@ -2,8 +2,8 @@
  * File Validator Module Tests
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FileValidator = require('../fileValidator');
 
 describe('FileValidator', () => {
@@ -34,7 +34,7 @@ describe('FileValidator', () => {
 
     it('should reject unsupported extension', async () => {
       // Create a temp file with unsupported extension (large enough to pass size check)
-      const tempFile = path.join(require('os').tmpdir(), 'test.xyz');
+      const tempFile = path.join(require('node:os').tmpdir(), 'test.xyz');
       const content = Buffer.alloc(2048, 'x');
       fs.writeFileSync(tempFile, content);
 

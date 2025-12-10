@@ -68,7 +68,7 @@ class ProjectManager {
    * @returns {Object} Proyecto creado
    */
   createProject(name, sourcePath = null) {
-    const projectId = `proj_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const projectId = `proj_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
     
     this.currentProject = {
       id: projectId,
@@ -161,7 +161,7 @@ class ProjectManager {
               try {
                 const stats = fs.statSync(fullPath);
                 videos.push({
-                  id: `media_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+                  id: `media_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`,
                   path: fullPath,
                   name: item.name,
                   extension: ext,

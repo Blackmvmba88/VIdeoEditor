@@ -1175,6 +1175,57 @@ body {
   padding: 20px;
 }
 
+/* ===== CODEC INFO PANEL ===== */
+.codec-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.codec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.codec-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.codec-value {
+  font-size: 11px;
+  color: var(--text-primary);
+  font-family: 'SF Mono', monospace;
+  font-weight: 600;
+}
+
+.codec-value.hdr-enabled {
+  color: var(--accent-gold);
+  text-shadow: 0 0 6px var(--accent-gold);
+}
+
+.prop-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.prop-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.prop-data {
+  font-size: 11px;
+  color: var(--text-primary);
+  font-family: 'SF Mono', monospace;
+}
+
 .property-row {
   display: flex;
   align-items: center;

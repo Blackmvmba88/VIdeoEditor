@@ -209,7 +209,6 @@ class LayersManager {
     });
 
     const filterComplex = filterParts.join(';');
-    const outputLabel = lastOutput.replace('[', '').replace(']', '');
 
     const args = [
       ...inputs,

@@ -22,7 +22,7 @@ class FFmpegWrapper {
       '/usr/local/bin/ffmpeg',     // macOS Intel (Homebrew)
       '/usr/bin/ffmpeg',           // Linux
       'ffmpeg',                    // PATH
-      'C:\\ffmpeg\\bin\\ffmpeg.exe',
+      String.raw`C:\ffmpeg\bin\ffmpeg.exe`,
       path.join(process.env.LOCALAPPDATA || '', 'ffmpeg', 'bin', 'ffmpeg.exe'),
       path.join(process.env.ProgramFiles || '', 'ffmpeg', 'bin', 'ffmpeg.exe')
     ];
@@ -46,7 +46,7 @@ class FFmpegWrapper {
       '/usr/local/bin/ffprobe',     // macOS Intel (Homebrew)
       '/usr/bin/ffprobe',           // Linux
       'ffprobe',                    // PATH
-      'C:\\ffmpeg\\bin\\ffprobe.exe',
+      String.raw`C:\ffmpeg\bin\ffprobe.exe`,
       path.join(process.env.LOCALAPPDATA || '', 'ffmpeg', 'bin', 'ffprobe.exe'),
       path.join(process.env.ProgramFiles || '', 'ffmpeg', 'bin', 'ffprobe.exe')
     ];
@@ -235,7 +235,7 @@ class FFmpegWrapper {
   async getVersion() {
     try {
       const result = await this.execute(['-version']);
-      const versionMatch = result.output.match(/ffmpeg version ([\d.]+)/i);
+      const versionMatch = /ffmpeg version ([\d.]+)/i.exec(result.output);
       return versionMatch ? versionMatch[1] : 'unknown';
     } catch {
       return 'unavailable';

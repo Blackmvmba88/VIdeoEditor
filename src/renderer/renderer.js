@@ -89,6 +89,15 @@ function cacheElements() {
   elements.clipProperties = document.getElementById('clip-properties');
   elements.qualityDisplay = document.getElementById('quality-display');
   
+  // Elementos de Codec Info
+  elements.codecInfoSection = document.getElementById('codec-info-section');
+  elements.codecVideo = document.getElementById('codec-video');
+  elements.codecAudio = document.getElementById('codec-audio');
+  elements.codecResolution = document.getElementById('codec-resolution');
+  elements.codecFps = document.getElementById('codec-fps');
+  elements.codecBitrate = document.getElementById('codec-bitrate');
+  elements.codecHdr = document.getElementById('codec-hdr');
+  
   // Elementos de Auto-Edit
   elements.styleCards = document.getElementById('style-cards');
   elements.btnAnalyze = document.getElementById('btn-analyze');
@@ -695,6 +704,73 @@ function updateClipProperties(item) {
       <span class="prop-data">${item.info.audio?.codec || 'None'}</span>
     </div>
   `;
+
+  // Actualizar panel de detalles de codec
+  updateCodecInfoPanel(item);
+}
+
+/**
+ * Actualizar panel de información de codec
+ */
+function updateCodecInfoPanel(item) {
+  if (!elements.codecInfoSection) return;
+
+  const info = item.info;
+  const video = info.video;
+  const audio = info.audio;
+
+  // Mostrar sección si hay información de video
+  if (video) {
+    elements.codecInfoSection.classList.remove('hidden');
+    
+    // Video codec
+    elements.codecVideo.textContent = video.codec?.toUpperCase() || '-';
+    
+    // Audio codec
+    elements.codecAudio.textContent = audio?.codec?.toUpperCase() || 'None';
+    
+    // Resolution
+    elements.codecResolution.textContent = video.resolution || '-';
+    
+    // Frame rate
+    elements.codecFps.textContent = video.fps ? `${video.fps} fps` : '-';
+    
+    // Bitrate (formatear a Mbps o Kbps)
+    const bitrate = info.bitrate || video.bitrate || 0;
+    elements.codecBitrate.textContent = formatBitrate(bitrate);
+    
+    // HDR detection (basado en codec o metadatos)
+    const isHdr = detectHdr(video);
+    elements.codecHdr.textContent = isHdr ? '✓ HDR' : 'SDR';
+    elements.codecHdr.className = `codec-value ${isHdr ? 'hdr-enabled' : ''}`;
+  } else {
+    elements.codecInfoSection.classList.add('hidden');
+  }
+}
+
+/**
+ * Formatear bitrate para visualización
+ */
+function formatBitrate(bitrate) {
+  if (!bitrate || bitrate === 0) return '-';
+  if (bitrate >= 1000000) {
+    return `${(bitrate / 1000000).toFixed(1)} Mbps`;
+  }
+  return `${Math.round(bitrate / 1000)} Kbps`;
+}
+
+/**
+ * Detectar si el video es HDR basado en codec
+ */
+function detectHdr(video) {
+  if (!video || !video.codec) return false;
+  const codec = video.codec.toLowerCase();
+  // HEVC/H.265 y VP9 pueden ser HDR, pero necesitamos metadatos adicionales
+  // Por ahora detectamos codecs que típicamente soportan HDR
+  const hdrCodecs = ['hevc', 'h265', 'vp9', 'av1'];
+  // También podemos verificar si la resolución es 4K+ (típico de HDR)
+  const is4kOrHigher = video.width >= 3840 || video.height >= 2160;
+  return hdrCodecs.some(c => codec.includes(c)) && is4kOrHigher;
 }
 
 /**
@@ -702,6 +778,10 @@ function updateClipProperties(item) {
  */
 function clearClipProperties() {
   elements.clipProperties.innerHTML = '<p class="no-selection">No clip selected</p>';
+  // Ocultar panel de codec
+  if (elements.codecInfoSection) {
+    elements.codecInfoSection.classList.add('hidden');
+  }
 }
 
 /**

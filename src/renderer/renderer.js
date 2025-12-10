@@ -582,8 +582,8 @@ function loadPreview(item) {
   const placeholder = document.querySelector('.preview-placeholder');
 
   video.src = `file://${item.path}`;
-  video.style.display = 'block';
-  placeholder.style.display = 'none';
+  video.classList.remove('hidden');
+  placeholder.classList.add('hidden');
 
   video.addEventListener('loadedmetadata', () => {
     elements.totalTime.textContent = formatDuration(video.duration);
@@ -604,8 +604,8 @@ function clearPreview() {
   const placeholder = document.querySelector('.preview-placeholder');
 
   video.src = '';
-  video.style.display = 'none';
-  placeholder.style.display = 'flex';
+  video.classList.add('hidden');
+  placeholder.classList.remove('hidden');
   elements.currentTime.textContent = '00:00';
   elements.totalTime.textContent = '00:00';
 }
@@ -882,7 +882,8 @@ function showProgressModal(title) {
   elements.renderPercent.textContent = '0%';
   elements.progressTime.textContent = 'Elapsed: 00:00';
   elements.progressEta.textContent = 'ETA: Calculating...';
-  elements.progressModal.style.display = 'flex';
+  elements.progressModal.classList.remove('hidden');
+  elements.progressModal.classList.add('modal-visible');
 }
 
 /**
@@ -912,7 +913,8 @@ function updateProgress(data) {
  * Ocultar modal de progreso
  */
 function hideProgressModal() {
-  elements.progressModal.style.display = 'none';
+  elements.progressModal.classList.add('hidden');
+  elements.progressModal.classList.remove('modal-visible');
 }
 
 /**
@@ -921,7 +923,8 @@ function hideProgressModal() {
 function showSuccessModal(outputPath) {
   hideProgressModal();
   elements.successPath.textContent = outputPath;
-  elements.successModal.style.display = 'flex';
+  elements.successModal.classList.remove('hidden');
+  elements.successModal.classList.add('modal-visible');
   elements.successModal.dataset.path = outputPath;
 }
 
@@ -929,7 +932,8 @@ function showSuccessModal(outputPath) {
  * Cerrar modal de éxito
  */
 function closeSuccessModal() {
-  elements.successModal.style.display = 'none';
+  elements.successModal.classList.add('hidden');
+  elements.successModal.classList.remove('modal-visible');
 }
 
 /**
@@ -1097,7 +1101,7 @@ async function analyzeContent() {
  * Mostrar resultados del análisis
  */
 function showAnalysisResults(result) {
-  elements.analysisResults.style.display = 'block';
+  elements.analysisResults.classList.remove('hidden');
   elements.statMoments.textContent = result.momentsCount || 0;
   elements.statClips.textContent = result.clipsCount || 0;
   

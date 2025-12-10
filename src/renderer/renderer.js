@@ -195,9 +195,9 @@ async function loadAppInfo() {
  */
 function setupEventListeners() {
   // Navegación de barra de herramientas
-  document.querySelectorAll('.tool-btn[data-section]').forEach(btn => {
+  for (const btn of document.querySelectorAll('.tool-btn[data-section]')) {
     btn.addEventListener('click', () => switchSection(btn.dataset.section));
-  });
+  }
 
   // Zona de soltar
   const dropZone = elements.dropZone;
@@ -210,9 +210,9 @@ function setupEventListeners() {
   document.getElementById('btn-import-media').addEventListener('click', () => importFiles(true));
 
   // Pestañas del panel
-  document.querySelectorAll('.panel-tab').forEach(tab => {
+  for (const tab of document.querySelectorAll('.panel-tab')) {
     tab.addEventListener('click', () => switchPanelTab(tab.dataset.tab));
-  });
+  }
 
   // Controles de vista previa
   document.getElementById('btn-play').addEventListener('click', togglePlay);
@@ -235,9 +235,9 @@ function setupEventListeners() {
   document.getElementById('btn-close-success').addEventListener('click', closeSuccessModal);
 
   // Deslizadores de propiedades
-  document.querySelectorAll('.prop-slider').forEach(slider => {
+  for (const slider of document.querySelectorAll('.prop-slider')) {
     slider.addEventListener('input', handlePropertySlider);
-  });
+  }
 
   // Botón de recorte
   document.getElementById('btn-apply-trim').addEventListener('click', applyTrim);
@@ -283,9 +283,9 @@ function setupProgressListener() {
  * Cambiar sección de barra de herramientas
  */
 function switchSection(section) {
-  document.querySelectorAll('.tool-btn[data-section]').forEach(btn => {
+  for (const btn of document.querySelectorAll('.tool-btn[data-section]')) {
     btn.classList.toggle('active', btn.dataset.section === section);
-  });
+  }
   currentSection = section;
 
   // Manejar actualizaciones de UI específicas de sección
@@ -301,12 +301,12 @@ function switchSection(section) {
  * Cambiar pestaña del panel
  */
 function switchPanelTab(tab) {
-  document.querySelectorAll('.panel-tab').forEach(t => {
+  for (const t of document.querySelectorAll('.panel-tab')) {
     t.classList.toggle('active', t.dataset.tab === tab);
-  });
-  document.querySelectorAll('.panel-tab-content').forEach(c => {
+  }
+  for (const c of document.querySelectorAll('.panel-tab-content')) {
     c.classList.toggle('active', c.id === `tab-${tab}`);
-  });
+  }
 }
 
 /**
@@ -415,7 +415,7 @@ function renderMediaLibrary() {
   const container = elements.mediaLibrary;
   container.innerHTML = '';
 
-  mediaLibrary.forEach(item => {
+  for (const item of mediaLibrary) {
     const el = document.createElement('div');
     el.className = `media-item${selectedClip?.id === item.id ? ' selected' : ''}`;
     el.dataset.id = item.id;
@@ -452,7 +452,7 @@ function renderMediaLibrary() {
     el.querySelector('[data-action="remove"]').addEventListener('click', () => removeMedia(item.id));
 
     container.appendChild(el);
-  });
+  }
 }
 
 /**
@@ -519,8 +519,9 @@ function renderTimeline() {
   container.innerHTML = '';
 
   let totalDuration = 0;
+  let index = 0;
 
-  timelineClips.forEach((clip, index) => {
+  for (const clip of timelineClips) {
     const el = document.createElement('div');
     el.className = `timeline-clip${selectedClip?.id === clip.id ? ' selected' : ''}`;
     el.draggable = true;
@@ -548,7 +549,8 @@ function renderTimeline() {
     el.addEventListener('drop', handleClipDrop);
 
     container.appendChild(el);
-  });
+    index++;
+  }
 
   elements.timelineDuration.textContent = `Duration: ${formatTimecode(totalDuration)}`;
 }
@@ -578,7 +580,9 @@ function handleClipDrop(e) {
   if (fromIndex !== toIndex) {
     const [moved] = timelineClips.splice(fromIndex, 1);
     timelineClips.splice(toIndex, 0, moved);
-    timelineClips.forEach((clip, i) => clip.order = i);
+    for (let i = 0; i < timelineClips.length; i++) {
+      timelineClips[i].order = i;
+    }
     renderTimeline();
   }
 }
@@ -865,9 +869,9 @@ function renderPresetCards() {
     { key: 'highQuality', badge: 'Pro' }
   ];
 
-  displayPresets.forEach(({ key, badge }) => {
+  for (const { key, badge } of displayPresets) {
     const preset = availablePresets[key];
-    if (!preset) return;
+    if (!preset) continue;
 
     const card = document.createElement('div');
     card.className = `preset-card${key === selectedPreset ? ' selected' : ''}`;
@@ -882,13 +886,15 @@ function renderPresetCards() {
     `;
 
     card.addEventListener('click', () => {
-      document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+      for (const c of document.querySelectorAll('.preset-card')) {
+        c.classList.remove('selected');
+      }
       card.classList.add('selected');
       selectedPreset = key;
     });
 
     container.appendChild(card);
-  });
+  }
 }
 
 /**
@@ -1103,7 +1109,7 @@ function renderStyleCards() {
   
   container.innerHTML = '';
 
-  autoEditStyles.forEach(style => {
+  for (const style of autoEditStyles) {
     const card = document.createElement('div');
     card.className = `style-card${style.key === selectedAutoEditStyle ? ' selected' : ''}`;
     card.dataset.key = style.key;
@@ -1117,13 +1123,15 @@ function renderStyleCards() {
     `;
 
     card.addEventListener('click', () => {
-      document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+      for (const c of document.querySelectorAll('.style-card')) {
+        c.classList.remove('selected');
+      }
       card.classList.add('selected');
       selectedAutoEditStyle = style.key;
     });
 
     container.appendChild(card);
-  });
+  }
 }
 
 /**
@@ -1308,9 +1316,9 @@ async function loadRecentProjects() {
       `).join('');
       
       // Event listeners para cada proyecto
-      container.querySelectorAll('.recent-project-item').forEach(item => {
+      for (const item of container.querySelectorAll('.recent-project-item')) {
         item.addEventListener('click', () => loadProject(item.dataset.projectId));
-      });
+      }
     } else {
       container.innerHTML = '<div class="no-recent-projects">No hay proyectos recientes</div>';
     }

@@ -273,11 +273,11 @@ class AnimatedTitles {
    */
   getCategories() {
     const categories = new Set();
-    this.animations.forEach(animation => {
+    for (const animation of this.animations.values()) {
       if (animation.category) {
         categories.add(animation.category);
       }
-    });
+    }
     return Array.from(categories);
   }
 

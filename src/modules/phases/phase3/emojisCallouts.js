@@ -44,14 +44,14 @@ class EmojisCallouts {
       { id: 'lightbulb', emoji: '💡', name: 'Idea', category: 'action' }
     ];
 
-    popularEmojis.forEach(({ id, emoji, name, category }) => {
+    for (const { id, emoji, name, category } of popularEmojis) {
       this.emojis.set(id, {
         emoji,
         name,
         category,
         animations: ['pop', 'bounce', 'pulse', 'spin', 'shake']
       });
-    });
+    }
 
     // Callouts
     this.callouts.set('arrow-right', {
@@ -304,11 +304,11 @@ class EmojisCallouts {
    */
   getEmojiCategories() {
     const categories = new Set();
-    this.emojis.forEach(emoji => {
+    for (const emoji of this.emojis.values()) {
       if (emoji.category) {
         categories.add(emoji.category);
       }
-    });
+    }
     return Array.from(categories);
   }
 

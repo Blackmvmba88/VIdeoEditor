@@ -283,7 +283,7 @@ class AudioEffects {
   async applyChain(inputPath, outputPath, effects, onProgress = null) {
     const filterParts = [];
 
-    effects.forEach(effect => {
+    for (const effect of effects) {
       switch (effect.type) {
       case 'normalize':
         filterParts.push(`loudnorm=I=${effect.targetLoudness || -16}:TP=${effect.targetPeak || -1.5}:LRA=11`);
@@ -303,7 +303,7 @@ class AudioEffects {
         filterParts.push(`volume=${effect.change || 0}dB`);
         break;
       }
-    });
+    }
 
     if (filterParts.length === 0) {
       throw new VideoEditorError('No valid effects specified', ErrorCodes.INVALID_PARAMETER);

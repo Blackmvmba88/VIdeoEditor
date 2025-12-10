@@ -26,7 +26,9 @@ class PluginSystem {
       'import-file'
     ];
     
-    hookPoints.forEach(hook => this.hooks.set(hook, []));
+    for (const hook of hookPoints) {
+      this.hooks.set(hook, []);
+    }
   }
 
   registerPlugin(pluginId, plugin) {

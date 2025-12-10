@@ -164,13 +164,13 @@ class BasicTitles {
       throw new VideoEditorError(`Title ${titleId} not found`, ErrorCodes.INVALID_PARAMETER);
     }
 
-    Object.keys(updates).forEach(key => {
+    for (const key of Object.keys(updates)) {
       if (key === 'shadow' || key === 'outline') {
         title[key] = { ...title[key], ...updates[key] };
       } else {
         title[key] = updates[key];
       }
-    });
+    }
 
     return title;
   }

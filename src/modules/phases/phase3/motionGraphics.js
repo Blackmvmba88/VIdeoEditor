@@ -163,11 +163,11 @@ class MotionGraphics {
    */
   getCategories() {
     const categories = new Set();
-    this.templates.forEach(template => {
+    for (const template of this.templates.values()) {
       if (template.type) {
         categories.add(template.type);
       }
-    });
+    }
     return Array.from(categories);
   }
 

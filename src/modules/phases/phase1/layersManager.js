@@ -135,9 +135,9 @@ class LayersManager {
    * @private
    */
   reorderZIndex() {
-    this.layers.forEach((layer, index) => {
-      layer.zIndex = index;
-    });
+    for (let index = 0; index < this.layers.length; index++) {
+      this.layers[index].zIndex = index;
+    }
   }
 
   /**
@@ -179,7 +179,8 @@ class LayersManager {
     const filterParts = [];
     let lastOutput = '[0:v]';
 
-    visibleLayers.forEach((layer, index) => {
+    for (let index = 0; index < visibleLayers.length; index++) {
+      const layer = visibleLayers[index];
       inputs.push('-i', layer.source);
       const inputIndex = index + 1;
       const outputLabel = `[v${index}]`;
@@ -206,7 +207,7 @@ class LayersManager {
       );
       
       lastOutput = outputLabel;
-    });
+    }
 
     const filterComplex = filterParts.join(';');
 

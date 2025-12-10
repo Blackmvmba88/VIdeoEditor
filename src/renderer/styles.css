@@ -210,6 +210,8 @@ body {
   /* Electron window dragging - only applies to Electron/Chromium */
   -webkit-app-region: drag;
   app-region: drag; /* Standard property for future support */
+}
+
 .top-bar-left {
   display: flex;
   align-items: center;
@@ -217,8 +219,6 @@ body {
   /* Disable dragging for interactive elements - only applies to Electron/Chromium */
   -webkit-app-region: no-drag;
   app-region: no-drag; /* Standard property for future support */
-}
-  -webkit-app-region: no-drag;
 }
 
 .logo-container {
@@ -341,17 +341,14 @@ body {
 .version-badge {
   font-size: 10px;
   color: var(--text-muted);
-.project-dropdown {
-  position: relative;
-  /* Disable dragging for dropdown - only applies to Electron/Chromium */
-  -webkit-app-region: no-drag;
-  app-region: no-drag; /* Standard property for future support */
 }
 
 /* ===== PROJECT DROPDOWN ===== */
 .project-dropdown {
   position: relative;
+  /* Disable dragging for dropdown - only applies to Electron/Chromium */
   -webkit-app-region: no-drag;
+  app-region: no-drag; /* Standard property for future support */
 }
 
 .project-dropdown-btn {

@@ -207,13 +207,17 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  /* Electron window dragging - only applies to Electron/Chromium */
   -webkit-app-region: drag;
-}
-
+  app-region: drag; /* Standard property for future support */
 .top-bar-left {
   display: flex;
   align-items: center;
   gap: 24px;
+  /* Disable dragging for interactive elements - only applies to Electron/Chromium */
+  -webkit-app-region: no-drag;
+  app-region: no-drag; /* Standard property for future support */
+}
   -webkit-app-region: no-drag;
 }
 
@@ -294,15 +298,13 @@ body {
   font-size: 13px;
 }
 
-.project-icon {
-  font-size: 14px;
-}
-
 .top-bar-right {
   display: flex;
   align-items: center;
   gap: 16px;
+  /* Disable dragging for interactive elements - only applies to Electron/Chromium */
   -webkit-app-region: no-drag;
+  app-region: no-drag; /* Standard property for future support */
 }
 
 .status-indicator {
@@ -339,9 +341,11 @@ body {
 .version-badge {
   font-size: 10px;
   color: var(--text-muted);
-  padding: 3px 8px;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-sm);
+.project-dropdown {
+  position: relative;
+  /* Disable dragging for dropdown - only applies to Electron/Chromium */
+  -webkit-app-region: no-drag;
+  app-region: no-drag; /* Standard property for future support */
 }
 
 /* ===== PROJECT DROPDOWN ===== */
@@ -850,6 +854,7 @@ body {
   width: 80px;
   height: 4px;
   -webkit-appearance: none;
+  appearance: none;
   background: var(--bg-tertiary);
   border-radius: 2px;
   cursor: pointer;
@@ -926,6 +931,7 @@ body {
   width: 80px;
   height: 4px;
   -webkit-appearance: none;
+  appearance: none;
   background: var(--bg-tertiary);
   border-radius: 2px;
   margin: 0 4px;
@@ -1207,6 +1213,7 @@ body {
   flex: 1;
   height: 4px;
   -webkit-appearance: none;
+  appearance: none;
   background: var(--bg-tertiary);
   border-radius: 2px;
 }
@@ -1409,6 +1416,7 @@ body {
   flex: 1;
   height: 6px;
   -webkit-appearance: none;
+  appearance: none;
   background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
   border-radius: 3px;
 }
@@ -1490,6 +1498,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   display: none;
   align-items: center;
@@ -1861,6 +1870,7 @@ body {
 .nle-slider {
   flex: 1;
   -webkit-appearance: none;
+  appearance: none;
   height: 4px;
   background: var(--bg-hover);
   border-radius: 2px;

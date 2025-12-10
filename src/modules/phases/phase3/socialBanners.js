@@ -248,7 +248,7 @@ class SocialBanners {
       customStyle = {},
       position = 'bottom-right',
       startTime = 0,
-      duration = 5.0
+      duration = 5
     } = config;
 
     if (!templateId) {
@@ -307,7 +307,7 @@ class SocialBanners {
       videoThumbnails = [],
       socialLinks = [],
       customBackground = null,
-      duration = 10.0
+      duration = 10
     } = config;
 
     const platformSpecs = this.getPlatformSpecs(platform);

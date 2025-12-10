@@ -160,7 +160,7 @@ class EmojisCallouts {
       size = 100,
       animation = 'pop',
       startTime = 0,
-      duration = 2.0,
+      duration = 2,
       customEmoji = null
     } = config;
 
@@ -210,7 +210,7 @@ class EmojisCallouts {
       position,
       size = { width: 200, height: 100 },
       startTime = 0,
-      duration = 3.0,
+      duration = 3,
       customColor = null
     } = config;
 

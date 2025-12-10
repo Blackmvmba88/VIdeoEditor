@@ -180,7 +180,7 @@ class TransitionsManager {
       presetKey: transitionConfig.presetKey || 'crossDissolve',
       clipAId: transitionConfig.clipAId,
       clipBId: transitionConfig.clipBId,
-      duration: transitionConfig.duration || 1.0,
+      duration: transitionConfig.duration || 1,
       startTime: transitionConfig.startTime || 0,
       customParams: transitionConfig.customParams || {}
     };

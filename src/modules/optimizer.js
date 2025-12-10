@@ -725,7 +725,7 @@ class Optimizer {
         arr[i-1] === '-crf'
       );
       if (crf) {
-        const crfVal = parseInt(crf);
+        const crfVal = Number.parseInt(crf);
         if (crfVal <= 18) return 'excellent';
         if (crfVal <= 21) return 'very_good';
         if (crfVal <= 24) return 'good';
@@ -781,7 +781,7 @@ class Optimizer {
     const match = bitrateStr.match(/^([\d.]+)([kKmMgG])?$/);
     if (!match) return 0;
     
-    let value = parseFloat(match[1]);
+    let value = Number.parseFloat(match[1]);
     const unit = (match[2] || '').toLowerCase();
     
     switch (unit) {

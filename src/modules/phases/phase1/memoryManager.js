@@ -4,7 +4,7 @@
  * Monitors and optimizes memory usage during video editing
  */
 
-const os = require('os');
+const os = require('node:os');
 
 // Memory thresholds (in bytes)
 const MB = 1024 * 1024;
@@ -72,7 +72,7 @@ class MemoryManager {
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
   /**

@@ -177,7 +177,7 @@ class LowerThirds {
       primaryText,
       secondaryText = '',
       startTime = 0,
-      duration = 5.0,
+      duration = 5,
       customColors = {}
     } = config;
 

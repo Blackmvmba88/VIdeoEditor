@@ -1,7 +1,7 @@
 /**
  * Índice de Módulos de Fase 3 - BlackMamba Studio
  * 
- * Fase 3.0 - Motion Graphics Pro (v3.0)
+ * Fase 3 - Motion Graphics Pro (v3.0)
  *   - MotionGraphics: Sistema de plantillas y animación
  *   - LowerThirds: Tercios inferiores profesionales
  *   - AnimatedTitles: Títulos animados
@@ -32,7 +32,7 @@
  * para creadores de contenido y editores profesionales.
  */
 
-// Fase 3.0 - Motion Graphics
+// Fase 3 - Motion Graphics
 const MotionGraphics = require('./motionGraphics');
 const LowerThirds = require('./lowerThirds');
 const AnimatedTitles = require('./animatedTitles');
@@ -60,7 +60,7 @@ const BlurGlow = require('./blurGlow');
 const Masking = require('./masking');
 
 module.exports = {
-  // Fase 3.0 - Motion Graphics
+  // Fase 3 - Motion Graphics
   MotionGraphics,
   LowerThirds,
   AnimatedTitles,

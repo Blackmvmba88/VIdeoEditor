@@ -3,8 +3,8 @@
  * Maneja la exportación final de video y renderizado
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FFmpegWrapper = require('./ffmpegWrapper');
 const ExportPresets = require('./exportPresets');
 const FileValidator = require('./fileValidator');
@@ -258,7 +258,7 @@ class ExportRenderer {
       const bitrateStr = preset.video.bitrate.toString();
       const match = bitrateStr.match(/^(\d+(?:\.\d+)?)(M|K)?$/i);
       if (match) {
-        videoBitrate = parseFloat(match[1]);
+        videoBitrate = Number.parseFloat(match[1]);
         if (match[2]?.toLowerCase() === 'm') {
           videoBitrate *= 1000000;
         } else if (match[2]?.toLowerCase() === 'k') {
@@ -273,7 +273,7 @@ class ExportRenderer {
       const bitrateStr = preset.audio.bitrate.toString();
       const match = bitrateStr.match(/^(\d+)(k)?$/i);
       if (match) {
-        audioBitrate = parseInt(match[1], 10);
+        audioBitrate = Number.parseInt(match[1], 10);
         if (match[2]?.toLowerCase() === 'k') {
           audioBitrate *= 1000;
         }

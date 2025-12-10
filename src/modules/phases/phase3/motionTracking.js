@@ -200,7 +200,7 @@ class MotionTracking {
       time: point.time || index / 30,
       x: point.x + (element.offsetX || 0),
       y: point.y + (element.offsetY || 0),
-      scale: point.scale || 1.0,
+      scale: point.scale || 1,
       rotation: point.rotation || 0
     }));
 

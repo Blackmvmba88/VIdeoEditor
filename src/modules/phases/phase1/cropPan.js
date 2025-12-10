@@ -31,7 +31,7 @@ const ASPECT_RATIOS = {
 const ANIMATION_PRESETS = {
   zoomIn: {
     name: 'Zoom In',
-    startScale: 1.0,
+    startScale: 1,
     endScale: 1.3,
     startX: 0.5,
     startY: 0.5,
@@ -41,7 +41,7 @@ const ANIMATION_PRESETS = {
   zoomOut: {
     name: 'Zoom Out',
     startScale: 1.3,
-    endScale: 1.0,
+    endScale: 1,
     startX: 0.5,
     startY: 0.5,
     endX: 0.5,
@@ -85,7 +85,7 @@ const ANIMATION_PRESETS = {
   },
   kenBurns: {
     name: 'Ken Burns',
-    startScale: 1.0,
+    startScale: 1,
     endScale: 1.3,
     startX: 0.3,
     startY: 0.3,
@@ -177,7 +177,7 @@ class CropPan {
   async animatePan(inputPath, outputPath, options = {}, onProgress = null) {
     const preset = options.preset ? ANIMATION_PRESETS[options.preset] : null;
     
-    const startScale = options.startScale || preset?.startScale || 1.0;
+    const startScale = options.startScale || preset?.startScale || 1;
     const endScale = options.endScale || preset?.endScale || 1.3;
     const startX = options.startX || preset?.startX || 0.5;
     const startY = options.startY || preset?.startY || 0.5;

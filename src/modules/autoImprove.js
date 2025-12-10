@@ -9,8 +9,8 @@
  * - Aplica optimizaciones automáticas si el usuario lo autoriza
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FFmpegWrapper = require('./ffmpegWrapper');
 
 // Umbrales de calidad
@@ -44,7 +44,7 @@ const QUALITY_THRESHOLDS = {
 const IMPROVEMENT_OPTIONS = {
   sharpnessBoost: {
     name: 'Mejora de Nitidez',
-    filter: 'unsharp=5:5:1.0:5:5:0.0',
+    filter: 'unsharp=5:5:1:5:5:0',
     description: 'Aplica filtro unsharp para mejorar definición'
   },
   contrastEnhance: {
@@ -83,7 +83,7 @@ const IMPROVEMENT_OPTIONS = {
 class AutoImprove {
   constructor() {
     this.ffmpeg = new FFmpegWrapper();
-    this.tempDir = path.join(require('os').tmpdir(), 'video-editor-improve');
+    this.tempDir = path.join(require('node:os').tmpdir(), 'video-editor-improve');
     this.ensureTempDir();
   }
 
@@ -427,12 +427,12 @@ class AutoImprove {
       // Intentar parsear loudnorm output
       const loudnormMatch = output.output.match(/"input_i"\s*:\s*"(-?[\d.]+)"/);
       if (loudnormMatch) {
-        result.loudness = parseFloat(loudnormMatch[1]);
+        result.loudness = Number.parseFloat(loudnormMatch[1]);
       }
 
       const truePeakMatch = output.output.match(/"input_tp"\s*:\s*"(-?[\d.]+)"/);
       if (truePeakMatch) {
-        result.truePeak = parseFloat(truePeakMatch[1]);
+        result.truePeak = Number.parseFloat(truePeakMatch[1]);
       }
 
       result.rms = result.loudness; // Aproximación
@@ -514,8 +514,8 @@ class AutoImprove {
       // matchAll returns an iterator which is compatible with for...of in Node.js
       const blackMatches = result.output.matchAll(/black_start:([\d.]+)\s+black_end:([\d.]+)/g);
       for (const match of blackMatches) {
-        const start = parseFloat(match[1]);
-        const end = parseFloat(match[2]);
+        const start = Number.parseFloat(match[1]);
+        const end = Number.parseFloat(match[2]);
         const duration = end - start;
         
         if (duration < 0.5) { // Saltos muy cortos son sospechosos
@@ -771,8 +771,8 @@ class AutoImprove {
     switch (improvementType) {
     case 'sharpnessBoost':
       if (customParams.intensity) {
-        const intensity = Math.max(0.5, Math.min(2.0, customParams.intensity));
-        customFilter = `unsharp=5:5:${intensity}:5:5:0.0`;
+        const intensity = Math.max(0.5, Math.min(2, customParams.intensity));
+        customFilter = `unsharp=5:5:${intensity}:5:5:0`;
       }
       break;
     case 'contrastEnhance':

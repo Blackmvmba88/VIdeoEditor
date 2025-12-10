@@ -158,19 +158,19 @@ class CodecManager {
     }
     
     // Calcular bitrate
-    const bitrate = format.bit_rate ? parseInt(format.bit_rate) : null;
-    const videoBitrate = videoStream?.bit_rate ? parseInt(videoStream.bit_rate) : null;
-    const audioBitrate = audioStream?.bit_rate ? parseInt(audioStream.bit_rate) : null;
+    const bitrate = format.bit_rate ? Number.parseInt(format.bit_rate) : null;
+    const videoBitrate = videoStream?.bit_rate ? Number.parseInt(videoStream.bit_rate) : null;
+    const audioBitrate = audioStream?.bit_rate ? Number.parseInt(audioStream.bit_rate) : null;
     
     return {
       // Info general
       path: filePath,
       filename: path.basename(filePath),
       container: container.name,
-      duration: parseFloat(format.duration) || 0,
-      durationFormatted: this.formatDuration(parseFloat(format.duration) || 0),
-      size: parseInt(format.size) || 0,
-      sizeFormatted: this.formatFileSize(parseInt(format.size) || 0),
+      duration: Number.parseFloat(format.duration) || 0,
+      durationFormatted: this.formatDuration(Number.parseFloat(format.duration) || 0),
+      size: Number.parseInt(format.size) || 0,
+      sizeFormatted: this.formatFileSize(Number.parseInt(format.size) || 0),
       bitrate: bitrate,
       bitrateFormatted: bitrate ? this.formatBitrate(bitrate) : 'N/A',
       
@@ -200,8 +200,8 @@ class CodecManager {
         codecRaw: audioStream.codec_name,
         channels: audioStream.channels,
         channelLayout: audioStream.channel_layout,
-        sampleRate: parseInt(audioStream.sample_rate),
-        sampleRateFormatted: `${(parseInt(audioStream.sample_rate) / 1000).toFixed(1)} kHz`,
+        sampleRate: Number.parseInt(audioStream.sample_rate),
+        sampleRateFormatted: `${(Number.parseInt(audioStream.sample_rate) / 1000).toFixed(1)} kHz`,
         bitrate: audioBitrate,
         bitrateFormatted: audioBitrate ? this.formatBitrate(audioBitrate) : 'N/A',
         bitDepth: audioStream.bits_per_sample || audioStream.bits_per_raw_sample,
@@ -300,7 +300,7 @@ class CodecManager {
       return den !== 0 ? Math.round((num / den) * 100) / 100 : 0;
     }
     
-    return parseFloat(frameRateStr) || 0;
+    return Number.parseFloat(frameRateStr) || 0;
   }
 
   /**
@@ -334,7 +334,7 @@ class CodecManager {
    * @returns {string}
    */
   formatDuration(seconds) {
-    if (!seconds || isNaN(seconds)) return '00:00:00';
+    if (!seconds || Number.isNaN(seconds)) return '00:00:00';
     
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
@@ -353,7 +353,7 @@ class CodecManager {
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
   /**

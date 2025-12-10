@@ -357,7 +357,7 @@ class SpeedController {
 
     case SPEED_TYPE.RAMP:
       // Speed ramps require complex filter
-      filters.video = `setpts='if(between(T,0,1),PTS*1.0,PTS)'`;
+      filters.video = `setpts='if(between(T,0,1),PTS*1,PTS)'`;
       filters.audio = ''; // Audio ramps are complex, skip for basic implementation
       break;
     }

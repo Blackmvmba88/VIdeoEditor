@@ -100,7 +100,7 @@ class ProjectManager {
       historyIndex: -1,
       
       // Metadatos
-      version: '1.0.0'
+      version: '1.0'
     };
     
     this.isDirty = true;
@@ -466,7 +466,7 @@ class ProjectManager {
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
   /**

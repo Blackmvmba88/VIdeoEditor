@@ -55,7 +55,7 @@ class MultiCamEditor {
   }
 
   async autoSwitch(sequenceId, config = {}) {
-    const { mode = 'smart', interval = 5.0 } = config;
+    const { mode = 'smart', interval = 5 } = config;
 
     return {
       success: true,

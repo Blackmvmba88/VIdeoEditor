@@ -8,7 +8,7 @@
 
 class PluginAPI {
   constructor() {
-    this.version = '1.0.0';
+    this.version = '1.0';
   }
 
   createPlugin(config) {

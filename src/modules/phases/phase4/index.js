@@ -1,7 +1,7 @@
 /**
  * Índice de Módulos de Fase 4 - BlackMamba Studio
  * 
- * Fase 4.0 - Ecosystem & Cloud (v4.0)
+ * Fase 4 - Ecosystem & Cloud (v4.0)
  *   - PluginSystem: Arquitectura de plugins
  *   - PluginLoader: Cargador y gestor de plugins
  *   - PluginAPI: API para desarrollo de plugins
@@ -17,7 +17,7 @@
  * Nota: Estas características transforman BlackMamba Studio en un ecosistema completo.
  */
 
-// Fase 4.0 - Ecosystem & Cloud
+// Fase 4 - Ecosystem & Cloud
 const PluginSystem = require('./pluginSystem');
 const PluginLoader = require('./pluginLoader');
 const PluginAPI = require('./pluginAPI');
@@ -31,7 +31,7 @@ const AudioWaveformSync = require('./audioWaveformSync');
 const MultiCamEditor = require('./multiCamEditor');
 
 module.exports = {
-  // Fase 4.0 - Ecosystem & Cloud
+  // Fase 4 - Ecosystem & Cloud
   PluginSystem,
   PluginLoader,
   PluginAPI,

@@ -3,8 +3,8 @@
  * Genera y administra archivos proxy para edición más fluida de videos de alta resolución
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FFmpegWrapper = require('../../ffmpegWrapper');
 const { v4: uuidv4 } = require('uuid');
 
@@ -21,7 +21,7 @@ const DEFAULT_PROXY_PRESET = 'ultrafast';
 class ProxyManager {
   constructor() {
     this.ffmpeg = new FFmpegWrapper();
-    this.proxyDir = path.join(require('os').tmpdir(), 'video-editor-proxies');
+    this.proxyDir = path.join(require('node:os').tmpdir(), 'video-editor-proxies');
     this.proxyMap = new Map(); // Maps original file to proxy file
     this.ensureProxyDir();
   }

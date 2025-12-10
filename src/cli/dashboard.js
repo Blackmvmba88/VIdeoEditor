@@ -4,9 +4,9 @@
  * Un panel de control visual para el editor de video en la terminal
  */
 
-const os = require('os');
-const path = require('path');
-const fs = require('fs');
+const os = require('node:os');
+const path = require('node:path');
+const fs = require('node:fs');
 
 // Importar módulos
 const FFmpegWrapper = require('../modules/ffmpegWrapper');
@@ -123,7 +123,7 @@ function formatBytes(bytes) {
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
 /**
@@ -174,7 +174,7 @@ function getProjectInfo() {
     return {
       name: packageJson.name || 'Unknown',
       productName: packageJson.productName || packageJson.name || 'Unknown',
-      version: packageJson.version || '0.0.0',
+      version: packageJson.version || '0.0',
       description: packageJson.description || '',
       author: packageJson.author || 'Unknown'
     };
@@ -182,7 +182,7 @@ function getProjectInfo() {
     return {
       name: 'blackmamba-studio',
       productName: 'BlackMamba Studio',
-      version: '1.0.0',
+      version: '1.0',
       description: 'Video Editor',
       author: 'Unknown'
     };

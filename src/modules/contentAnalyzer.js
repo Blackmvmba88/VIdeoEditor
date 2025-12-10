@@ -5,8 +5,8 @@
  */
 
 const FFmpegWrapper = require('./ffmpegWrapper');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const { v4: uuidv4 } = require('uuid');
 
 // Constantes de configuración
@@ -18,7 +18,7 @@ const MAX_FALLBACK_AUDIO_PEAKS = 10;     // Número máximo de picos de audio de
 class ContentAnalyzer {
   constructor() {
     this.ffmpeg = new FFmpegWrapper();
-    this.tempDir = path.join(require('os').tmpdir(), 'video-editor-analysis');
+    this.tempDir = path.join(require('node:os').tmpdir(), 'video-editor-analysis');
     this.ensureTempDir();
   }
 
@@ -106,7 +106,7 @@ class ContentAnalyzer {
    * Detectar cambios de escena en video
    * @param {string} inputPath - Ruta del archivo de video
    * @param {number} duration - Duración del video
-   * @param {number} threshold - Umbral de cambio de escena (0.0 - 1.0)
+   * @param {number} threshold - Umbral de cambio de escena (0 - 1)
    * @returns {Promise<Array>} Array de marcas de tiempo de cambios de escena
    */
   async detectSceneChanges(inputPath, duration, threshold) {
@@ -130,7 +130,7 @@ class ContentAnalyzer {
       for (const line of lines) {
         const match = line.match(/pts_time:([\d.]+)/);
         if (match) {
-          const time = parseFloat(match[1]);
+          const time = Number.parseFloat(match[1]);
           if (time > 0 && time < duration) {
             sceneChanges.push({
               time,
@@ -189,7 +189,7 @@ class ContentAnalyzer {
       for (const line of lines) {
         const silenceEndMatch = line.match(/silence_end: ([\d.]+)/);
         if (silenceEndMatch) {
-          const time = parseFloat(silenceEndMatch[1]);
+          const time = Number.parseFloat(silenceEndMatch[1]);
           if (time > lastSilenceEnd && time < duration) {
             audioPeaks.push({
               time,
@@ -202,7 +202,7 @@ class ContentAnalyzer {
 
         const silenceStartMatch = line.match(/silence_start: ([\d.]+)/);
         if (silenceStartMatch) {
-          const time = parseFloat(silenceStartMatch[1]);
+          const time = Number.parseFloat(silenceStartMatch[1]);
           // Marcar el período antes del silencio como potencialmente interesante
           if (time > 1 && time < duration) {
             audioPeaks.push({
@@ -263,7 +263,7 @@ class ContentAnalyzer {
 
       if (existingMoment) {
         // Aumentar puntuación cuando visual y audio coinciden
-        existingMoment.score = Math.min(1.0, existingMoment.score + 0.3);
+        existingMoment.score = Math.min(1, existingMoment.score + 0.3);
         existingMoment.source = 'combined';
       } else if (!processedTimes.has(roundedTime)) {
         moments.push({

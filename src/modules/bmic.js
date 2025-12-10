@@ -11,8 +11,8 @@
  * - Permite modos: rápido, calidad máxima, redes sociales, película
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FileValidator = require('./fileValidator');
 const Optimizer = require('./optimizer');
 const AutoImprove = require('./autoImprove');
@@ -122,8 +122,8 @@ class BMIC {
     this.exportPresets = new ExportPresets();
     
     this.userProfile = this.loadUserProfile();
-    this.logsDir = path.join(require('os').homedir(), '.blackmamba-studio', 'logs');
-    this.profilePath = path.join(require('os').homedir(), '.blackmamba-studio', 'profile.json');
+    this.logsDir = path.join(require('node:os').homedir(), '.blackmamba-studio', 'logs');
+    this.profilePath = path.join(require('node:os').homedir(), '.blackmamba-studio', 'profile.json');
     
     this.ensureDirectories();
   }

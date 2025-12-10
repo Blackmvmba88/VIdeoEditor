@@ -41,7 +41,7 @@ const INTENSITY_PRESETS = {
   subtle: { name: 'Subtle', radius: 2, glow: 0.3 },
   moderate: { name: 'Moderate', radius: 5, glow: 0.5 },
   strong: { name: 'Strong', radius: 10, glow: 0.7 },
-  extreme: { name: 'Extreme', radius: 20, glow: 1.0 }
+  extreme: { name: 'Extreme', radius: 20, glow: 1 }
 };
 
 class BlurGlow {

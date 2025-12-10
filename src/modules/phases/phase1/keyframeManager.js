@@ -106,7 +106,7 @@ class KeyframeManager {
       time,
       value,
       easing: options.easing || EASING.LINEAR,
-      bezierPoints: options.bezierPoints || [0.25, 0.1, 0.25, 1.0] // Default cubic-bezier
+      bezierPoints: options.bezierPoints || [0.25, 0.1, 0.25, 1] // Default cubic-bezier
     };
 
     if (existingIndex >= 0) {

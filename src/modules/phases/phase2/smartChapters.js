@@ -1,7 +1,7 @@
 /**
- * Smart Chapters Module - Phase 2.0
+ * Smart Chapters Module - Phase 2
  * Automatic chapter division with AI-generated titles
- * Part of Auto-Edit 2.0
+ * Part of Auto-Edit 2
  */
 
 const { v4: uuidv4 } = require('uuid');

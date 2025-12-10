@@ -3,15 +3,15 @@
  * Maneja operaciones de video: unir, cortar y ordenar clips
  */
 
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const FFmpegWrapper = require('./ffmpegWrapper');
 const { v4: uuidv4 } = require('uuid');
 
 class VideoProcessor {
   constructor() {
     this.ffmpeg = new FFmpegWrapper();
-    this.tempDir = path.join(require('os').tmpdir(), 'video-editor-pro');
+    this.tempDir = path.join(require('node:os').tmpdir(), 'video-editor-pro');
     this.ensureTempDir();
   }
 

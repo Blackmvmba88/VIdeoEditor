@@ -7,7 +7,7 @@
  */
 
 const { VideoEditorError, ErrorCodes } = require('../../errorHandler');
-const path = require('path');
+const path = require('node:path');
 
 class PluginLoader {
   constructor(pluginSystem) {

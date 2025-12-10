@@ -1,7 +1,7 @@
 /**
  * Índice de Módulos de Fase 2 - BlackMamba Studio
  * 
- * Fase 2.0 - Auto-Edit 2.0 (v2.0)
+ * Fase 2 - Auto-Edit 2 (v2.0)
  *   - SmartChapters: División automática de capítulos
  *   - BeatSync: Sincronización de ritmo musical
  * 
@@ -17,7 +17,7 @@ const BeatSync = require('./beatSync');
 const SpeechToText = require('./speechToText');
 
 module.exports = {
-  // Fase 2.0 - Auto-Edit 2.0
+  // Fase 2 - Auto-Edit 2
   SmartChapters,
   BeatSync,
   

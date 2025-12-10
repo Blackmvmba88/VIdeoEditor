@@ -11,9 +11,9 @@ const { VideoEditorError, ErrorCodes } = require('../../errorHandler');
 class AudioMixing {
   constructor() {
     this.mixProfiles = {
-      balanced: { voice: 1.0, music: 0.3, sfx: 0.5 },
-      voiceFocus: { voice: 1.0, music: 0.2, sfx: 0.4 },
-      musicFocus: { voice: 0.7, music: 1.0, sfx: 0.5 },
+      balanced: { voice: 1, music: 0.3, sfx: 0.5 },
+      voiceFocus: { voice: 1, music: 0.2, sfx: 0.4 },
+      musicFocus: { voice: 0.7, music: 1, sfx: 0.5 },
       cinematic: { voice: 0.9, music: 0.8, sfx: 0.7 }
     };
   }

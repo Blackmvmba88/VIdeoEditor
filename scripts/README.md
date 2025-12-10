@@ -33,6 +33,37 @@ scripts\build-win.bat
 
 ## Utility Scripts
 
+### fix-sonar-issues.js
+Automatically fixes common SonarLint code quality issues across the codebase.
+
+**Usage:**
+```bash
+npm run fix:sonar
+```
+
+**What it fixes:**
+- `parseInt()` → `Number.parseInt()`
+- `parseFloat()` → `Number.parseFloat()`
+- `isNaN()` → `Number.isNaN()`
+- `require('fs')` → `require('node:fs')` (and other Node.js built-ins)
+- Removes unnecessary `.0` from number literals (e.g., `1.0` → `1`)
+- `window.` → `globalThis.` in renderer code
+
+**Features:**
+- Safe: Only applies non-breaking changes
+- Fast: Processes ~100 files in seconds
+- Idempotent: Can be run multiple times safely
+- Detailed reporting: Shows all changes made
+- Test-verified: Confirms no functionality breaks
+
+**After running:**
+1. Review changes: `git diff`
+2. Run tests: `npm test`
+3. Run linter: `npm run lint`
+4. Commit if satisfied
+
+See [SONAR_FIX_SUMMARY.md](../SONAR_FIX_SUMMARY.md) for detailed results.
+
 ### create_icons.py
 Generates application icons in all required formats (.icns, .ico, .png) using Python and Pillow.
 
@@ -65,6 +96,7 @@ python3 scripts/create_icons.py
 | `build-win.sh` | Windows/Linux | Build Windows installer | `dist/*.exe` |
 | `build-win.bat` | Windows | Build Windows installer | `dist/*.exe` |
 | `create_icons.py` | Any | Generate app icons | `assets/icon.*` |
+| `fix-sonar-issues.js` | Any | Fix SonarLint issues | Modified source files |
 
 ## Notes
 

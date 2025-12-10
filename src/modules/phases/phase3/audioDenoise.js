@@ -20,7 +20,7 @@ class AudioDenoise {
       low: { strength: 0.3, preserveVoice: 0.9 },
       medium: { strength: 0.6, preserveVoice: 0.8 },
       high: { strength: 0.9, preserveVoice: 0.7 },
-      aggressive: { strength: 1.0, preserveVoice: 0.6 }
+      aggressive: { strength: 1, preserveVoice: 0.6 }
     };
   }
 

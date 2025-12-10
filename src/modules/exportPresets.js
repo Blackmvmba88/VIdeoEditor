@@ -15,7 +15,7 @@ const presets = {
       fps: 30,
       bitrate: '8M',
       profile: 'high',
-      level: '4.0',
+      level: '4',
       preset: 'medium',
       crf: 18
     },

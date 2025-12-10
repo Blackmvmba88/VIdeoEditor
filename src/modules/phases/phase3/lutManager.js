@@ -15,9 +15,9 @@
 
 const FFmpegWrapper = require('../../ffmpegWrapper');
 const { VideoEditorError, ErrorCodes } = require('../../errorHandler');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
+const path = require('node:path');
+const fs = require('node:fs');
+const os = require('node:os');
 
 // LUTs predefinidos (emulados con filtros ya que no tenemos archivos .cube reales)
 const BUILT_IN_LUTS = {
@@ -172,7 +172,7 @@ class LUTManager {
    * @returns {Promise<Object>} Resultado
    */
   async applyLut(inputPath, outputPath, lutId, options = {}, onProgress = null) {
-    const intensity = options.intensity !== undefined ? options.intensity : 1.0;
+    const intensity = options.intensity !== undefined ? options.intensity : 1;
     
     let filter;
     
@@ -188,7 +188,7 @@ class LUTManager {
     }
 
     // Aplicar intensidad si es menor a 1
-    if (intensity < 1.0) {
+    if (intensity < 1) {
       // Mezclar con original usando split y blend
       filter = `split[original][graded];[graded]${filter}[lutted];[original][lutted]blend=all_expr='A*(1-${intensity})+B*${intensity}'`;
     }

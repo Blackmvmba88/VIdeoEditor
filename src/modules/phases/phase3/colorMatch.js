@@ -15,8 +15,8 @@
 
 const FFmpegWrapper = require('../../ffmpegWrapper');
 const { VideoEditorError, ErrorCodes } = require('../../errorHandler');
-const path = require('path');
-const os = require('os');
+const path = require('node:path');
+const os = require('node:os');
 
 // Métodos de matching disponibles
 const MATCH_METHODS = {
@@ -213,7 +213,7 @@ class ColorMatch {
    * @returns {Promise<Object>} Resultado
    */
   async transferStyle(sourcePath, targetPath, outputPath, options = {}, onProgress = null) {
-    const intensity = options.intensity !== undefined ? options.intensity : 1.0;
+    const intensity = options.intensity !== undefined ? options.intensity : 1;
     const sourceTimestamp = options.sourceTimestamp || 0;
 
     // Primero establecer referencia del source

@@ -22,7 +22,7 @@ class MusicSync {
       success: true,
       bpm: 120,
       confidence: 0.95,
-      beats: [0, 0.5, 1.0, 1.5, 2.0],
+      beats: [0, 0.5, 1, 1.5, 2],
       timeSignature: '4/4'
     };
   }

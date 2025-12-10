@@ -4,7 +4,7 @@
  * Supports NVIDIA CUDA, AMD AMF, Intel QuickSync, and VideoToolbox (macOS)
  */
 
-const os = require('os');
+const os = require('node:os');
 const FFmpegWrapper = require('../../ffmpegWrapper');
 
 // Hardware acceleration configurations

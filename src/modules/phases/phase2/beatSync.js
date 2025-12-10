@@ -1,5 +1,5 @@
 /**
- * Beat Sync Module - Phase 2.0
+ * Beat Sync Module - Phase 2
  * Automatic synchronization of video cuts with music beats
  */
 
@@ -49,8 +49,8 @@ class BeatSync {
         const timeMatch = line.match(/pts_time:([\d.]+)/);
         
         if (rmsMatch && timeMatch) {
-          const rmsLevel = parseFloat(rmsMatch[1]);
-          const time = parseFloat(timeMatch[1]);
+          const rmsLevel = Number.parseFloat(rmsMatch[1]);
+          const time = Number.parseFloat(timeMatch[1]);
           
           // Detect beat based on RMS threshold
           if (rmsLevel > -20 * (1 - config.sensitivity) && 

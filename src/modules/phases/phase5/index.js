@@ -1,7 +1,7 @@
 /**
  * Índice de Módulos de Fase 5 - BlackMamba Studio
  * 
- * Fase 5.0 - AI Studio Avanzado (v5.0)
+ * Fase 5 - AI Studio Avanzado (v5.0)
  *   - AIStudio: Motor central del estudio de IA
  *   - MultiLangTranscription: Transcripción multi-idioma
  *   - KaraokeSubtitles: Subtítulos estilo karaoke (TikTok)
@@ -37,7 +37,7 @@
  * Nota: Estas características representan el futuro de BlackMamba Studio.
  */
 
-// Fase 5.0 - AI Studio Avanzado
+// Fase 5 - AI Studio Avanzado
 const AIStudio = require('./aiStudio');
 const MultiLangTranscription = require('./multiLangTranscription');
 const KaraokeSubtitles = require('./karaokeSubtitles');
@@ -71,7 +71,7 @@ const MusicLibrary = require('./musicLibrary');
 const CreatorMonetization = require('./creatorMonetization');
 
 module.exports = {
-  // Fase 5.0 - AI Studio Avanzado
+  // Fase 5 - AI Studio Avanzado
   AIStudio,
   MultiLangTranscription,
   KaraokeSubtitles,

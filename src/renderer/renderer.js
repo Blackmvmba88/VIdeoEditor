@@ -3,7 +3,7 @@
  * Editor de Video Profesional con UI Cinematográfica
  */
 
-// API expuesta por preload.js - usar directamente window.videoEditorAPI
+// API expuesta por preload.js - usar directamente globalThis.videoEditorAPI
 // No redeclarar para evitar conflicto con contextBridge
 
 // Estado
@@ -135,7 +135,7 @@ function updateSplashStatus(text) {
  */
 async function checkFFmpeg() {
   updateSplashStatus('Checking FFmpeg...');
-  const result = await window.videoEditorAPI.checkFFmpeg();
+  const result = await globalThis.videoEditorAPI.checkFFmpeg();
   const statusEl = elements.ffmpegStatus;
 
   if (result.available) {
@@ -153,7 +153,7 @@ async function checkFFmpeg() {
  */
 async function loadPresets() {
   updateSplashStatus('Loading presets...');
-  const result = await window.videoEditorAPI.getPresets();
+  const result = await globalThis.videoEditorAPI.getPresets();
   if (result.success) {
     availablePresets = result.presets;
     renderPresetCards();
@@ -165,7 +165,7 @@ async function loadPresets() {
  */
 async function loadAutoEditStyles() {
   updateSplashStatus('Loading auto-edit styles...');
-  const result = await window.videoEditorAPI.getAutoEditStyles();
+  const result = await globalThis.videoEditorAPI.getAutoEditStyles();
   if (result.success) {
     autoEditStyles = result.styles;
     renderStyleCards();
@@ -177,7 +177,7 @@ async function loadAutoEditStyles() {
  */
 async function loadAppInfo() {
   updateSplashStatus('Starting BlackMamba Studio...');
-  const version = await window.videoEditorAPI.getAppVersion();
+  const version = await globalThis.videoEditorAPI.getAppVersion();
   elements.appVersion.textContent = `v${version}`;
 }
 
@@ -260,11 +260,11 @@ function setupEventListeners() {
  * Configurar escuchador de progreso
  */
 function setupProgressListener() {
-  window.videoEditorAPI.onProgress((data) => {
+  globalThis.videoEditorAPI.onProgress((data) => {
     updateProgress(data);
   });
 
-  window.videoEditorAPI.onError((error) => {
+  globalThis.videoEditorAPI.onError((error) => {
     hideProgressModal();
     showNotification(`Error: ${error.message}`, 'error');
   });
@@ -332,7 +332,7 @@ async function handleDrop(e) {
  * Importar archivos usando diálogo
  */
 async function importFiles(multiple = true) {
-  const filePaths = await window.videoEditorAPI.openFileDialog({ multiple });
+  const filePaths = await globalThis.videoEditorAPI.openFileDialog({ multiple });
   if (filePaths) {
     for (const filePath of filePaths) {
       await addMediaFile(filePath);
@@ -358,7 +358,7 @@ async function addMediaFileUnified(filePath, preloadedInfo = null) {
     // Usar info precargada o solicitar nueva
     let info = preloadedInfo?.info;
     if (!info) {
-      const result = await window.videoEditorAPI.getVideoInfo(filePath);
+      const result = await globalThis.videoEditorAPI.getVideoInfo(filePath);
       if (!result.success) {
         showNotification(`Error: ${result.error?.message || 'Unknown'}`, 'error');
         return false;
@@ -732,7 +732,7 @@ async function applyTrim() {
 
   const baseName = selectedClip.name.replace(/\.[^.]+$/, '');
   const ext = selectedClip.name.split('.').pop();
-  const outputPath = await window.videoEditorAPI.saveFileDialog({
+  const outputPath = await globalThis.videoEditorAPI.saveFileDialog({
     defaultName: `${baseName}_trimmed.${ext}`
   });
 
@@ -740,7 +740,7 @@ async function applyTrim() {
 
   showProgressModal('Trimming your clip...');
 
-  const result = await window.videoEditorAPI.cutVideo({
+  const result = await globalThis.videoEditorAPI.cutVideo({
     inputPath: selectedClip.path,
     startTime: inTime,
     endTime: outTime,
@@ -831,7 +831,7 @@ async function exportVideo() {
   const preset = availablePresets[selectedPreset];
   const ext = preset?.format || 'mp4';
 
-  const outputPath = await window.videoEditorAPI.saveFileDialog({
+  const outputPath = await globalThis.videoEditorAPI.saveFileDialog({
     defaultName: `blackmamba_export.${ext}`,
     extension: `.${ext}`
   });
@@ -845,7 +845,7 @@ async function exportVideo() {
 
   if (timelineClips.length === 1) {
     // Exportación de un solo clip
-    result = await window.videoEditorAPI.exportWithPreset({
+    result = await globalThis.videoEditorAPI.exportWithPreset({
       inputPath: timelineClips[0].path,
       outputPath,
       presetKey: selectedPreset
@@ -857,7 +857,7 @@ async function exportVideo() {
       order: index
     }));
 
-    result = await window.videoEditorAPI.reorderJoin({
+    result = await globalThis.videoEditorAPI.reorderJoin({
       clips,
       outputPath,
       options: { reencode: true }
@@ -942,7 +942,7 @@ function closeSuccessModal() {
 async function revealExportedFile() {
   const path = elements.successModal.dataset.path;
   if (path) {
-    await window.videoEditorAPI.showInFolder(path);
+    await globalThis.videoEditorAPI.showInFolder(path);
   }
   closeSuccessModal();
 }
@@ -1077,7 +1077,7 @@ async function analyzeContent() {
         : null
     };
 
-    const result = await window.videoEditorAPI.analyzeContent({
+    const result = await globalThis.videoEditorAPI.analyzeContent({
       inputPath: clip.path,
       options
     });
@@ -1120,7 +1120,7 @@ async function runAutoEdit() {
 
   const clip = selectedClip || mediaLibrary[0];
   
-  const outputPath = await window.videoEditorAPI.saveFileDialog({
+  const outputPath = await globalThis.videoEditorAPI.saveFileDialog({
     defaultName: `${clip.name.replace(/\.[^.]+$/, '')}_auto_edit.mp4`,
     extension: '.mp4'
   });
@@ -1140,7 +1140,7 @@ async function runAutoEdit() {
         : null
     };
 
-    const result = await window.videoEditorAPI.autoEdit({
+    const result = await globalThis.videoEditorAPI.autoEdit({
       inputPath: clip.path,
       outputPath,
       options
@@ -1216,7 +1216,7 @@ async function loadRecentProjects() {
   if (!container) return;
   
   try {
-    const result = await window.videoEditorAPI.projectGetAll();
+    const result = await globalThis.videoEditorAPI.projectGetAll();
     if (result.success && result.projects.length > 0) {
       recentProjects = result.projects.slice(0, 5); // Últimos 5
       
@@ -1250,7 +1250,7 @@ async function createNewProject() {
   if (!projectName) return;
   
   try {
-    const result = await window.videoEditorAPI.projectCreate({ name: projectName });
+    const result = await globalThis.videoEditorAPI.projectCreate({ name: projectName });
     if (result.success) {
       currentProject = result.project;
       updateProjectName(projectName);
@@ -1273,7 +1273,7 @@ async function openProject() {
   closeProjectDropdown();
   
   try {
-    const result = await window.videoEditorAPI.projectGetAll();
+    const result = await globalThis.videoEditorAPI.projectGetAll();
     if (!result.success || result.projects.length === 0) {
       showNotification('No hay proyectos guardados', 'info');
       return;
@@ -1295,7 +1295,7 @@ async function loadProject(projectId) {
   closeProjectDropdown();
   
   try {
-    const result = await window.videoEditorAPI.projectLoad(projectId);
+    const result = await globalThis.videoEditorAPI.projectLoad(projectId);
     if (result.success) {
       currentProject = result.project;
       updateProjectName(result.project.name);
@@ -1343,7 +1343,7 @@ async function saveCurrentProject() {
       timeline: timelineClips
     };
     
-    const result = await window.videoEditorAPI.projectSave(projectData);
+    const result = await globalThis.videoEditorAPI.projectSave(projectData);
     if (result.success) {
       currentProject = result.project;
       showNotification('Proyecto guardado', 'success');
@@ -1394,13 +1394,13 @@ function clearMediaLibrary() {
  */
 async function scanFolderForMedia() {
   try {
-    const folderPath = await window.videoEditorAPI.selectFolder();
+    const folderPath = await globalThis.videoEditorAPI.selectFolder();
     if (!folderPath) return;
     
     setStatus(`Escaneando carpeta: ${folderPath}...`);
     showNotification('Escaneando carpeta...', 'info');
     
-    const result = await window.videoEditorAPI.scanFolder({ folderPath, recursive: true });
+    const result = await globalThis.videoEditorAPI.scanFolder({ folderPath, recursive: true });
     
     if (!result.success) {
       showNotification('Error al escanear carpeta', 'error');

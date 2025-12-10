@@ -5,8 +5,8 @@
 
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const { v4: uuidv4 } = require('uuid');
@@ -85,7 +85,7 @@ app.get('/api/health', async (req, res) => {
     res.json({
       status: 'ok',
       ffmpeg: ffmpegAvailable,
-      version: '1.0.0'
+      version: '1.0'
     });
   } catch (error) {
     res.status(500).json({

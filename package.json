@@ -10,6 +10,7 @@
     "dashboard": "node src/cli/dashboard.js",
     "lint": "eslint src/ --ext .js",
     "lint:fix": "eslint src/ --ext .js --fix",
+    "fix:sonar": "node scripts/fix-sonar-issues.js",
     "test": "jest --coverage",
     "build": "npm run build:win && npm run build:mac",
     "build:win": "electron-builder --win",

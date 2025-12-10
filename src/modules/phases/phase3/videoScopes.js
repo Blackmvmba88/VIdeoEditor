@@ -14,8 +14,8 @@
  */
 
 const FFmpegWrapper = require('../../ffmpegWrapper');
-const path = require('path');
-const os = require('os');
+const path = require('node:path');
+const os = require('node:os');
 
 // Tipos de scopes disponibles
 const SCOPE_TYPES = {

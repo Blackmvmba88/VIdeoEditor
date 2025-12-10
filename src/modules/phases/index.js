@@ -9,7 +9,7 @@
  *   - v1.3: Transiciones y efectos
  * 
  * Fase 2: Inteligencia Artificial Avanzada (v2.0 - v2.5)
- *   - v2.0: Auto-Edit 2.0
+ *   - v2.0: Auto-Edit 2
  *   - v2.1: Transcripción y subtítulos
  * 
  * Fase 3: Profesionalización (v3.0 - v3.1)

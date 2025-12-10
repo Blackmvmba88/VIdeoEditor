@@ -16,7 +16,7 @@ const CHANNEL_CONFIG = {
 class AudioMixer {
   constructor() {
     this.channels = new Map();
-    this.masterVolume = 1.0;
+    this.masterVolume = 1;
     this.masterMuted = false;
     this.outputConfig = CHANNEL_CONFIG.STEREO;
     this.listeners = [];
@@ -32,7 +32,7 @@ class AudioMixer {
       id: options.id || uuidv4(),
       name: options.name || `Channel ${this.channels.size + 1}`,
       trackId: options.trackId || null,
-      volume: options.volume !== undefined ? options.volume : 1.0,
+      volume: options.volume !== undefined ? options.volume : 1,
       pan: options.pan !== undefined ? options.pan : 0,   // -1 (left) to 1 (right)
       muted: false,
       solo: false,
@@ -338,7 +338,7 @@ class AudioMixer {
    */
   reset() {
     this.channels.clear();
-    this.masterVolume = 1.0;
+    this.masterVolume = 1;
     this.masterMuted = false;
     this.emit('mixerReset');
   }

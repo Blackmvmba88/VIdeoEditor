@@ -67,7 +67,7 @@ class FFmpegWrapper {
    */
   isExecutableAvailable(execPath) {
     try {
-      const result = require('child_process').spawnSync(execPath, ['-version'], {
+      const result = require('node:child_process').spawnSync(execPath, ['-version'], {
         stdio: 'pipe',
         timeout: 5000
       });
@@ -100,10 +100,10 @@ class FFmpegWrapper {
         if (onProgress) {
           const progressMatch = dataStr.match(/time=(\d{2}):(\d{2}):(\d{2})\.(\d{2})/);
           if (progressMatch) {
-            const hours = parseInt(progressMatch[1], 10);
-            const minutes = parseInt(progressMatch[2], 10);
-            const seconds = parseInt(progressMatch[3], 10);
-            const centiseconds = parseInt(progressMatch[4], 10);
+            const hours = Number.parseInt(progressMatch[1], 10);
+            const minutes = Number.parseInt(progressMatch[2], 10);
+            const seconds = Number.parseInt(progressMatch[3], 10);
+            const centiseconds = Number.parseInt(progressMatch[4], 10);
             const totalSeconds = hours * 3600 + minutes * 60 + seconds + centiseconds / 100;
             onProgress(totalSeconds);
           }
@@ -181,22 +181,22 @@ class FFmpegWrapper {
     const format = rawInfo.format || {};
 
     return {
-      duration: parseFloat(format.duration) || 0,
-      size: parseInt(format.size, 10) || 0,
-      bitrate: parseInt(format.bit_rate, 10) || 0,
+      duration: Number.parseFloat(format.duration) || 0,
+      size: Number.parseInt(format.size, 10) || 0,
+      bitrate: Number.parseInt(format.bit_rate, 10) || 0,
       format: format.format_name || 'unknown',
       video: videoStream ? {
         codec: videoStream.codec_name,
         width: videoStream.width,
         height: videoStream.height,
         fps: this.parseFPS(videoStream.r_frame_rate),
-        bitrate: parseInt(videoStream.bit_rate, 10) || 0
+        bitrate: Number.parseInt(videoStream.bit_rate, 10) || 0
       } : null,
       audio: audioStream ? {
         codec: audioStream.codec_name,
-        sampleRate: parseInt(audioStream.sample_rate, 10),
+        sampleRate: Number.parseInt(audioStream.sample_rate, 10),
         channels: audioStream.channels,
-        bitrate: parseInt(audioStream.bit_rate, 10) || 0
+        bitrate: Number.parseInt(audioStream.bit_rate, 10) || 0
       } : null
     };
   }
@@ -210,9 +210,9 @@ class FFmpegWrapper {
     if (!fpsStr) return 0;
     const parts = fpsStr.split('/');
     if (parts.length === 2) {
-      return Math.round(parseInt(parts[0], 10) / parseInt(parts[1], 10));
+      return Math.round(Number.parseInt(parts[0], 10) / Number.parseInt(parts[1], 10));
     }
-    return parseFloat(fpsStr) || 0;
+    return Number.parseFloat(fpsStr) || 0;
   }
 
   /**

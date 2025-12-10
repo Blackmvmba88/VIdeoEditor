@@ -31,7 +31,7 @@ class MotionGraphics {
     this.templates.set('fade-in', {
       name: 'Fade In',
       type: 'transition',
-      duration: 1.0,
+      duration: 1,
       parameters: {
         easing: 'ease-in'
       }
@@ -50,9 +50,9 @@ class MotionGraphics {
     this.templates.set('zoom-in', {
       name: 'Zoom In',
       type: 'transition',
-      duration: 1.0,
+      duration: 1,
       parameters: {
-        scale: { from: 0.5, to: 1.0 },
+        scale: { from: 0.5, to: 1 },
         easing: 'ease-in-out'
       }
     });
@@ -151,7 +151,7 @@ class MotionGraphics {
         width: config.width,
         height: config.height,
         elements: config.elements || [],
-        duration: config.duration || 5.0
+        duration: config.duration || 5
       },
       message: 'Custom overlay created successfully'
     };

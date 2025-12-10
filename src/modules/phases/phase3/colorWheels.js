@@ -22,29 +22,29 @@ const COLOR_PRESETS = {
     name: 'Cinematic',
     description: 'Look cinematográfico con sombras frías y highlights cálidos',
     shadows: { r: 0.9, g: 0.95, b: 1.1 },
-    midtones: { r: 1.0, g: 1.0, b: 1.0 },
+    midtones: { r: 1, g: 1, b: 1 },
     highlights: { r: 1.1, g: 1.05, b: 0.95 }
   },
   teal_orange: {
     name: 'Teal & Orange',
     description: 'Look popular en cine blockbuster',
-    shadows: { r: 0.85, g: 1.0, b: 1.15 },
-    midtones: { r: 1.0, g: 0.98, b: 0.95 },
+    shadows: { r: 0.85, g: 1, b: 1.15 },
+    midtones: { r: 1, g: 0.98, b: 0.95 },
     highlights: { r: 1.15, g: 1.05, b: 0.9 }
   },
   vintage: {
     name: 'Vintage',
     description: 'Estilo retro con tonos desaturados',
-    shadows: { r: 1.05, g: 1.0, b: 0.95 },
-    midtones: { r: 1.0, g: 0.98, b: 0.95 },
-    highlights: { r: 1.0, g: 0.95, b: 0.9 },
+    shadows: { r: 1.05, g: 1, b: 0.95 },
+    midtones: { r: 1, g: 0.98, b: 0.95 },
+    highlights: { r: 1, g: 0.95, b: 0.9 },
     saturation: 0.85
   },
   bleach_bypass: {
     name: 'Bleach Bypass',
     description: 'Alto contraste con colores desaturados',
     shadows: { r: 0.9, g: 0.9, b: 0.9 },
-    midtones: { r: 1.0, g: 1.0, b: 1.0 },
+    midtones: { r: 1, g: 1, b: 1 },
     highlights: { r: 1.1, g: 1.1, b: 1.1 },
     saturation: 0.6,
     contrast: 1.2
@@ -53,15 +53,15 @@ const COLOR_PRESETS = {
     name: 'Cool',
     description: 'Tonos fríos generales',
     shadows: { r: 0.9, g: 0.95, b: 1.1 },
-    midtones: { r: 0.95, g: 1.0, b: 1.05 },
-    highlights: { r: 0.95, g: 1.0, b: 1.05 }
+    midtones: { r: 0.95, g: 1, b: 1.05 },
+    highlights: { r: 0.95, g: 1, b: 1.05 }
   },
   warm: {
     name: 'Warm',
     description: 'Tonos cálidos generales',
-    shadows: { r: 1.05, g: 1.0, b: 0.95 },
-    midtones: { r: 1.05, g: 1.0, b: 0.95 },
-    highlights: { r: 1.1, g: 1.0, b: 0.9 }
+    shadows: { r: 1.05, g: 1, b: 0.95 },
+    midtones: { r: 1.05, g: 1, b: 0.95 },
+    highlights: { r: 1.1, g: 1, b: 0.9 }
   }
 };
 
@@ -78,15 +78,15 @@ class ColorWheels {
    */
   getDefaultSettings() {
     return {
-      shadows: { r: 1.0, g: 1.0, b: 1.0 },
-      midtones: { r: 1.0, g: 1.0, b: 1.0 },
-      highlights: { r: 1.0, g: 1.0, b: 1.0 },
-      lift: { r: 0.0, g: 0.0, b: 0.0 },
-      gamma: { r: 1.0, g: 1.0, b: 1.0 },
-      gain: { r: 1.0, g: 1.0, b: 1.0 },
-      offset: { r: 0.0, g: 0.0, b: 0.0 },
-      saturation: 1.0,
-      contrast: 1.0
+      shadows: { r: 1, g: 1, b: 1 },
+      midtones: { r: 1, g: 1, b: 1 },
+      highlights: { r: 1, g: 1, b: 1 },
+      lift: { r: 0, g: 0, b: 0 },
+      gamma: { r: 1, g: 1, b: 1 },
+      gain: { r: 1, g: 1, b: 1 },
+      offset: { r: 0, g: 0, b: 0 },
+      saturation: 1,
+      contrast: 1
     };
   }
 
@@ -222,7 +222,7 @@ class ColorWheels {
     filters.push(colorBalance);
 
     // Aplicar saturación y contraste
-    if (s.saturation !== 1.0 || s.contrast !== 1.0) {
+    if (s.saturation !== 1 || s.contrast !== 1) {
       filters.push(`eq=saturation=${s.saturation}:contrast=${s.contrast}`);
     }
 

@@ -30,7 +30,7 @@ class AnimatedTitles {
     this.animations.set('typewriter', {
       name: 'Typewriter',
       category: 'text',
-      duration: 2.0,
+      duration: 2,
       style: {
         effect: 'character-by-character',
         speed: 'medium',
@@ -52,7 +52,7 @@ class AnimatedTitles {
     this.animations.set('cinematic-reveal', {
       name: 'Cinematic Reveal',
       category: 'cinematic',
-      duration: 3.0,
+      duration: 3,
       style: {
         effect: 'wipe-reveal',
         direction: 'horizontal',
@@ -63,7 +63,7 @@ class AnimatedTitles {
     this.animations.set('neon-glow', {
       name: 'Neon Glow',
       category: 'modern',
-      duration: 2.0,
+      duration: 2,
       style: {
         effect: 'glow-pulse',
         color: '#00d4ff',
@@ -85,7 +85,7 @@ class AnimatedTitles {
     this.animations.set('3d-rotate', {
       name: '3D Rotate',
       category: '3d',
-      duration: 2.0,
+      duration: 2,
       style: {
         effect: '3d-transform',
         axis: 'y',
@@ -110,7 +110,7 @@ class AnimatedTitles {
       duration: 1.5,
       style: {
         effect: 'fade-scale',
-        scale: { from: 0.5, to: 1.0 },
+        scale: { from: 0.5, to: 1 },
         easing: 'ease-out'
       }
     });
@@ -165,7 +165,7 @@ class AnimatedTitles {
       color = '#ffffff',
       backgroundColor = 'transparent',
       position = 'center',
-      duration = 5.0,
+      duration = 5,
       startTime = 0
     } = config;
 
@@ -241,7 +241,7 @@ class AnimatedTitles {
       multilineTitle: {
         lines: titleLines,
         stagger,
-        totalDuration: (otherConfig.duration || 5.0) + (lines.length * stagger)
+        totalDuration: (otherConfig.duration || 5) + (lines.length * stagger)
       },
       message: 'Multiline title created successfully'
     };

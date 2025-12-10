@@ -33,8 +33,8 @@ class MultiTrackManager {
       solo: false,
       locked: false,
       visible: true,
-      volume: 1.0,
-      opacity: 1.0,
+      volume: 1,
+      opacity: 1,
       createdAt: new Date().toISOString()
     };
 
@@ -109,8 +109,8 @@ class MultiTrackManager {
       inPoint: clipData.inPoint || 0,
       outPoint: clipData.outPoint || clipData.duration || 0,
       position: clipData.position || track.clips.length,
-      volume: clipData.volume || 1.0,
-      opacity: clipData.opacity || 1.0,
+      volume: clipData.volume || 1,
+      opacity: clipData.opacity || 1,
       effects: clipData.effects || [],
       metadata: clipData.metadata || {}
     };

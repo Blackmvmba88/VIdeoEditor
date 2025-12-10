@@ -14,7 +14,7 @@
  * @module LayersManager
  */
 
-const path = require('path');
+const path = require('node:path');
 const FFmpegWrapper = require('../../ffmpegWrapper');
 const { VideoEditorError, ErrorCodes } = require('../../errorHandler');
 
@@ -59,7 +59,7 @@ class LayersManager {
         width: layerConfig.width || null, // null = original
         height: layerConfig.height || null
       },
-      opacity: layerConfig.opacity !== undefined ? layerConfig.opacity : 1.0,
+      opacity: layerConfig.opacity !== undefined ? layerConfig.opacity : 1,
       blendMode: layerConfig.blendMode || 'normal',
       startTime: layerConfig.startTime || 0,
       duration: layerConfig.duration || null,
@@ -243,7 +243,7 @@ class LayersManager {
   exportConfig() {
     return {
       layers: this.layers.map(l => ({ ...l })),
-      version: '1.0'
+      version: '1'
     };
   }
 

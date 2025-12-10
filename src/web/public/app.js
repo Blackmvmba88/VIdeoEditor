@@ -250,8 +250,8 @@ async function trimVideo() {
     return;
   }
   
-  const startTime = parseFloat(elements.startTime.value);
-  const endTime = parseFloat(elements.endTime.value);
+  const startTime = Number.parseFloat(elements.startTime.value);
+  const endTime = Number.parseFloat(elements.endTime.value);
   
   if (startTime >= endTime) {
     alert('El tiempo de inicio debe ser menor que el tiempo de fin');
@@ -350,9 +350,9 @@ function renderTimeline() {
  */
 elements.clipsContainer.addEventListener('click', (e) => {
   const target = e.target;
-  const index = parseInt(target.dataset.index);
+  const index = Number.parseInt(target.dataset.index);
   
-  if (isNaN(index)) return;
+  if (Number.isNaN(index)) return;
   
   if (target.classList.contains('clip-up')) {
     moveClipUp(index);

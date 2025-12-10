@@ -1,329 +1,483 @@
-# 🐍 BlackMamba Studio
+<p align="center">
+  <img src="assets/icon.png" alt="BlackMamba Studio" width="150" height="150">
+</p>
 
-<div align="center">
+<h1 align="center">🐍 BlackMamba Studio</h1>
 
-**Professional Cross-Platform Video Editor**
+<p align="center">
+  <strong>The Future of Video Editing is Here</strong>
+</p>
 
-*Edita como los profesionales • Ahorra tiempo con IA • Pasa más tiempo con tu familia*
+<p align="center">
+  <em>AI-Powered • Professional Grade • Built for Creators</em>
+</p>
 
-[![Version](https://img.shields.io/badge/version-1.0.0-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor/releases)
-[![License](https://img.shields.io/badge/license-MIT-00d4ff?style=for-the-badge)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-00d4ff?style=for-the-badge)](https://github.com/Blackmvmba88/VIdeoEditor)
-[![Windows](https://img.shields.io/badge/Windows-Verified%20✓-00d4ff?style=for-the-badge&logo=windows)](https://github.com/Blackmvmba88/VIdeoEditor)
-[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-00d4ff?style=for-the-badge)](https://nodejs.org/)
+<p align="center">
+  <a href="https://github.com/Blackmvmba88/VIdeoEditor/releases">
+    <img src="https://img.shields.io/badge/version-1.0.0-00d4ff?style=for-the-badge&logo=github" alt="Version">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-7b2cbf?style=for-the-badge" alt="License">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/tests-559%20passing-00ff88?style=for-the-badge" alt="Tests">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/FFmpeg-8.0.1-ff6b35?style=for-the-badge&logo=ffmpeg" alt="FFmpeg">
+  </a>
+</p>
 
-[🚀 **Ver Roadmap Completo**](ROADMAP.md) • [📦 Releases](https://github.com/Blackmvmba88/VIdeoEditor/releases) • [🐛 Reportar Bug](https://github.com/Blackmvmba88/VIdeoEditor/issues)
+<p align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/macOS-Supported-000000?style=for-the-badge&logo=apple" alt="macOS">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Windows-Supported-0078D6?style=for-the-badge&logo=windows" alt="Windows">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Electron-24.13.3-47848F?style=for-the-badge&logo=electron" alt="Electron">
+  </a>
+</p>
 
-</div>
+<p align="center">
+  <a href="ROADMAP.md">🗺️ Roadmap</a> •
+  <a href="#-quick-start">🚀 Quick Start</a> •
+  <a href="#-features">✨ Features</a> •
+  <a href="#-keyboard-shortcuts">⌨️ Shortcuts</a> •
+  <a href="https://github.com/Blackmvmba88/VIdeoEditor/issues">🐛 Report Bug</a>
+</p>
 
 ---
 
-A cinematic video editing application built with Electron and Node.js, featuring FFmpeg integration for professional video processing.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line">
+</p>
 
-**🎯 Two Ways to Edit:**
-- **Desktop App** (Electron) - Full-featured professional editor with AI tools
-- **Web UI** (Browser) - Basic editing interface accessible from any browser
+## 🎬 What is BlackMamba Studio?
 
-![BlackMamba Studio](https://img.shields.io/badge/BlackMamba-Studio-00d4ff?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjMDBkNGZmIiBkPSJNNTAgNSBDMjUgNSAxMCAyNSAxMCA0NSBDMTAgNTUgMTUgNjUgMjUgNzAgTDIwIDkwIEMyMCA5NSAyNSA5OCAzMCA5NSBMNTAgODAgTDcwIDk1IEM3NSA5OCA4MCA5NSA4MCA5MCBMNSA3MCBDODUgNjUgOTAgNTUgOTAgNDUgQzkwIDI1IDc1IDUgNTAgNSBaIE0zNSA0MCBDMzggNDAgNDAgNDIgNDAgNDUgQzQwIDQ4IDM4IDUwIDM1IDUwIEMzMiA1MCAzMCA0OCAzMCA0NSBDM Agog== MCAzMiA0MCAzNSA0MCBaIE02NSA0MCBDNjggNDAgNzAgNDIgNzAgNDUgQzcwIDQ4IDY4IDUwIDY1IDUwIEM2MiA1MCA2MCA0OCA2MCA0NSBDNjAgNDIgNjIgNDAgNjUgNDAgWiIvPjwvc3ZnPg==)
+**BlackMamba Studio** is a professional-grade video editor that combines the power of **AI automation** with **precision editing tools**. Built with Electron and powered by FFmpeg, it delivers a cinematic editing experience inspired by DaVinci Resolve.
 
-## ✨ Features
+> **🎯 Our Mission:** Save creators hours of editing time so they can focus on what matters most—their content and their families.
 
-### 🤖 Auto-Edit - Automatic Video Editing (NEW!)
-**Save hours of editing time and spend more time with your family!**
+### 🌟 Why Choose BlackMamba?
 
-- **Smart Content Detection** - Automatically analyzes your video to find the most interesting moments
-- **Scene Change Detection** - Identifies visual transitions and key moments
-- **Audio Peak Analysis** - Detects high-energy audio moments for engaging content
-- **Multiple Editing Styles**:
-  - **Highlights** - Selects the best moments based on content analysis
-  - **Summary** - Creates a balanced overview of your entire video
-  - **Action** - Focuses on high-activity visual and audio moments
-- **Customizable Settings** - Control clip duration and target video length
-- **Time-Saving Statistics** - See how much editing time you've saved
+| Feature | BlackMamba | Other Editors |
+|---------|:----------:|:-------------:|
+| AI Auto-Edit | ✅ Built-in | ❌ Plugin required |
+| FFmpeg Native | ✅ Full integration | ⚠️ Limited |
+| Cross-platform | ✅ Mac + Windows | ⚠️ Varies |
+| Open Source | ✅ MIT License | ❌ Proprietary |
+| Price | ✅ Free Forever | 💰 $300-$700/year |
 
-### 🎨 Motion Graphics & Professional Tools (NEW!)
-**Create stunning visual content like a pro!**
+---
 
-- **Lower Thirds** - Professional name tags, labels, prices, and event info
-- **Animated Titles** - Cinematic title animations with multiple styles
-- **Emojis & Callouts** - Expressive animated emojis and attention-grabbing callouts
-- **Social Banners** - Optimized banners for YouTube, Instagram, TikTok, Twitter
-- **Template System** - Pre-designed templates for quick professional results
-
-### 🔊 Audio AI Tools (NEW!)
-**Professional audio processing with artificial intelligence!**
-
-- **Intelligent Denoise** - Remove background noise while preserving voice quality
-- **Auto-EQ** - Automatic voice equalization for crystal-clear audio
-- **Audio Mixing** - Smart mixing of multiple audio tracks
-- **Volume Normalization** - Consistent volume levels throughout your video
-- **Music Sync** - Automatic synchronization with music BPM for rhythmic cuts
-
-### 🔌 Plugin Architecture & Cloud (NEW!)
-**Extend functionality and collaborate in real-time!**
-
-- **Plugin System** - Extensible architecture for custom plugins
-- **Plugin API** - Public API for plugin development
-- **Cloud Sync** - Sync your projects to the cloud
-- **Cloud Render** - Scalable server-side rendering
-- **Real-time Collaboration** - Edit together with your team
-
-### 🎥 Multi-Camera Editing (NEW!)
-**Professional multi-camera workflows made easy!**
-
-- **Auto-Sync** - Automatically sync multiple cameras using audio waveforms
-- **Multi-Cam Editor** - Specialized multi-camera editing interface
-- **Angle Switching** - Easy switching between camera angles
-
-### 🚀 Advanced AI Features (NEW!)
-**Next-generation AI-powered editing!**
-
-- **Multi-Language Transcription** - Transcribe audio in multiple languages
-- **Karaoke Subtitles** - TikTok-style animated subtitles
-- **Narrative Summary** - AI-generated video summaries
-- **Enhanced Chaptering** - Smart chapter detection and creation
-- **Storytelling AI** - AI suggestions for better storytelling
-
-### 📚 Asset Library & Marketplace (NEW!)
-**Access thousands of professional assets!**
-
-- **Animated Loops** - Professional animated background loops
-- **Transitions Library** - Extensive collection of video transitions
-- **Animated Emojis** - Expressive animated emojis
-- **Glitch Effects** - Modern glitch effects
-- **Lottie & SVG Support** - Advanced animation format support
-- **Creative Marketplace** - Buy and sell presets, templates, LUTs, and effects
-
-### Video Editing
-- **Join Clips** - Combine multiple video clips into one seamless video
-- **Cut/Trim** - Precisely trim videos with frame-accurate controls
-- **Reorder** - Drag and drop clips to arrange your timeline
-- **Format Detection** - Automatic detection of video formats and codecs
-
-### Professional Interface
-- **Cinematic Dark Theme** - DaVinci Resolve-inspired UI with electric blue and quantum purple accents
-- **Timeline with Thumbnails** - Visual timeline for easy clip management
-- **Preview Window** - Real-time preview with timecode overlay
-- **Properties Panel** - Transform, scale, and rotation controls
-
-### Export Options
-- **Platform Presets** - Optimized settings for YouTube, Instagram, TikTok, Twitter
-- **Quality Presets** - From web-optimized to professional 4K
-- **Custom Settings** - Full control over codec, bitrate, resolution, and more
-- **Progress Tracking** - Cinematic progress modal with ETA
-
-### Technical Features
-- **FFmpeg Integration** - Full FFmpeg support for video processing
-- **File Validation** - Comprehensive input validation and error handling
-- **Cross-Platform** - Works on Windows and macOS (Windows verified ✓)
-- **Modular Architecture** - Clean, maintainable codebase
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Node.js** (v18 or higher)
-- **FFmpeg** (must be installed and in PATH)
+- **Node.js** ≥ 18.0.0
+- **FFmpeg** ≥ 6.0 (auto-detected)
+- **npm** or **yarn**
 
 ### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/Blackmvmba88/VIdeoEditor.git
+
+# Navigate to directory
 cd VIdeoEditor
 
 # Install dependencies
 npm install
 
-# Start the application
+# Start the app
 npm start
 ```
 
-### Development
+### Build for Production
 
 ```bash
-# Run in development mode (Electron app)
-npm start
-
-# Run Web UI (browser-based)
-npm run web
-
-# Lint code
-npm run lint
-
-# Run tests
-npm test
-```
-
-### Web UI
-
-BlackMamba Studio now includes a **web-based interface** for basic video editing that runs in your browser!
-
-![Web UI Screenshot](https://github.com/user-attachments/assets/36eeba28-f7df-4bf2-8d51-9d35de394046)
-
-```bash
-# Start the web server
-npm run web
-
-# Then open your browser at:
-# http://localhost:3000
-```
-
-**Features:**
-- 🌐 Browser-based - No installation required
-- 📤 Upload videos with drag & drop
-- ✂️ Trim and cut videos
-- 🔗 Join multiple clips
-- 💾 Download processed videos
-- 🔒 Secure with rate limiting
-
-**Perfect for:**
-- Quick edits without opening the full app
-- Remote access to video editing
-- Sharing editing capabilities with others
-
-For detailed Web UI documentation, see [src/web/README.md](src/web/README.md)
-
-## 📦 Building Installers
-
-### Windows (.exe)
-
-```bash
-# Using npm
-npm run build:win
-
-# Or using the script
-./scripts/build-win.sh      # Linux/macOS
-scripts\build-win.bat       # Windows
-```
-
-### macOS (.dmg)
-
-```bash
-# Using npm
+# macOS (Universal Binary)
 npm run build:mac
 
-# Or using the script
-./scripts/build-mac.sh
+# Windows (x64)
+npm run build:win
 ```
-
-Build outputs are saved to the `dist/` directory.
-
-**📖 For detailed build instructions, troubleshooting, and advanced options, see [BUILD.md](BUILD.md)**
-
-## 🎨 Export Presets
-
-| Preset | Resolution | Use Case |
-|--------|------------|----------|
-| YouTube 1080p | 1920x1080 | Standard YouTube uploads |
-| YouTube 4K | 3840x2160 | High-quality YouTube content |
-| Instagram | 1080x1080 | Instagram feed posts |
-| TikTok | 1080x1920 | TikTok vertical videos |
-| Twitter | 1280x720 | Twitter video posts |
-| High Quality | Source | Professional archival |
-
-## 🛠️ Project Structure
-
-```
-blackmamba-studio/
-├── src/
-│   ├── main/           # Electron main process
-│   │   ├── main.js     # Application entry point
-│   │   └── preload.js  # Preload script for security
-│   ├── renderer/       # Frontend UI
-│   │   ├── index.html  # Main HTML
-│   │   ├── styles.css  # Cinematic styling
-│   │   └── renderer.js # UI logic
-│   ├── modules/        # Core business logic
-│   │   ├── ffmpegWrapper.js    # FFmpeg integration
-│   │   ├── videoProcessor.js   # Video operations
-│   │   ├── formatDetector.js   # Format detection
-│   │   ├── fileValidator.js    # Input validation
-│   │   ├── exportPresets.js    # Export configurations
-│   │   ├── exportRenderer.js   # Export handling
-│   │   ├── contentAnalyzer.js  # Smart content analysis (NEW)
-│   │   ├── autoEditor.js       # Automatic video editing (NEW)
-│   │   └── errorHandler.js     # Error management
-│   └── presets/        # Export preset definitions
-├── scripts/            # Build scripts
-├── assets/             # Application icons
-└── package.json        # Project configuration
-```
-
-## 🎬 Usage
-
-1. **Import Media** - Drag and drop video files or click to browse
-2. **Arrange Timeline** - Drag clips to reorder them
-3. **Edit Clips** - Use the properties panel to trim and adjust
-4. **Select Preset** - Choose an export preset or customize settings
-5. **Export** - Click "Export Masterpiece" and watch the magic happen
-
-### 🤖 Using Auto-Edit (Save Time!)
-
-1. **Import Video** - Import the video you want to automatically edit
-2. **Click Auto Edit** - Select the "Auto Edit" button in the toolbar
-3. **Choose Style** - Select your preferred editing style:
-   - **Mejores Momentos (Highlights)** - Best moments only
-   - **Resumen (Summary)** - Balanced overview
-   - **Acción (Action)** - High-activity moments
-4. **Configure Settings** - Adjust target duration and clip lengths
-5. **Click "¡Crear Video Automático!"** - Let the AI detect and edit for you
-6. **Enjoy Your Free Time** - Spend time with your family while the video is created!
-
-## 🔧 Supported Formats
-
-### Video
-- MP4, MOV, AVI, MKV, WebM, FLV
-- MPEG, 3GP, TS, M2TS, VOB, OGV
-
-### Audio
-- MP3, AAC, WAV, FLAC, OGG, M4A
-- WMA, OPUS, AIFF, APE
-
-### Codecs
-- H.264, H.265/HEVC, VP8, VP9, AV1
-- ProRes, DNxHD, MPEG-2, MPEG-4
-
-## 🗺️ Roadmap
-
-Tenemos planes ambiciosos para BlackMamba Studio. Consulta nuestro [**Roadmap Épico**](ROADMAP.md) para ver:
-
-- 🚀 **Fase 1:** Mejoras de rendimiento y herramientas esenciales
-- 🤖 **Fase 2:** Inteligencia Artificial avanzada (Auto-Edit 2.0, transcripción, subtítulos)
-- 💎 **Fase 3:** Color grading profesional, audio, motion graphics y VFX
-- 🌐 **Fase 4:** Colaboración en la nube e integraciones
-- 🔮 **Fase 5:** Editor AI-First, realidad extendida y streaming
-
-[**→ Ver Roadmap Completo**](ROADMAP.md)
-
-## 🤝 Contribuir
-
-¡Las contribuciones son bienvenidas! Consulta nuestra guía de contribución:
-
-1. 🍴 Fork el repositorio
-2. 🌿 Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push a la rama (`git push origin feature/AmazingFeature`)
-5. 🔃 Abre un Pull Request
-
-## 📝 License
-
-MIT License - feel free to use this project for your own video editing needs.
-
-## 🙏 Acknowledgments
-
-- FFmpeg team for the amazing video processing library
-- Electron team for the cross-platform framework
-- DaVinci Resolve for UI inspiration
 
 ---
 
-<div align="center">
+## ✨ Features
 
-**⭐ Si te gusta BlackMamba Studio, dale una estrella al repo ⭐**
+### 🤖 AI Auto-Edit — *Your Personal Editor*
 
-[🗺️ Roadmap](ROADMAP.md) • [🐛 Issues](https://github.com/Blackmvmba88/VIdeoEditor/issues) • [💬 Discussions](https://github.com/Blackmvmba88/VIdeoEditor/discussions)
+<table>
+<tr>
+<td width="60%">
 
-**Made with 💜 by the BlackMamba Team**
+**Let AI do the heavy lifting!**
 
-</div>
+BlackMamba's Auto-Edit feature analyzes your footage and automatically creates professional edits:
+
+- 🎯 **Smart Scene Detection** — Finds the best moments
+- 🔊 **Audio Peak Analysis** — Syncs with high-energy audio
+- 🎬 **Multiple Styles** — Highlights, Summary, Action
+- ⏱️ **Time Saved** — See your editing hours saved
+
+</td>
+<td width="40%">
+
+```
+┌─────────────────────────┐
+│  🎥 Import Video        │
+│           ↓             │
+│  🔍 AI Analysis         │
+│           ↓             │
+│  ✂️ Smart Cuts          │
+│           ↓             │
+│  🎬 Final Export        │
+└─────────────────────────┘
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+### 📂 Project Management — *Stay Organized*
+
+<table>
+<tr>
+<td width="50%">
+
+**Full project lifecycle management:**
+
+- 📁 **Create/Open/Save** projects
+- 🔄 **Auto-save** every 30 seconds
+- 📚 **Recent Projects** quick access
+- 🔍 **Folder Scanning** — Import entire folders
+
+</td>
+<td width="50%">
+
+**Supported Formats (25+):**
+
+```
+Video: mp4, mov, avi, mkv, webm, m4v,
+       wmv, flv, 3gp, mpeg, ts, mts...
+
+Audio: mp3, wav, aac, flac, ogg, m4a...
+
+Image: jpg, png, gif, bmp, tiff, webp...
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+### 🎨 Professional Tools
+
+<table>
+<tr>
+<td width="33%">
+
+#### 🎬 Video Editing
+- Multi-track timeline
+- Frame-accurate trimming
+- Drag & drop reordering
+- Speed ramping (0.1x - 100x)
+- Transitions library
+
+</td>
+<td width="33%">
+
+#### 🎨 Color Grading
+- Color wheels (lift/gamma/gain)
+- LUT support
+- Scopes (waveform, vectorscope)
+- Color matching
+- HDR support
+
+</td>
+<td width="33%">
+
+#### 🔊 Audio Processing
+- Multi-channel mixing
+- AI denoise
+- Auto-EQ
+- Volume normalization
+- Beat sync
+
+</td>
+</tr>
+</table>
+
+---
+
+### 🎭 Motion Graphics
+
+<table>
+<tr>
+<td width="50%">
+
+**Create stunning visuals:**
+
+- 📛 **Lower Thirds** — Name tags, labels, prices
+- ✨ **Animated Titles** — 20+ cinematic styles
+- 😀 **Animated Emojis** — Expressive reactions
+- 📱 **Social Banners** — Platform-optimized
+
+</td>
+<td width="50%">
+
+**Supported Platforms:**
+
+| Platform | Aspect | Resolution |
+|----------|--------|------------|
+| YouTube | 16:9 | 1920×1080 |
+| TikTok | 9:16 | 1080×1920 |
+| Instagram | 1:1 | 1080×1080 |
+| Twitter | 16:9 | 1280×720 |
+
+</td>
+</tr>
+</table>
+
+---
+
+### 🔌 Plugin System
+
+```javascript
+// Create your own plugins!
+class MyPlugin extends PluginBase {
+  constructor() {
+    super({
+      name: 'My Custom Effect',
+      version: '1.0.0',
+      author: 'You!'
+    });
+  }
+
+  async process(video, options) {
+    // Your magic here ✨
+  }
+}
+```
+
+---
+
+## 📊 Export Presets
+
+| Preset | Resolution | Bitrate | Use Case |
+|--------|------------|---------|----------|
+| 📺 **YouTube 4K** | 3840×2160 | 45 Mbps | High quality uploads |
+| 📺 **YouTube 1080p** | 1920×1080 | 16 Mbps | Standard uploads |
+| 📱 **TikTok** | 1080×1920 | 8 Mbps | Vertical videos |
+| 📱 **Instagram Reels** | 1080×1920 | 6 Mbps | Stories & Reels |
+| 🐦 **Twitter** | 1280×720 | 5 Mbps | Social sharing |
+| 🎬 **ProRes** | Source | ~180 Mbps | Professional delivery |
+| 🌐 **Web Optimized** | 1280×720 | 4 Mbps | Fast loading |
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+<table>
+<tr>
+<td width="50%">
+
+### Project
+| Shortcut | Action |
+|----------|--------|
+| `⌘/Ctrl + N` | New Project |
+| `⌘/Ctrl + O` | Open Project |
+| `⌘/Ctrl + S` | Save Project |
+| `⌘/Ctrl + I` | Import Files |
+| `⌘/Ctrl + ⇧ + I` | Scan Folder |
+
+</td>
+<td width="50%">
+
+### Playback
+| Shortcut | Action |
+|----------|--------|
+| `Space` | Play/Pause |
+| `J` | Reverse |
+| `K` | Stop |
+| `L` | Forward |
+| `←/→` | Frame Step |
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🏗️ Architecture
+
+```
+BlackMamba Studio
+├── 🖥️  Electron Main Process
+│   ├── Window Management
+│   ├── IPC Handlers (50+)
+│   └── Module Initialization
+│
+├── 🎨  Renderer Process
+│   ├── Cinematic UI
+│   ├── Timeline Editor
+│   └── Preview Engine
+│
+├── 📦  Core Modules
+│   ├── FFmpegWrapper      — FFmpeg/FFprobe commands
+│   ├── VideoProcessor     — Cut, join, reorder
+│   ├── ContentAnalyzer    — Scene/audio detection
+│   ├── AutoEditor         — AI-powered editing
+│   ├── ExportPresets      — Platform presets
+│   ├── ProjectManager     — Project persistence
+│   └── CodecManager       — Codec detection (30+ codecs)
+│
+└── 🔧  Phase Modules (5 phases)
+    ├── Phase 1: Performance & Tools
+    ├── Phase 2: AI Features
+    ├── Phase 3: Motion Graphics & Audio
+    ├── Phase 4: Plugins & Cloud
+    └── Phase 5: AI Studio & Marketplace
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run all tests (559 tests)
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Run specific test file
+npm test -- --testPathPattern=projectManager
+```
+
+**Current Stats:**
+- ✅ **559 tests** passing
+- 📊 **16 test suites**
+- ⏱️ ~22s execution time
+
+---
+
+## 🛠️ Development
+
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Run Electron app |
+| `npm run web` | Run web server (port 3000) |
+| `npm test` | Run Jest tests |
+| `npm run lint` | ESLint check |
+| `npm run lint:fix` | Auto-fix lint issues |
+| `npm run build:mac` | Build macOS DMG |
+| `npm run build:win` | Build Windows EXE |
+
+### Module Structure
+
+```bash
+src/modules/
+├── Core Modules (10)
+│   ├── ffmpegWrapper.js
+│   ├── videoProcessor.js
+│   ├── contentAnalyzer.js
+│   ├── autoEditor.js
+│   ├── exportPresets.js
+│   ├── exportRenderer.js
+│   ├── fileValidator.js
+│   ├── formatDetector.js
+│   ├── projectManager.js    # NEW
+│   └── codecManager.js      # NEW
+│
+├── BMIC Intelligence System
+│   ├── bmic.js              # Master decision engine
+│   ├── optimizer.js         # FFmpeg pipeline
+│   └── autoImprove.js       # Post-process analysis
+│
+└── phases/                  # 60+ modules
+    ├── phase1/              # Performance
+    ├── phase2/              # AI
+    ├── phase3/              # Motion Graphics
+    ├── phase4/              # Plugins & Cloud
+    └── phase5/              # AI Studio
+```
+
+---
+
+## 🤝 Contributing
+
+We love contributions! Here's how you can help:
+
+1. 🍴 **Fork** the repository
+2. 🌿 **Create** a feature branch (`git checkout -b feature/amazing`)
+3. 💻 **Commit** your changes (`git commit -m '✨ Add amazing feature'`)
+4. 📤 **Push** to branch (`git push origin feature/amazing`)
+5. 🎉 **Open** a Pull Request
+
+### Commit Convention
+
+```
+✨ feat: Add new feature
+🐛 fix: Bug fix
+📝 docs: Documentation
+🎨 style: Formatting
+♻️ refactor: Code refactoring
+🧪 test: Add tests
+🔧 chore: Maintenance
+```
+
+---
+
+## 📄 License
+
+**MIT License** — Free forever for personal and commercial use.
+
+```
+Copyright (c) 2025 BlackMamba Studio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software.
+```
+
+---
+
+## 🙏 Acknowledgments
+
+- **FFmpeg** — The backbone of video processing
+- **Electron** — Cross-platform desktop apps
+- **Node.js** — JavaScript runtime
+- **Jest** — Testing framework
+- **The Open Source Community** — For inspiration and tools
+
+---
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line">
+</p>
+
+<p align="center">
+  <strong>Made with 🖤 by BlackMamba</strong>
+</p>
+
+<p align="center">
+  <em>"Edit like a pro. Save time. Enjoy life."</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Blackmvmba88/VIdeoEditor">
+    <img src="https://img.shields.io/badge/⭐_Star_this_repo-00d4ff?style=for-the-badge" alt="Star">
+  </a>
+</p>

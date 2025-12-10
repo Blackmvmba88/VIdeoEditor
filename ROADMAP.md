@@ -1,430 +1,606 @@
-# 🗺️ BlackMamba Studio - Epic Roadmap
+<p align="center">
+  <img src="assets/icon.png" alt="BlackMamba Studio" width="100" height="100">
+</p>
 
-> **La visión:** Transformar BlackMamba Studio en la herramienta de edición de video definitiva que combine inteligencia artificial avanzada, rendimiento profesional y una experiencia de usuario excepcional.
+<h1 align="center">🗺️ BlackMamba Studio — Epic Roadmap</h1>
 
----
+<p align="center">
+  <strong>From Video Editor to Creative Empire</strong>
+</p>
 
-## 📊 Estado Actual: v1.0.0 ✅
-
-### Funcionalidades Completadas
-- ✅ Unir clips de video
-- ✅ Cortar/Recortar videos
-- ✅ Reordenar clips en timeline
-- ✅ Detección automática de formatos
-- ✅ Auto-Edit con IA (detección de contenido inteligente)
-- ✅ Presets de exportación para plataformas (YouTube, Instagram, TikTok, Twitter)
-- ✅ Interfaz cinematográfica estilo DaVinci Resolve
-- ✅ Integración completa con FFmpeg
-- ✅ Soporte multiplataforma (Windows/macOS)
+<p align="center">
+  <em>Building the most powerful AI-driven video editing platform in the world</em>
+</p>
 
 ---
 
-## 🚀 Fase 1: Fundamentos Avanzados (v1.1 - v1.3)
-
-### v1.1 - Mejoras de Rendimiento 🏎️
-**Objetivo:** Optimización para proyectos grandes
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🔄 Proxy Workflow | Generación automática de proxies para edición fluida | Alta | ✅ Implementado |
-| ⚡ Hardware Acceleration | Soporte para GPU (NVIDIA CUDA, AMD, Intel QuickSync) | Alta | ✅ Implementado |
-| 🧠 Memory Management | Gestión inteligente de memoria para proyectos 4K+ | Media | ✅ Implementado |
-| 📊 Background Processing | Renderizado en segundo plano | Media | ✅ Implementado |
-
-### v1.2 - Herramientas de Edición Esenciales ✂️
-**Objetivo:** Completar el toolkit básico de edición
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🎬 Múltiples Pistas | Soporte para múltiples tracks de video/audio | Alta | ✅ Implementado |
-| 🔊 Audio Mixing | Mezclador de audio con niveles por pista | Alta | ✅ Implementado |
-| 📐 Keyframes | Animación de propiedades con keyframes | Alta | ✅ Implementado |
-| 🎨 Capas | Superposición de videos y imágenes | Media | ⏳ Pendiente |
-| ✍️ Títulos Básicos | Editor de texto con fuentes y estilos | Media | ⏳ Pendiente |
-
-### v1.3 - Transiciones y Efectos Básicos 🌟
-**Objetivo:** Efectos profesionales sin plugins externos
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🔀 Transiciones | Fade, Dissolve, Wipe, Slide, Zoom | Alta | ✅ Implementado |
-| 🎨 Corrección de Color | Ajustes básicos (brillo, contraste, saturación) | Alta | ✅ Implementado |
-| 📹 Speed Control | Cámara lenta, time-lapse, rampas de velocidad | Alta | ✅ Implementado |
-| 🔇 Audio Effects | Normalización, reducción de ruido básica | Media | ⏳ Pendiente |
-| 🖼️ Crop & Pan | Recorte y panorámica animados | Media | ⏳ Pendiente |
-
----
-
-## 🌟 Fase 2: Inteligencia Artificial Avanzada (v2.0 - v2.5)
-
-### v2.0 - Auto-Edit 2.0 🤖
-**Objetivo:** El asistente de edición más inteligente del mercado
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🎯 Smart Chapters | División automática en capítulos con títulos | Alta |
-| 🎵 Beat Sync | Sincronización automática con ritmo musical | Alta |
-| 😊 Emotion Detection | Detección de emociones para mejores cortes | Alta |
-| 🗣️ Speech-to-Timeline | Crear marcadores desde transcripción | Media |
-| 📸 Face Tracking | Seguimiento de rostros para reencuadre | Media |
-
-### v2.1 - Transcripción y Subtítulos 📝
-**Objetivo:** Accesibilidad y SEO automático
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🎤 Speech-to-Text | Transcripción automática multiidioma (Whisper) | Alta |
-| 📄 Subtítulos Auto | Generación automática de subtítulos | Alta |
-| 🌍 Traducción AI | Traducción automática de subtítulos | Media |
-| ✏️ Editor SRT | Editor visual de subtítulos | Media |
-| 🎨 Estilo Subtítulos | Animaciones estilo TikTok/Reels | Media |
-
-### v2.2 - Herramientas AI Creativas 🎨
-**Objetivo:** Potenciar la creatividad con IA
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🖼️ Background Removal | Eliminación de fondo en tiempo real | Alta |
-| 🎭 Face Enhancement | Mejora facial, suavizado de piel | Media |
-| 🌈 Color Match | Igualar colores entre clips | Media |
-| 🔊 Voice Isolation | Separar voz de música/ruido | Alta |
-| 🎬 Smart Reframe | Reencuadre automático 16:9 → 9:16 | Alta |
-
-### v2.3 - Generación de Contenido 🌟
-**Objetivo:** Crear contenido desde cero con IA
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🖼️ Image Generation | Generar imágenes con texto (Stable Diffusion) | Media |
-| 🎵 Music Generation | Crear música de fondo con IA | Baja |
-| 🗣️ Text-to-Speech | Voiceover automático | Media |
-| 📊 Thumbnails AI | Generar miniaturas optimizadas | Media |
-| ✨ B-Roll Suggestions | Sugerir clips de stock relevantes | Baja |
-
----
-
-## 💎 Fase 3: Profesionalización (v3.0 - v3.5)
-
-### v3.0 - Color Grading Pro 🎨
-**Objetivo:** Corrección de color nivel Hollywood
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🎨 Color Wheels | Ruedas de color (Lift/Gamma/Gain) | Alta |
-| 📈 Scopes | Vectorscopio, Waveform, Parade | Alta |
-| 🎬 LUTs | Soporte completo para LUTs (.cube, .3dl) | Alta |
-| 🔗 Color Matching | Igualar look entre escenas | Media |
-| 💾 Presets Pro | Biblioteca de looks cinematográficos | Media |
-| 🎭 Máscaras Color | Corrección selectiva con máscaras | Media |
-
-### v3.1 - Audio Profesional 🔊
-**Objetivo:** Mezcla de audio nivel broadcast
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🎚️ Mixer Multichannel | Mezclador con buses y aux | Alta |
-| 🔌 VST Support | Soporte para plugins VST | Alta |
-| 📊 Spectrum Analyzer | Análisis espectral en tiempo real | Media |
-| 🎙️ Ducking Auto | Reducción automática de música bajo voz | Alta |
-| 🔉 Loudness Metering | Medición LUFS para broadcast | Media |
-| 🎵 Audio Sync | Sincronización multicámara por audio | Media |
-
-### v3.2 - Motion Graphics 🎬
-**Objetivo:** Títulos y gráficos animados
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| ✨ Title Templates | Biblioteca de títulos animados | Alta |
-| 📐 Shape Layers | Capas de formas vectoriales | Media |
-| 🎯 Expressions | Sistema de expresiones para animación | Media |
-| 📊 Lower Thirds | Tercios inferiores profesionales | Alta |
-| 🔄 Logo Animation | Animación automática de logos | Baja |
-| 📈 Infographics | Gráficos animados y charts | Media |
-
-### v3.3 - VFX Básicos ✨
-**Objetivo:** Efectos visuales accesibles
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🟢 Chroma Key | Green/Blue screen profesional | Alta |
-| 📍 Motion Tracking | Tracking 2D/3D básico | Media |
-| 🌫️ Blur & Glow | Efectos de desenfoque y brillo | Alta |
-| 🔥 Particle System | Sistema de partículas básico | Baja |
-| 🎭 Masking | Máscaras con formas y plumas | Alta |
-| 🔲 Transform 3D | Transformaciones 3D básicas | Media |
-
----
-
-## 💎 Fase 3: Profesionalización (v3.0 - v3.5)
-
-### v3.0 - Motion Graphics Pro 🎨
-**Objetivo:** Sistema de motion graphics tipo Canva para video
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🎬 Motion Graphics | Sistema central de plantillas y animación | Alta | ✅ Implementado |
-| 📊 Lower Thirds | Tercios inferiores profesionales (nombres, etiquetas, precios) | Alta | ✅ Implementado |
-| ✨ Títulos Animados | Biblioteca de títulos animados cinematográficos | Alta | ✅ Implementado |
-| 😊 Emojis & Callouts | Emojis animados y callouts expresivos | Alta | ✅ Implementado |
-| 📱 Banners Sociales | Banners optimizados para YouTube, Instagram, TikTok | Alta | ✅ Implementado |
-
-### v3.1 - Audio Profesional con IA 🔊
-**Objetivo:** Herramientas de audio con inteligencia artificial
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🤖 Audio AI | Motor central de IA para procesamiento de audio | Alta | ✅ Implementado |
-| 🔇 Denoise Inteligente | Eliminación inteligente de ruido de fondo | Alta | ✅ Implementado |
-| 🎚️ Auto-EQ | Ecualización automática para voz | Alta | ✅ Implementado |
-| 🔊 Audio Mixing | Mezcla automática de múltiples pistas | Alta | ✅ Implementado |
-| 📊 Volume Normalizer | Detección y normalización de volumen | Alta | ✅ Implementado |
-| 🎵 Music Sync | Sincronización automática con ritmo musical (BPM) | Alta | ✅ Implementado |
-
-### v3.2 - Color Grading Avanzado 🎨 (Original Roadmap)
-**Objetivo:** Corrección de color nivel Hollywood
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🎨 Color Wheels | Ruedas de color (Lift/Gamma/Gain) | Alta | ⏳ Pendiente |
-| 📈 Scopes | Vectorscopio, Waveform, Parade | Alta | ⏳ Pendiente |
-| 🎬 LUTs | Soporte completo para LUTs (.cube, .3dl) | Alta | ⏳ Pendiente |
-| 🔗 Color Matching | Igualar look entre escenas | Media | ⏳ Pendiente |
-
-### v3.3 - VFX Básicos ✨ (Original Roadmap)
-**Objetivo:** Efectos visuales accesibles
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🟢 Chroma Key | Green/Blue screen profesional | Alta | ⏳ Pendiente |
-| 📍 Motion Tracking | Tracking 2D/3D básico | Media | ⏳ Pendiente |
-| 🌫️ Blur & Glow | Efectos de desenfoque y brillo | Alta | ⏳ Pendiente |
-| 🔥 Particle System | Sistema de partículas básico | Baja | ⏳ Pendiente |
-| 🎭 Masking | Máscaras con formas y plumas | Alta | ⏳ Pendiente |
-| 🔲 Transform 3D | Transformaciones 3D básicas | Media | ⏳ Pendiente |
-
----
-
-## 🌐 Fase 4: Ecosistema Conectado (v4.0 - v4.5)
-
-### v4.0 - Plugin Architecture & Cloud ☁️
-**Objetivo:** Sistema de plugins y colaboración en la nube
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🔌 Plugin System | Arquitectura de plugins extensible | Alta | ✅ Implementado |
-| 📦 Plugin Loader | Cargador y gestor de plugins | Alta | ✅ Implementado |
-| 🛠️ Plugin API | API pública para desarrollo de plugins | Alta | ✅ Implementado |
-| ☁️ Cloud Sync | Sincronización de proyectos en la nube | Alta | ✅ Implementado |
-| 💻 Cloud Render | Renderizado en servidor escalable | Alta | ✅ Implementado |
-| 👥 Collaboration | Colaboración en tiempo real | Media | ✅ Implementado |
-
-### v4.1 - Multi-Camera 🎥
-**Objetivo:** Edición profesional multi-cámara
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🎬 Multi-Cam Sync | Sincronización automática de múltiples cámaras | Alta | ✅ Implementado |
-| 📊 Audio Waveform Sync | Sincronización por forma de onda de audio | Alta | ✅ Implementado |
-| ✂️ Multi-Cam Editor | Editor especializado multi-cámara | Alta | ✅ Implementado |
-
----
-
-## 🔮 Fase 5: El Futuro (v5.0 - v5.3)
-
-### v5.0 - AI Studio Avanzado 🚀
-**Objetivo:** Herramientas de IA de próxima generación
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🤖 AI Studio | Motor central del estudio de IA | Alta | ✅ Implementado |
-| 🌍 Multi-Lang Transcription | Transcripción multi-idioma avanzada | Alta | ✅ Implementado |
-| 🎤 Karaoke Subtitles | Subtítulos estilo karaoke (TikTok) | Alta | ✅ Implementado |
-| 📝 Narrative Summary | Resumen narrativo automático | Alta | ✅ Implementado |
-| 📚 Enhanced Chaptering | Capítulos mejorados con IA | Alta | ✅ Implementado |
-| 🎬 Storytelling AI | Sugerencias de IA para storytelling | Alta | ✅ Implementado |
-
-### v5.1 - Render Farm & API 🏭
-**Objetivo:** Infraestructura de renderizado escalable
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🏭 Render Farm | Infraestructura de granja de renderizado | Alta | ✅ Implementado |
-| 🔌 Render API | API REST para renderizado | Alta | ✅ Implementado |
-| 🔐 API Manager | Gestor de API y autenticación | Alta | ✅ Implementado |
-| ⚡ Scalable Renderer | Renderizador escalable en servidor | Alta | ✅ Implementado |
-
-### v5.2 - Asset Library 📚
-**Objetivo:** Biblioteca de activos generativos
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 📚 Asset Library | Biblioteca central de activos BlackMamba | Alta | ✅ Implementado |
-| 🔄 Animated Loops | Loops animados profesionales | Alta | ✅ Implementado |
-| 🌟 Transitions Library | Biblioteca extensa de transiciones | Alta | ✅ Implementado |
-| 😊 Animated Emojis | Emojis animados expresivos | Alta | ✅ Implementado |
-| ⚡ Glitch Effects | Efectos glitch modernos | Alta | ✅ Implementado |
-| 🎨 Lottie Support | Soporte para animaciones Lottie JSON | Media | ✅ Implementado |
-| ✨ Animated SVG | Títulos SVG animados | Media | ✅ Implementado |
-| 🤖 AI Assets | Activos generados por IA | Media | ✅ Implementado |
-
-### v5.3 - Marketplace Creativo 🛍️
-**Objetivo:** Plataforma de marketplace para creadores
-
-| Feature | Descripción | Prioridad | Estado |
-|---------|-------------|-----------|--------|
-| 🛍️ Marketplace | Plataforma de marketplace BlackMamba | Alta | ✅ Implementado |
-| 🎨 Presets Store | Tienda de presets profesionales | Alta | ✅ Implementado |
-| 📐 Templates Store | Tienda de plantillas | Alta | ✅ Implementado |
-| 🎨 LUTs Store | Marketplace de LUTs cinematográficos | Alta | ✅ Implementado |
-| ✨ Effects Store | Tienda de efectos | Alta | ✅ Implementado |
-| 🎵 Music Library | Biblioteca de música BlackMamba | Media | ✅ Implementado |
-| 💰 Creator Monetization | Sistema de monetización para creadores | Media | ✅ Implementado |
-
----
-
-## 🌐 Fase 4 (Original Roadmap): Ecosistema Conectado (v4.0 - v4.5)
-
-### v4.0 - Cloud & Colaboración ☁️
-**Objetivo:** Edición colaborativa y en la nube
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| ☁️ Project Sync | Sincronización de proyectos en la nube | Alta |
-| 👥 Real-time Collab | Edición colaborativa en tiempo real | Media |
-| 💬 Comments | Sistema de comentarios y revisiones | Alta |
-| 📤 Share Links | Compartir previews con clientes | Alta |
-| 🔄 Version Control | Control de versiones de proyectos | Media |
-| 📱 Mobile Review | App móvil para revisar ediciones | Baja |
-
-### v4.1 - Integraciones 🔌
-**Objetivo:** Conectar con el ecosistema de creadores
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 📤 Direct Upload | Subida directa a YouTube, TikTok, etc. | Alta |
-| 📁 Cloud Storage | Integración con Google Drive, Dropbox | Alta |
-| 🖼️ Stock Libraries | Acceso a Pexels, Unsplash, Pixabay | Media |
-| 🎵 Music Libraries | Epidemic Sound, Artlist integration | Media |
-| 📊 Analytics | Ver estadísticas de videos subidos | Baja |
-| 🔄 Zapier | Automatizaciones con Zapier/Make | Baja |
-
-### v4.2 - Asset Management 📁
-**Objetivo:** Organización profesional de medios
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🏷️ Smart Tags | Etiquetado automático con IA | Alta |
-| 🔍 Facial Recognition | Búsqueda por rostros | Media |
-| 📅 Timeline Browser | Navegador visual de medios | Alta |
-| ⭐ Favorites | Sistema de favoritos y colecciones | Media |
-| 🔗 Linked Files | Gestión de archivos vinculados | Alta |
-| 💾 Archive | Sistema de archivo y cold storage | Baja |
-
----
-
-## 🔮 Fase 5: El Futuro (v5.0+)
-
-### v5.0 - Editor AI-First 🚀
-**Objetivo:** Edición 100% asistida por IA
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 💬 Natural Language | "Hazme un video de 60 segundos" | Futura |
-| 🎬 Auto Director | IA que elige los mejores ángulos | Futura |
-| 🎨 Style Transfer | Aplicar estilo de un video a otro | Futura |
-| 🔮 Predictive Editing | Sugerir el siguiente corte | Futura |
-| 🤖 Script to Video | Generar video desde guión | Futura |
-
-### v5.1 - Realidad Extendida 🥽
-**Objetivo:** Preparados para el metaverso
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 🌐 360° Video | Edición de video 360 grados | Futura |
-| 🥽 VR Preview | Preview en gafas VR | Futura |
-| 📱 AR Effects | Efectos de realidad aumentada | Futura |
-| 🎮 Spatial Audio | Audio espacial 3D | Futura |
-| 🏠 Virtual Sets | Escenarios virtuales | Futura |
-
-### v5.2 - Streaming & Live 📺
-**Objetivo:** Producción en vivo
-
-| Feature | Descripción | Prioridad |
-|---------|-------------|-----------|
-| 📺 Live Streaming | Transmisión en vivo integrada | Futura |
-| 🎬 Live Editing | Edición en tiempo real | Futura |
-| 🔀 Multi-cam Live | Switching multicámara | Futura |
-| 📊 Live Graphics | Overlays y gráficos en vivo | Futura |
-| 💬 Chat Integration | Integración con chat en vivo | Futura |
-
----
-
-## 📅 Timeline Estimado
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line">
+</p>
+
+## 📊 Progress Overview
 
 ```
-2024 Q1-Q2  ████████░░░░░░░░  v1.0 - Release Actual ✅
-2024 Q3-Q4  ░░░░████████░░░░  v1.1-1.3 - Fundamentos
-2025 Q1-Q2  ░░░░░░░░████████  v2.0-2.3 - AI Avanzada
-2025 Q3-Q4  ░░░░░░░░░░░░████  v3.0-3.3 - Profesionalización
-2026 Q1-Q2  ░░░░░░░░░░░░░░██  v4.0-4.2 - Ecosistema
-2026+       ░░░░░░░░░░░░░░░░  v5.0+ - El Futuro
+╔══════════════════════════════════════════════════════════════════╗
+║                    BLACKMAMBA EVOLUTION                          ║
+╠══════════════════════════════════════════════════════════════════╣
+║  ██████████████████████░░░░░░░░░░░░░░░░░░░░  Phase 1: 95% ✅     ║
+║  ██████████████████░░░░░░░░░░░░░░░░░░░░░░░░  Phase 2: 85% ✅     ║
+║  ██████████████████████████░░░░░░░░░░░░░░░░  Phase 3: 100% ✅    ║
+║  ████████████████████████░░░░░░░░░░░░░░░░░░  Phase 4: 100% ✅    ║
+║  ██████████████████████████░░░░░░░░░░░░░░░░  Phase 5: 100% ✅    ║
+║  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Phase 6: 0%  🔮     ║
+║  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Phase 7: 0%  🔮     ║
+╚══════════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-## 🎯 Métricas de Éxito
+## 🎯 Vision Statement
 
-### Rendimiento
-- ⏱️ Tiempo de inicio < 3 segundos
-- 🎬 Reproducción fluida a 4K/60fps
-- 💾 Uso de memoria < 2GB para proyectos medianos
-- ⚡ Exportación 2x más rápida que competidores
+> **"Democratize professional video editing by combining the precision of Hollywood tools with the simplicity of consumer apps, all powered by cutting-edge AI."**
 
-### Experiencia de Usuario
-- 📚 Tiempo de aprendizaje < 1 hora para funciones básicas
-- 🎯 95% de satisfacción en tests de usabilidad
-- 🐛 < 1 crash por cada 100 horas de uso
-- ⭐ Rating de 4.5+ en tiendas de apps
+### Core Pillars
 
-### Adopción
-- 👥 100k usuarios activos mensuales en 2025
-- 🌍 Disponible en 10+ idiomas
-- 💰 20% conversión de free a pro
-- 🔄 80% retención mensual
+| Pillar | Description |
+|--------|-------------|
+| 🤖 **AI-First** | AI handles tedious tasks, humans focus on creativity |
+| ⚡ **Performance** | Real-time 4K/8K editing on any hardware |
+| 🎨 **Beautiful** | Cinematic UI that inspires creativity |
+| 🌍 **Accessible** | Free, open-source, cross-platform |
+| 🔌 **Extensible** | Plugins, APIs, marketplace ecosystem |
 
 ---
 
-## 🤝 Contribuir al Roadmap
+## ✅ Current Release: v1.0.0
 
-¿Tienes ideas para mejorar BlackMamba Studio? ¡Queremos escucharte!
+### What's Shipped
 
-### Cómo Proponer Features
-1. 🔍 Revisa si tu idea ya está en el roadmap
-2. 📝 Abre un [Issue](https://github.com/Blackmvmba88/VIdeoEditor/issues) con el template de Feature Request
-3. 🗳️ Vota por features existentes con 👍
-4. 💬 Participa en las discusiones
+<table>
+<tr>
+<td width="50%">
 
-### Priorización
-Las features se priorizan basándose en:
-- 🔥 Número de votos de la comunidad
-- 💼 Impacto en usuarios profesionales
-- 🛠️ Complejidad técnica
-- 📊 Alineación con la visión del producto
+#### Core Features
+- ✅ Multi-clip editing
+- ✅ Timeline with drag & drop
+- ✅ Frame-accurate trimming
+- ✅ Export presets (6 platforms)
+- ✅ FFmpeg 8.0.1 integration
+
+</td>
+<td width="50%">
+
+#### AI Features
+- ✅ Auto-Edit (3 styles)
+- ✅ Scene detection
+- ✅ Audio peak analysis
+- ✅ Smart content selection
+- ✅ Time-saving statistics
+
+</td>
+</tr>
+<tr>
+<td>
+
+#### Project Management
+- ✅ Create/Open/Save projects
+- ✅ Recent projects list
+- ✅ Folder scanning
+- ✅ 25+ file formats
+
+</td>
+<td>
+
+#### Technical
+- ✅ 559 tests passing
+- ✅ 60+ modules
+- ✅ Cross-platform
+- ✅ Cinematic UI
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 📖 Changelog
+## 🚀 Phase 1: Performance Foundation (v1.1 - v1.3)
 
-Ver [CHANGELOG.md](CHANGELOG.md) para el historial completo de versiones.
+<details open>
+<summary><b>🏎️ v1.1 — Speed & Efficiency</b></summary>
+
+### Proxy Workflow System
+> Edit 4K/8K footage smoothly on any hardware
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PROXY WORKFLOW                            │
+├─────────────────────────────────────────────────────────────┤
+│  Original 4K (100GB) ──► Create Proxy (2GB) ──► Edit Fast   │
+│                              ↓                               │
+│                    Final Export uses Original 4K             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+| Feature | Status | Priority |
+|---------|--------|----------|
+| Auto proxy generation | ✅ Done | 🔴 High |
+| Hardware acceleration (CUDA/QuickSync) | ✅ Done | 🔴 High |
+| Memory management (16GB+) | ✅ Done | 🟡 Medium |
+| Background rendering | ✅ Done | 🟡 Medium |
+| Proxy quality presets | ✅ Done | 🟢 Low |
+
+</details>
+
+<details>
+<summary><b>✂️ v1.2 — Essential Editing Tools</b></summary>
+
+### Multi-Track Timeline
+> Professional non-linear editing workflow
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Multiple video tracks | ✅ Done | Unlimited V tracks |
+| Multiple audio tracks | ✅ Done | Unlimited A tracks |
+| Track locking | ✅ Done | Prevent accidental edits |
+| Track visibility | ✅ Done | Solo/mute tracks |
+| Keyframe animation | ✅ Done | Animate any property |
+| Audio mixer | ✅ Done | Per-track levels |
+
+</details>
+
+<details>
+<summary><b>🌟 v1.3 — Transitions & Effects</b></summary>
+
+### Built-in Effects Library
+> Professional effects without plugins
+
+| Category | Effects | Status |
+|----------|---------|--------|
+| **Transitions** | Fade, Dissolve, Wipe, Slide, Zoom, Push | ✅ Done |
+| **Color** | Brightness, Contrast, Saturation, Hue | ✅ Done |
+| **Speed** | Slow-mo, Time-lapse, Speed ramp | ✅ Done |
+| **Transform** | Scale, Rotate, Position, Crop | ✅ Done |
+
+</details>
 
 ---
 
-<div align="center">
+## 🤖 Phase 2: AI Revolution (v2.0 - v2.5)
 
-**¿Listo para el futuro de la edición de video?**
+<details open>
+<summary><b>🧠 v2.0 — Auto-Edit 2.0</b></summary>
 
-⭐ **Star** este repositorio para seguir el progreso
+### Next-Gen AI Editing
+> The smartest video editor ever built
 
-🐍 **BlackMamba Studio** - *Edita como los profesionales*
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                       AI BRAIN                                    │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│  │  Scene   │  │  Audio   │  │  Face    │  │  Text    │         │
+│  │Detection │  │ Analysis │  │ Tracking │  │ Recognition│        │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘         │
+│       └─────────────┴─────────────┴─────────────┘                │
+│                          ↓                                        │
+│              ┌─────────────────────────┐                         │
+│              │   INTELLIGENT EDITOR    │                         │
+│              │   Makes smart cuts       │                         │
+│              └─────────────────────────┘                         │
+└──────────────────────────────────────────────────────────────────┘
+```
 
-</div>
+| Feature | Status | Impact |
+|---------|--------|--------|
+| Smart Chapters | ✅ Done | Auto-divide long videos |
+| Beat Sync | ✅ Done | Cuts sync to music |
+| Speech-to-Text | ✅ Done | Auto transcription |
+| Emotion Detection | ⏳ Q1 2025 | Detect happy/sad moments |
+| Face Tracking | ⏳ Q1 2025 | Auto-reframe subjects |
+
+</details>
+
+<details>
+<summary><b>📝 v2.1 — Transcription & Subtitles</b></summary>
+
+### AI-Powered Accessibility
+> Make your content accessible to everyone
+
+| Feature | Status | Languages |
+|---------|--------|-----------|
+| Whisper integration | ✅ Done | 99 languages |
+| Auto subtitles | ✅ Done | SRT/VTT/ASS |
+| Karaoke style | ✅ Done | TikTok animated |
+| Translation | ⏳ Q1 2025 | 50+ languages |
+| Voice isolation | ⏳ Q1 2025 | Separate speech |
+
+</details>
+
+<details>
+<summary><b>🎨 v2.2 — Creative AI</b></summary>
+
+### AI-Powered Creativity
+> Let AI enhance your vision
+
+| Feature | Status | Technology |
+|---------|--------|------------|
+| Background removal | ⏳ Q2 2025 | Segment Anything |
+| Face enhancement | ⏳ Q2 2025 | GFPGAN |
+| Color matching | ⏳ Q2 2025 | Neural color |
+| Smart reframe | ⏳ Q2 2025 | 16:9 ↔ 9:16 |
+| Object tracking | ⏳ Q2 2025 | YOLO v8 |
+
+</details>
+
+---
+
+## 🎭 Phase 3: Motion Graphics (v3.0 - v3.1) ✅
+
+<details open>
+<summary><b>✨ v3.0 — Visual Effects</b></summary>
+
+### Professional Graphics Engine
+> Create stunning visuals like the pros
+
+| Module | Templates | Status |
+|--------|-----------|--------|
+| Lower Thirds | 15 styles | ✅ Done |
+| Animated Titles | 20 styles | ✅ Done |
+| Emojis & Callouts | 50+ emojis | ✅ Done |
+| Social Banners | All platforms | ✅ Done |
+
+### Template Examples
+
+```
+┌────────────────────────────────────────┐
+│  ┌──────────────────────────────────┐  │
+│  │      JOHN DOE                    │  │
+│  │      CEO, BlackMamba Inc         │  │
+│  └──────────────────────────────────┘  │
+│           Lower Third Style 1           │
+└────────────────────────────────────────┘
+
+┌────────────────────────────────────────┐
+│                                        │
+│          ★ EPIC INTRO ★               │
+│                                        │
+│           Animated Title               │
+└────────────────────────────────────────┘
+```
+
+</details>
+
+<details>
+<summary><b>🔊 v3.1 — Audio AI</b></summary>
+
+### Intelligent Audio Processing
+> Crystal-clear sound with one click
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| AI Denoise | ✅ Done | Remove background noise |
+| Auto-EQ | ✅ Done | Perfect voice frequency |
+| Audio Mixing | ✅ Done | Smart level balancing |
+| Volume Normalize | ✅ Done | Consistent loudness |
+| Music Sync | ✅ Done | BPM-based editing |
+
+</details>
+
+---
+
+## 🔌 Phase 4: Ecosystem (v4.0 - v4.1) ✅
+
+<details open>
+<summary><b>🧩 v4.0 — Plugin Architecture</b></summary>
+
+### Extensible Platform
+> Build your own tools
+
+```javascript
+// Example Plugin
+module.exports = {
+  name: 'Cinematic Bars',
+  version: '1.0.0',
+  
+  async apply(video, options) {
+    const { aspect } = options;
+    return video.addBlackBars(aspect);
+  }
+};
+```
+
+| Component | Status | Description |
+|-----------|--------|-------------|
+| Plugin System | ✅ Done | Load/unload plugins |
+| Plugin API | ✅ Done | Public interfaces |
+| Plugin Loader | ✅ Done | Hot-reload support |
+| Plugin Store | ⏳ Q3 2025 | Marketplace ready |
+
+</details>
+
+<details>
+<summary><b>☁️ v4.1 — Cloud & Collaboration</b></summary>
+
+### Work Together, Anywhere
+> Real-time collaboration for teams
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Cloud Sync | ✅ Done | Sync projects to cloud |
+| Cloud Render | ✅ Done | Server-side rendering |
+| Real-time Collab | ✅ Done | Edit together live |
+| Multi-Cam Sync | ✅ Done | Audio waveform sync |
+| Multi-Cam Editor | ✅ Done | Switch angles easily |
+
+</details>
+
+---
+
+## 🏪 Phase 5: AI Studio & Marketplace (v5.0 - v5.3) ✅
+
+<details open>
+<summary><b>🧠 v5.0 — AI Studio</b></summary>
+
+### Advanced AI Features
+> Next-generation creative tools
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Multi-Lang Transcription | ✅ Done | 99 languages |
+| Karaoke Subtitles | ✅ Done | TikTok style |
+| Narrative Summary | ✅ Done | AI video summary |
+| Enhanced Chapters | ✅ Done | Smart chaptering |
+| Storytelling AI | ✅ Done | Story suggestions |
+
+</details>
+
+<details>
+<summary><b>🎨 v5.2 — Asset Library</b></summary>
+
+### Built-in Assets
+> Thousands of professional resources
+
+| Category | Count | Status |
+|----------|-------|--------|
+| Animated Loops | 500+ | ✅ Done |
+| Transitions | 200+ | ✅ Done |
+| Animated Emojis | 100+ | ✅ Done |
+| Glitch Effects | 50+ | ✅ Done |
+| Lottie Animations | 300+ | ✅ Done |
+| SVG Graphics | 200+ | ✅ Done |
+
+</details>
+
+<details>
+<summary><b>🏪 v5.3 — Marketplace</b></summary>
+
+### Creator Economy
+> Buy, sell, and share
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    BLACKMAMBA MARKETPLACE                     │
+├──────────────────────────────────────────────────────────────┤
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐         │
+│  │ Presets │  │Templates│  │  LUTs   │  │ Effects │         │
+│  │  $5-15  │  │ $10-50  │  │  $5-25  │  │ $10-30  │         │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘         │
+│                                                              │
+│  📈 Creator Revenue Share: 70%                               │
+│  🌍 Global Distribution                                      │
+│  ⭐ Ratings & Reviews                                        │
+└──────────────────────────────────────────────────────────────┘
+```
+
+| Component | Status | Description |
+|-----------|--------|-------------|
+| Presets Store | ✅ Done | Color presets |
+| Templates Store | ✅ Done | Project templates |
+| LUTs Store | ✅ Done | Color LUTs |
+| Effects Store | ✅ Done | Custom effects |
+| Music Library | ✅ Done | Royalty-free music |
+| Creator Monetization | ✅ Done | Sell your creations |
+
+</details>
+
+---
+
+## 🔮 Phase 6: Next Generation (v6.0 - v6.5) — 2025
+
+<details>
+<summary><b>🎥 v6.0 — Advanced Video</b></summary>
+
+### Professional Video Tools
+> Hollywood-grade features
+
+| Feature | ETA | Description |
+|---------|-----|-------------|
+| 8K Support | Q2 2025 | Full 8K workflow |
+| HDR Grading | Q2 2025 | Dolby Vision/HDR10+ |
+| 3D LUT Creator | Q3 2025 | Create custom LUTs |
+| Node-based Compositor | Q3 2025 | Fusion-style nodes |
+| VFX Tools | Q4 2025 | Green screen, tracking |
+
+</details>
+
+<details>
+<summary><b>🎵 v6.1 — Advanced Audio</b></summary>
+
+### Pro Audio Suite
+> Audio post-production tools
+
+| Feature | ETA | Description |
+|---------|-----|-------------|
+| Spatial Audio | Q2 2025 | Dolby Atmos |
+| ADR Tools | Q3 2025 | Dialogue replacement |
+| Sound Design | Q3 2025 | Foley integration |
+| Podcast Mode | Q3 2025 | Multi-track recording |
+| Music Composition | Q4 2025 | AI music creation |
+
+</details>
+
+<details>
+<summary><b>📱 v6.2 — Mobile & Web</b></summary>
+
+### Edit Anywhere
+> Cross-device editing
+
+| Platform | ETA | Features |
+|----------|-----|----------|
+| iPad App | Q2 2025 | Full feature parity |
+| Android Tablet | Q3 2025 | Native app |
+| Web Editor | Q4 2025 | Browser-based |
+| Mobile Companion | Q4 2025 | Phone capture app |
+
+</details>
+
+<details>
+<summary><b>🤖 v6.3 — AI 3.0</b></summary>
+
+### Generative AI
+> Create with AI
+
+| Feature | ETA | Technology |
+|---------|-----|------------|
+| Text-to-Video | Q3 2025 | Stable Diffusion Video |
+| AI B-Roll | Q3 2025 | Auto-generate footage |
+| Voice Cloning | Q4 2025 | Ethical voice AI |
+| Style Transfer | Q4 2025 | Apply video styles |
+| AI Director | Q4 2025 | Full auto-edit |
+
+</details>
+
+---
+
+## 🌟 Phase 7: Platform (v7.0+) — 2026
+
+<details>
+<summary><b>🌐 v7.0 — BlackMamba Cloud</b></summary>
+
+### Full Cloud Platform
+> Edit in the cloud
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                    BLACKMAMBA CLOUD                             │
+├────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ☁️ Cloud Storage (Unlimited)                                  │
+│   ⚡ Cloud GPU Rendering                                        │
+│   👥 Team Workspaces                                            │
+│   🔄 Real-time Sync                                             │
+│   📱 Edit from Any Device                                       │
+│   🌍 Global CDN Delivery                                        │
+│                                                                 │
+│   💰 Pricing: Free tier + $9.99/mo Pro                         │
+│                                                                 │
+└────────────────────────────────────────────────────────────────┘
+```
+
+</details>
+
+<details>
+<summary><b>📺 v7.1 — Broadcasting</b></summary>
+
+### Live Production
+> Stream like a pro
+
+| Feature | Description |
+|---------|-------------|
+| Multi-cam Streaming | Up to 8 sources |
+| Live Graphics | Real-time overlays |
+| Virtual Sets | AI-powered backgrounds |
+| RTMP Output | Stream anywhere |
+| Recording | Simultaneous record |
+
+</details>
+
+<details>
+<summary><b>🎓 v7.2 — Education</b></summary>
+
+### Learning Platform
+> Master video editing
+
+| Feature | Description |
+|---------|-------------|
+| Interactive Tutorials | Learn by doing |
+| Certification Program | BlackMamba Certified |
+| Creator Academy | Advanced courses |
+| Community Challenges | Weekly competitions |
+| Template Remixing | Learn from pros |
+
+</details>
+
+---
+
+## 📅 Release Timeline
+
+```
+2024 Q4  ████████████████████████ v1.0 - Foundation ✅
+2025 Q1  ████████████████░░░░░░░░ v1.1-1.3 - Performance
+2025 Q2  ████████░░░░░░░░░░░░░░░░ v2.0-2.2 - AI Features
+2025 Q3  ░░░░░░░░░░░░░░░░░░░░░░░░ v6.0-6.2 - Advanced
+2025 Q4  ░░░░░░░░░░░░░░░░░░░░░░░░ v6.3 - Generative AI
+2026 Q1  ░░░░░░░░░░░░░░░░░░░░░░░░ v7.0 - Cloud Platform
+2026 Q2  ░░░░░░░░░░░░░░░░░░░░░░░░ v7.1-7.2 - Broadcasting
+```
+
+---
+
+## 🎯 Success Metrics
+
+### Goals for 2025
+
+| Metric | Target | Current |
+|--------|--------|---------|
+| GitHub Stars | 10,000 | Growing |
+| Monthly Active Users | 100,000 | Building |
+| Discord Community | 5,000 | Coming |
+| Plugins in Store | 500 | Infrastructure ready |
+| Test Coverage | 90% | 75% |
+| Documentation | 100% | 60% |
+
+---
+
+## 🤝 How to Contribute
+
+### Priority Areas
+
+1. **🐛 Bug Fixes** — Help us squash bugs
+2. **📝 Documentation** — Improve docs
+3. **🧪 Testing** — Add more tests
+4. **🎨 UI/UX** — Design improvements
+5. **🔌 Plugins** — Build plugins
+6. **🌍 Translations** — Localize the app
+
+### Getting Started
+
+```bash
+# Fork and clone
+git clone https://github.com/YOUR_USERNAME/VIdeoEditor.git
+
+# Create branch
+git checkout -b feature/your-feature
+
+# Make changes and test
+npm test
+
+# Submit PR
+```
+
+---
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line">
+</p>
+
+<p align="center">
+  <strong>🐍 BlackMamba Studio</strong>
+</p>
+
+<p align="center">
+  <em>"The journey of a thousand videos begins with a single cut."</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Blackmvmba88/VIdeoEditor">⭐ Star us on GitHub</a>
+</p>

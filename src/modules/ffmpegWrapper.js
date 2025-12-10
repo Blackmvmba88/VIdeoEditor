@@ -190,7 +190,13 @@ class FFmpegWrapper {
         width: videoStream.width,
         height: videoStream.height,
         fps: this.parseFPS(videoStream.r_frame_rate),
-        bitrate: Number.parseInt(videoStream.bit_rate, 10) || 0
+        bitrate: Number.parseInt(videoStream.bit_rate, 10) || 0,
+        // HDR detection metadata
+        colorPrimaries: videoStream.color_primaries || null,
+        colorTransfer: videoStream.color_transfer || null,
+        colorSpace: videoStream.color_space || null,
+        profile: videoStream.profile || null,
+        pixelFormat: videoStream.pix_fmt || null
       } : null,
       audio: audioStream ? {
         codec: audioStream.codec_name,

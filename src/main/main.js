@@ -15,7 +15,10 @@ const {
   FFmpegWrapper,
   ContentAnalyzer,
   AutoEditor,
-  ErrorHandler
+  ErrorHandler,
+  WaveformGenerator,
+  ThumbnailGenerator,
+  HistoryManager
 } = require('../modules');
 
 const ProjectManager = require('../modules/projectManager');
@@ -32,9 +35,12 @@ let autoEditor;
 let errorHandler;
 let projectManager;
 let codecManager;
+let waveformGenerator;
+let thumbnailGenerator;
+let historyManager;
 
 /**
- * Inicializar módulos
+ * Inicializar m?dulos
  */
 function initializeModules() {
   videoProcessor = new VideoProcessor();
@@ -47,6 +53,14 @@ function initializeModules() {
   errorHandler = new ErrorHandler();
   projectManager = new ProjectManager(ffmpeg);
   codecManager = new CodecManager(ffmpeg);
+  waveformGenerator = new WaveformGenerator();
+  thumbnailGenerator = new ThumbnailGenerator();
+  historyManager = new HistoryManager({ maxHistory: 50 });
+
+  // Emitir cambios del historial al renderer
+  historyManager.on('change', (state) => {
+    mainWindow?.webContents?.send('history-change', state);
+  });
 
   errorHandler.setErrorCallback((error) => {
     mainWindow?.webContents?.send('error', error.toJSON());
@@ -213,6 +227,110 @@ ipcMain.handle('get-video-info', async (event, filePath) => {
   try {
     const format = await formatDetector.detectFormat(filePath);
     return { success: true, info: format };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Generar datos de waveform de audio
+ */
+ipcMain.handle('generate-waveform', async (event, { filePath, options }) => {
+  try {
+    const result = await waveformGenerator.generateWaveform(filePath, options);
+    return { success: true, ...result };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Generar thumbnail de video
+ */
+ipcMain.handle('generate-thumbnail', async (event, { filePath, options }) => {
+  try {
+    const result = await thumbnailGenerator.generateThumbnail(filePath, options);
+    return result;
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Historial - Undo
+ */
+ipcMain.handle('history-undo', async () => {
+  try {
+    const action = await historyManager.undo();
+    return { success: true, action: action ? { type: action.type, description: action.description } : null };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Historial - Redo
+ */
+ipcMain.handle('history-redo', async () => {
+  try {
+    const action = await historyManager.redo();
+    return { success: true, action: action ? { type: action.type, description: action.description } : null };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Historial - Push (registrar nueva acci?n)
+ */
+ipcMain.handle('history-push', async (event, action) => {
+  try {
+    // Las funciones undo/redo se manejan en el renderer
+    // Aqu? solo guardamos la metadata
+    historyManager.push({
+      type: action.type,
+      description: action.description,
+      data: action.data,
+      undo: async () => {
+        // Notificar al renderer para ejecutar el undo
+        mainWindow?.webContents?.send('execute-undo', action);
+      },
+      redo: async () => {
+        // Notificar al renderer para ejecutar el redo
+        mainWindow?.webContents?.send('execute-redo', action);
+      }
+    });
+    return { success: true };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Historial - Obtener estado actual
+ */
+ipcMain.handle('history-get-state', async () => {
+  try {
+    return { success: true, ...historyManager.getState() };
+  } catch (error) {
+    const handledError = errorHandler.handle(error);
+    return { success: false, error: handledError.toJSON() };
+  }
+});
+
+/**
+ * Historial - Limpiar
+ */
+ipcMain.handle('history-clear', async () => {
+  try {
+    historyManager.clear();
+    return { success: true };
   } catch (error) {
     const handledError = errorHandler.handle(error);
     return { success: false, error: handledError.toJSON() };

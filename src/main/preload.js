@@ -20,9 +20,21 @@ contextBridge.exposeInMainWorld('videoEditorAPI', {
 
   // Información del video
   getVideoInfo: (filePath) => ipcRenderer.invoke('get-video-info', filePath),
+  generateWaveform: (params) => ipcRenderer.invoke('generate-waveform', params),
+  generateThumbnail: (params) => ipcRenderer.invoke('generate-thumbnail', params),
   validateFiles: (filePaths) => ipcRenderer.invoke('validate-files', filePaths),
   checkCompatibility: (filePaths) => ipcRenderer.invoke('check-compatibility', filePaths),
   getSupportedExtensions: () => ipcRenderer.invoke('get-supported-extensions'),
+
+  // Historial (Undo/Redo)
+  historyUndo: () => ipcRenderer.invoke('history-undo'),
+  historyRedo: () => ipcRenderer.invoke('history-redo'),
+  historyPush: (action) => ipcRenderer.invoke('history-push', action),
+  historyGetState: () => ipcRenderer.invoke('history-get-state'),
+  historyClear: () => ipcRenderer.invoke('history-clear'),
+  onHistoryChange: (callback) => ipcRenderer.on('history-change', (event, state) => callback(state)),
+  onExecuteUndo: (callback) => ipcRenderer.on('execute-undo', (event, action) => callback(action)),
+  onExecuteRedo: (callback) => ipcRenderer.on('execute-redo', (event, action) => callback(action)),
 
   // Procesamiento de video
   cutVideo: (params) => ipcRenderer.invoke('cut-video', params),

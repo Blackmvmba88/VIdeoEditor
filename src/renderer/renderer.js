@@ -45,6 +45,9 @@ async function init() {
     console.log('Configurando event listeners...');
     setupEventListeners();
     setupProgressListener();
+    
+    console.log('Inicializando sistema de historial...');
+    initHistory();
 
     console.log('✅ Inicialización completa!');
     hideSplash();
@@ -422,12 +425,16 @@ function renderMediaLibrary() {
 
     const duration = formatDuration(item.info.duration);
     const resolution = item.info.video ? item.info.video.resolution : 'Audio';
+    const hasThumbnail = item.thumbnail && item.thumbnail.dataUrl;
 
     el.innerHTML = `
-      <div class="media-thumbnail">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path fill="currentColor" d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
-        </svg>
+      <div class="media-thumbnail" data-clip-id="${item.id}">
+        ${hasThumbnail 
+          ? `<img src="${item.thumbnail.dataUrl}" alt="${item.name}">`
+          : `<svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+            </svg>`
+        }
       </div>
       <div class="media-info">
         <div class="media-name">${item.name}</div>
@@ -441,6 +448,11 @@ function renderMediaLibrary() {
         <button class="media-action-btn" data-action="remove" title="Remove">×</button>
       </div>
     `;
+
+    // Generar thumbnail si no existe
+    if (!hasThumbnail && item.info.hasVideo) {
+      generateMediaThumbnail(item, el.querySelector('.media-thumbnail'));
+    }
 
     el.addEventListener('click', (e) => {
       if (!e.target.closest('.media-action-btn')) {
@@ -463,6 +475,36 @@ function selectMedia(item) {
   renderMediaLibrary();
   updateClipProperties(item);
   loadPreview(item);
+}
+
+/**
+ * Generar thumbnail para item de media
+ * @param {Object} item - Item de la biblioteca de medios
+ * @param {HTMLElement} container - Contenedor del thumbnail
+ */
+async function generateMediaThumbnail(item, container) {
+  if (!container) return;
+  
+  try {
+    const result = await globalThis.videoEditorAPI.generateThumbnail({
+      filePath: item.path,
+      options: {
+        width: 80,
+        height: 45,
+        timestamp: Math.min(1, item.info.duration / 2) // Mitad del video o 1s
+      }
+    });
+    
+    if (result.success && result.dataUrl) {
+      // Actualizar item en mediaLibrary
+      item.thumbnail = result;
+      
+      // Actualizar DOM
+      container.innerHTML = `<img src="${result.dataUrl}" alt="${item.name}">`;
+    }
+  } catch (error) {
+    console.error('Error generating thumbnail:', error);
+  }
 }
 
 /**
@@ -523,7 +565,8 @@ function renderTimeline() {
 
   for (const clip of timelineClips) {
     const el = document.createElement('div');
-    el.className = `timeline-clip${selectedClip?.id === clip.id ? ' selected' : ''}`;
+    const hasAudio = clip.info.audio || clip.info.hasAudio;
+    el.className = `timeline-clip${selectedClip?.id === clip.id ? ' selected' : ''}${hasAudio ? ' has-waveform' : ''}`;
     el.draggable = true;
     el.dataset.id = clip.id;
     el.dataset.index = index;
@@ -541,6 +584,7 @@ function renderTimeline() {
         <div class="clip-name">${clip.name}</div>
         <div class="clip-duration">${formatDuration(duration)}</div>
       </div>
+      ${hasAudio ? '<div class="clip-waveform"><canvas></canvas></div>' : ''}
     `;
 
     el.addEventListener('click', () => selectMedia(clip));
@@ -549,6 +593,12 @@ function renderTimeline() {
     el.addEventListener('drop', handleClipDrop);
 
     container.appendChild(el);
+    
+    // Generar waveform si tiene audio
+    if (hasAudio) {
+      generateClipWaveform(clip, el.querySelector('canvas'));
+    }
+    
     index++;
   }
 
@@ -584,6 +634,96 @@ function handleClipDrop(e) {
       timelineClips[i].order = i;
     }
     renderTimeline();
+  }
+}
+
+// Cache de waveforms para evitar regenerar
+const waveformCache = new Map();
+
+/**
+ * Generar y dibujar waveform para un clip
+ * @param {Object} clip - Clip con información de audio
+ * @param {HTMLCanvasElement} canvas - Canvas donde dibujar
+ */
+async function generateClipWaveform(clip, canvas) {
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.parentElement.getBoundingClientRect();
+  
+  // Configurar tamaño del canvas
+  canvas.width = rect.width || 200;
+  canvas.height = 20;
+  
+  // Verificar cache
+  if (waveformCache.has(clip.id)) {
+    drawWaveform(ctx, waveformCache.get(clip.id), canvas.width, canvas.height);
+    return;
+  }
+  
+  try {
+    const result = await globalThis.videoEditorAPI.generateWaveform({
+      filePath: clip.path,
+      options: {
+        width: canvas.width,
+        samplesPerSecond: 10
+      }
+    });
+    
+    if (result.success && result.samples) {
+      waveformCache.set(clip.id, result.samples);
+      drawWaveform(ctx, result.samples, canvas.width, canvas.height);
+    }
+  } catch (error) {
+    // Dibujar waveform placeholder si falla
+    drawPlaceholderWaveform(ctx, canvas.width, canvas.height);
+  }
+}
+
+/**
+ * Dibujar waveform en canvas
+ * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
+ * @param {Array} samples - Array de valores (0-1)
+ * @param {number} width - Ancho del canvas
+ * @param {number} height - Alto del canvas
+ */
+function drawWaveform(ctx, samples, width, height) {
+  ctx.clearRect(0, 0, width, height);
+  
+  const barWidth = width / samples.length;
+  const centerY = height / 2;
+  
+  // Gradiente para el waveform
+  const gradient = ctx.createLinearGradient(0, 0, 0, height);
+  gradient.addColorStop(0, 'rgba(0, 212, 170, 0.8)');
+  gradient.addColorStop(0.5, 'rgba(0, 212, 170, 1)');
+  gradient.addColorStop(1, 'rgba(0, 212, 170, 0.8)');
+  
+  ctx.fillStyle = gradient;
+  
+  for (let i = 0; i < samples.length; i++) {
+    const x = i * barWidth;
+    const amplitude = samples[i] * (height * 0.9);
+    const barHeight = Math.max(2, amplitude);
+    
+    ctx.fillRect(x, centerY - barHeight / 2, Math.max(1, barWidth - 1), barHeight);
+  }
+}
+
+/**
+ * Dibujar waveform placeholder
+ */
+function drawPlaceholderWaveform(ctx, width, height) {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = 'rgba(0, 212, 170, 0.3)';
+  
+  const centerY = height / 2;
+  const numBars = Math.floor(width / 4);
+  
+  for (let i = 0; i < numBars; i++) {
+    const x = i * 4;
+    const barHeight = 4 + Math.random() * 8;
+    ctx.fillRect(x, centerY - barHeight / 2, 2, barHeight);
   }
 }
 
@@ -743,9 +883,9 @@ function updateCodecInfoPanel(item) {
     const bitrate = info.bitrate || video.bitrate || 0;
     elements.codecBitrate.textContent = formatBitrate(bitrate);
     
-    // HDR detection (basado en codec o metadatos)
-    const isHdr = detectHdr(video);
-    elements.codecHdr.textContent = isHdr ? '✓ HDR' : 'SDR';
+    // HDR detection - usar metadatos reales del backend
+    const isHdr = video.isHdr || detectHdrFallback(video);
+    elements.codecHdr.textContent = isHdr ? getHdrType(video) : 'SDR';
     elements.codecHdr.className = `codec-value ${isHdr ? 'hdr-enabled' : ''}`;
   } else {
     elements.codecInfoSection.classList.add('hidden');
@@ -764,15 +904,27 @@ function formatBitrate(bitrate) {
 }
 
 /**
- * Detectar si el video es HDR basado en codec
+ * Obtener tipo específico de HDR
  */
-function detectHdr(video) {
+function getHdrType(video) {
+  const transfer = video.colorTransfer?.toLowerCase() || '';
+  const primaries = video.colorPrimaries?.toLowerCase() || '';
+  
+  if (transfer.includes('smpte2084')) return '✓ HDR10';
+  if (transfer.includes('arib-std-b67')) return '✓ HLG';
+  if (video.profile?.toLowerCase().includes('dolby')) return '✓ Dolby Vision';
+  if (primaries.includes('bt2020')) return '✓ HDR';
+  
+  return '✓ HDR';
+}
+
+/**
+ * Detectar HDR como fallback (si backend no lo detectó)
+ */
+function detectHdrFallback(video) {
   if (!video || !video.codec) return false;
   const codec = video.codec.toLowerCase();
-  // HEVC/H.265 y VP9 pueden ser HDR, pero necesitamos metadatos adicionales
-  // Por ahora detectamos codecs que típicamente soportan HDR
   const hdrCodecs = ['hevc', 'h265', 'vp9', 'av1'];
-  // También podemos verificar si la resolución es 4K+ (típico de HDR)
   const is4kOrHigher = video.width >= 3840 || video.height >= 2160;
   return hdrCodecs.some(c => codec.includes(c)) && is4kOrHigher;
 }
@@ -1521,6 +1673,20 @@ async function scanFolderForMedia() {
  * Manejar atajos de teclado
  */
 function handleKeyboardShortcuts(e) {
+  // Cmd/Ctrl + Z: Deshacer
+  if ((e.metaKey || e.ctrlKey) && !e.shiftKey && e.key === 'z') {
+    e.preventDefault();
+    performUndo();
+    return;
+  }
+  
+  // Cmd/Ctrl + Shift + Z o Cmd/Ctrl + Y: Rehacer
+  if ((e.metaKey || e.ctrlKey) && (e.shiftKey && e.key === 'Z' || e.key === 'y')) {
+    e.preventDefault();
+    performRedo();
+    return;
+  }
+  
   // Cmd/Ctrl + N: Nuevo proyecto
   if ((e.metaKey || e.ctrlKey) && e.key === 'n') {
     e.preventDefault();
@@ -1549,6 +1715,198 @@ function handleKeyboardShortcuts(e) {
   if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'I') {
     e.preventDefault();
     scanFolderForMedia();
+  }
+}
+
+/**
+ * Estado del historial para UI
+ */
+let historyState = { canUndo: false, canRedo: false };
+
+/**
+ * Inicializar sistema de historial
+ */
+function initHistory() {
+  // Escuchar cambios en el historial
+  if (globalThis.videoEditorAPI?.onHistoryChange) {
+    globalThis.videoEditorAPI.onHistoryChange((state) => {
+      historyState = state;
+      updateUndoRedoButtons();
+    });
+  }
+  
+  // Escuchar solicitudes de undo desde el main process
+  if (globalThis.videoEditorAPI?.onExecuteUndo) {
+    globalThis.videoEditorAPI.onExecuteUndo((action) => {
+      executeUndoAction(action);
+    });
+  }
+  
+  // Escuchar solicitudes de redo desde el main process
+  if (globalThis.videoEditorAPI?.onExecuteRedo) {
+    globalThis.videoEditorAPI.onExecuteRedo((action) => {
+      executeRedoAction(action);
+    });
+  }
+  
+  // Obtener estado inicial
+  if (globalThis.videoEditorAPI?.historyGetState) {
+    globalThis.videoEditorAPI.historyGetState().then(state => {
+      if (state.success) {
+        historyState = state;
+        updateUndoRedoButtons();
+      }
+    });
+  }
+}
+
+/**
+ * Actualizar estado visual de botones undo/redo
+ */
+function updateUndoRedoButtons() {
+  const undoBtn = document.getElementById('btn-undo');
+  const redoBtn = document.getElementById('btn-redo');
+  
+  if (undoBtn) {
+    undoBtn.disabled = !historyState.canUndo;
+    undoBtn.classList.toggle('disabled', !historyState.canUndo);
+  }
+  if (redoBtn) {
+    redoBtn.disabled = !historyState.canRedo;
+    redoBtn.classList.toggle('disabled', !historyState.canRedo);
+  }
+}
+
+/**
+ * Realizar undo
+ */
+async function performUndo() {
+  if (!historyState.canUndo) {
+    showNotification('No hay acciones para deshacer', 'info');
+    return;
+  }
+  
+  try {
+    const result = await globalThis.videoEditorAPI.historyUndo();
+    if (result.success && result.action) {
+      showNotification(`Deshecho: ${result.action.description}`, 'success');
+    }
+  } catch (error) {
+    showNotification('Error al deshacer', 'error');
+    console.error('Undo error:', error);
+  }
+}
+
+/**
+ * Realizar redo
+ */
+async function performRedo() {
+  if (!historyState.canRedo) {
+    showNotification('No hay acciones para rehacer', 'info');
+    return;
+  }
+  
+  try {
+    const result = await globalThis.videoEditorAPI.historyRedo();
+    if (result.success && result.action) {
+      showNotification(`Rehecho: ${result.action.description}`, 'success');
+    }
+  } catch (error) {
+    showNotification('Error al rehacer', 'error');
+    console.error('Redo error:', error);
+  }
+}
+
+/**
+ * Registrar una acción en el historial
+ * @param {string} type - Tipo de acción
+ * @param {string} description - Descripción para el usuario
+ * @param {Object} data - Datos para undo/redo
+ */
+function pushToHistory(type, description, data) {
+  if (globalThis.videoEditorAPI?.historyPush) {
+    globalThis.videoEditorAPI.historyPush({ type, description, data });
+  }
+}
+
+/**
+ * Ejecutar acción de undo (llamado desde main process)
+ */
+function executeUndoAction(action) {
+  switch (action.type) {
+    case 'add-to-timeline':
+      // Remover clip del timeline
+      if (action.data?.clipIndex !== undefined) {
+        timelineClips.splice(action.data.clipIndex, 1);
+        renderTimeline();
+      }
+      break;
+    case 'remove-from-timeline':
+      // Restaurar clip al timeline
+      if (action.data?.clip && action.data?.clipIndex !== undefined) {
+        timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
+        renderTimeline();
+      }
+      break;
+    case 'reorder-timeline':
+      // Restaurar orden anterior
+      if (action.data?.previousOrder) {
+        timelineClips = [...action.data.previousOrder];
+        renderTimeline();
+      }
+      break;
+    case 'import-media':
+      // Remover archivos importados
+      if (action.data?.files) {
+        for (const file of action.data.files) {
+          const index = mediaLibrary.findIndex(m => m.path === file.path);
+          if (index !== -1) {
+            mediaLibrary.splice(index, 1);
+          }
+        }
+        renderMediaLibrary();
+      }
+      break;
+    default:
+      console.log('Acción de undo no implementada:', action.type);
+  }
+}
+
+/**
+ * Ejecutar acción de redo (llamado desde main process)
+ */
+function executeRedoAction(action) {
+  switch (action.type) {
+    case 'add-to-timeline':
+      // Restaurar clip al timeline
+      if (action.data?.clip && action.data?.clipIndex !== undefined) {
+        timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
+        renderTimeline();
+      }
+      break;
+    case 'remove-from-timeline':
+      // Remover clip del timeline
+      if (action.data?.clipIndex !== undefined) {
+        timelineClips.splice(action.data.clipIndex, 1);
+        renderTimeline();
+      }
+      break;
+    case 'reorder-timeline':
+      // Aplicar nuevo orden
+      if (action.data?.newOrder) {
+        timelineClips = [...action.data.newOrder];
+        renderTimeline();
+      }
+      break;
+    case 'import-media':
+      // Restaurar archivos importados
+      if (action.data?.files) {
+        mediaLibrary.push(...action.data.files);
+        renderMediaLibrary();
+      }
+      break;
+    default:
+      console.log('Acción de redo no implementada:', action.type);
   }
 }
 

@@ -37,7 +37,14 @@ const BMIC = require('./bmic');
 const ProjectManager = require('./projectManager');
 const CodecManager = require('./codecManager');
 
-// Módulos de fases (v1.1+)
+// Utilidades de Media
+const WaveformGenerator = require('./waveformGenerator');
+const ThumbnailGenerator = require('./thumbnailGenerator');
+
+// Sistema de Historial
+const HistoryManager = require('./historyManager');
+
+// M?dulos de fases (v1.1+)
 const Phases = require('./phases');
 
 module.exports = {
@@ -64,7 +71,14 @@ module.exports = {
   ProjectManager,
   CodecManager,
   
-  // Módulos de fases - organizados por fase
+  // Utilidades de Media
+  WaveformGenerator,
+  ThumbnailGenerator,
+  
+  // Sistema de Historial
+  HistoryManager,
+  
+  // M?dulos de fases - organizados por fase
   Phases,
   
   // Módulos de Fase 1 (v1.1 - v1.3) - acceso directo

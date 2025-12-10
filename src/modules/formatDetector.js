@@ -62,7 +62,14 @@ class FormatDetector {
         height: info.video.height,
         resolution: `${info.video.width}x${info.video.height}`,
         fps: info.video.fps,
-        bitrate: info.video.bitrate
+        bitrate: info.video.bitrate,
+        // HDR metadata
+        colorPrimaries: info.video.colorPrimaries,
+        colorTransfer: info.video.colorTransfer,
+        colorSpace: info.video.colorSpace,
+        profile: info.video.profile,
+        pixelFormat: info.video.pixelFormat,
+        isHdr: this.detectHdr(info.video)
       } : null,
       audio: info.audio ? {
         codec: info.audio.codec,
@@ -72,6 +79,36 @@ class FormatDetector {
       } : null,
       isSupported: this.isSupported(ext, info)
     };
+  }
+
+  /**
+   * Detectar si el video es HDR basado en metadatos de color
+   * @param {Object} video - Información del stream de video
+   * @returns {boolean}
+   */
+  detectHdr(video) {
+    if (!video) return false;
+    
+    // HDR transfer functions
+    const hdrTransfers = ['smpte2084', 'arib-std-b67', 'smpte428', 'bt2020-10', 'bt2020-12'];
+    // HDR color primaries
+    const hdrPrimaries = ['bt2020'];
+    // HDR pixel formats (10-bit or higher)
+    const hdrPixelFormats = ['yuv420p10le', 'yuv420p10be', 'yuv422p10le', 'yuv444p10le', 'p010le', 'p010be'];
+    
+    const transfer = video.colorTransfer?.toLowerCase() || '';
+    const primaries = video.colorPrimaries?.toLowerCase() || '';
+    const pixFmt = video.pixelFormat?.toLowerCase() || '';
+    
+    // HDR10, HDR10+, HLG detection
+    if (hdrTransfers.some(t => transfer.includes(t))) return true;
+    if (hdrPrimaries.some(p => primaries.includes(p))) return true;
+    if (hdrPixelFormats.some(f => pixFmt === f)) return true;
+    
+    // Dolby Vision detection (profile in codec name)
+    if (video.profile?.toLowerCase().includes('dolby')) return true;
+    
+    return false;
   }
 
   /**

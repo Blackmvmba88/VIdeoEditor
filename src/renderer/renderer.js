@@ -341,42 +341,61 @@ async function importFiles(multiple = true) {
 }
 
 /**
- * Agregar archivo multimedia a la biblioteca
+ * Función unificada para agregar archivos a la biblioteca
+ * @param {string} filePath - Ruta del archivo
+ * @param {Object} preloadedInfo - Info precargada (opcional, del escaneo de carpeta)
+ * @returns {boolean} - true si se agregó exitosamente
  */
-async function addMediaFile(filePath) {
-  // Verificar si ya está importado
-  if (mediaLibrary.find(f => f.path === filePath)) {
-    showNotification('File already imported', 'warning');
-    return;
+async function addMediaFileUnified(filePath, preloadedInfo = null) {
+  // Verificar duplicados
+  if (mediaLibrary.some(f => f.path === filePath)) {
+    return false;
   }
 
   setStatus('Analyzing media...');
 
   try {
-    const result = await window.videoEditorAPI.getVideoInfo(filePath);
-
-    if (result.success) {
-      const mediaItem = {
-        id: generateId(),
-        path: filePath,
-        name: filePath.split(/[\\/]/).pop(),
-        info: result.info,
-        thumbnail: null
-      };
-
-      mediaLibrary.push(mediaItem);
-      renderMediaLibrary();
-      updateFileCount();
-      updateExportButton();
-      setStatus(`Imported: ${mediaItem.name}`);
-
-      // Agregar automáticamente a línea de tiempo
-      addToTimeline(mediaItem);
-    } else {
-      showNotification(`Failed to import: ${result.error?.message || 'Unknown error'}`, 'error');
+    // Usar info precargada o solicitar nueva
+    let info = preloadedInfo?.info;
+    if (!info) {
+      const result = await window.videoEditorAPI.getVideoInfo(filePath);
+      if (!result.success) {
+        showNotification(`Error: ${result.error?.message || 'Unknown'}`, 'error');
+        return false;
+      }
+      info = result.info;
     }
+
+    const mediaItem = {
+      id: generateId(),
+      path: filePath,
+      name: preloadedInfo?.name || filePath.split(/[\\/]/).pop(),
+      info,
+      duration: info.duration || preloadedInfo?.duration || 0,
+      thumbnail: null
+    };
+
+    mediaLibrary.push(mediaItem);
+    renderMediaLibrary();
+    updateFileCount();
+    updateExportButton();
+    setStatus(`Imported: ${mediaItem.name}`);
+    addToTimeline(mediaItem);
+    
+    return true;
   } catch (error) {
-    showNotification(`Import error: ${error.message}`, 'error');
+    console.error('Import error:', error);
+    return false;
+  }
+}
+
+/**
+ * Agregar archivo multimedia (wrapper para compatibilidad)
+ */
+async function addMediaFile(filePath) {
+  const success = await addMediaFileUnified(filePath);
+  if (!success && mediaLibrary.some(f => f.path === filePath)) {
+    showNotification('File already imported', 'warning');
   }
 }
 
@@ -1277,11 +1296,12 @@ async function loadProject(projectId) {
       currentProject = result.project;
       updateProjectName(result.project.name);
       
-      // Cargar archivos del proyecto en la biblioteca
-      if (result.project.files && result.project.files.length > 0) {
+      // Cargar archivos del proyecto usando función unificada
+      if (result.project.files?.length > 0) {
+        clearMediaLibrary();
         for (const file of result.project.files) {
           if (file.path) {
-            await addMediaToLibrary({ path: file.path, ...file });
+            await addMediaFileUnified(file.path, file);
           }
         }
       }
@@ -1376,70 +1396,30 @@ async function scanFolderForMedia() {
     setStatus(`Escaneando carpeta: ${folderPath}...`);
     showNotification('Escaneando carpeta...', 'info');
     
-    const result = await window.videoEditorAPI.scanFolder({
-      folderPath,
-      recursive: true
-    });
+    const result = await window.videoEditorAPI.scanFolder({ folderPath, recursive: true });
     
-    if (result.success && result.files.length > 0) {
-      // Agregar archivos encontrados a la biblioteca
-      for (const file of result.files) {
-        await addMediaToLibrary(file);
-      }
-      
-      showNotification(`${result.files.length} archivos encontrados`, 'success');
-      setStatus(`${result.files.length} archivos importados de ${folderPath}`);
-    } else if (result.files.length === 0) {
-      showNotification('No se encontraron archivos de video en la carpeta', 'info');
-    } else {
+    if (!result.success) {
       showNotification('Error al escanear carpeta', 'error');
+      return;
     }
+    
+    if (result.files.length === 0) {
+      showNotification('No se encontraron archivos de video', 'info');
+      return;
+    }
+    
+    // Importar archivos encontrados usando función unificada
+    let imported = 0;
+    for (const file of result.files) {
+      const success = await addMediaFileUnified(file.path, file);
+      if (success) imported++;
+    }
+    
+    showNotification(`${imported} archivos importados`, 'success');
+    setStatus(`${imported} archivos de ${folderPath}`);
   } catch (error) {
     console.error('Error escaneando carpeta:', error);
     showNotification('Error al escanear carpeta', 'error');
-  }
-}
-
-/**
- * Agregar archivo de medios a la biblioteca
- */
-async function addMediaToLibrary(file) {
-  // Verificar si ya existe
-  if (mediaLibrary.some(m => m.path === file.path)) {
-    return;
-  }
-  
-  try {
-    // Obtener información del codec si está disponible
-    let codecInfo = {};
-    if (window.videoEditorAPI.codecGetInfo) {
-      try {
-        const infoResult = await window.videoEditorAPI.codecGetInfo(file.path);
-        if (infoResult.success) {
-          codecInfo = infoResult.info;
-        }
-      } catch (err) {
-        console.log('No se pudo obtener info de codec:', err);
-      }
-    }
-    
-    // Crear entrada de medios
-    const mediaItem = {
-      id: `media-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      path: file.path,
-      name: file.name || file.path.split('/').pop(),
-      duration: file.duration || codecInfo.duration || 0,
-      width: file.width || codecInfo.width || 0,
-      height: file.height || codecInfo.height || 0,
-      codec: codecInfo.videoCodec || 'Desconocido',
-      size: file.size || codecInfo.size || 0
-    };
-    
-    mediaLibrary.push(mediaItem);
-    renderMediaLibrary();
-    updateFileCount();
-  } catch (error) {
-    console.error('Error agregando archivo a biblioteca:', error);
   }
 }
 

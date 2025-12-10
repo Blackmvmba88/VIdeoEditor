@@ -65,6 +65,36 @@ function sendProgress(data) {
 }
 
 /**
+ * Helper para crear handlers IPC con manejo de errores uniforme
+ * @param {Function} handler - Funci?n async que procesa la solicitud
+ * @returns {Function} - Handler envuelto con manejo de errores
+ */
+function createIpcHandler(handler) {
+  return async (event, ...args) => {
+    try {
+      const result = await handler(event, ...args);
+      return { success: true, ...result };
+    } catch (error) {
+      const handledError = errorHandler.handle(error);
+      return { success: false, error: handledError.toJSON() };
+    }
+  };
+}
+
+/**
+ * Helper simplificado para handlers sin resultado complejo
+ */
+function createSimpleHandler(handler) {
+  return async (event, ...args) => {
+    try {
+      return await handler(event, ...args);
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  };
+}
+
+/**
  * Crear ventana principal
  */
 function createWindow() {

@@ -430,11 +430,11 @@ function renderMediaLibrary() {
     el.innerHTML = `
       <div class="media-thumbnail" data-clip-id="${item.id}">
         ${hasThumbnail 
-          ? `<img src="${item.thumbnail.dataUrl}" alt="${item.name}">`
-          : `<svg viewBox="0 0 24 24" width="24" height="24">
+    ? `<img src="${item.thumbnail.dataUrl}" alt="${item.name}">`
+    : `<svg viewBox="0 0 24 24" width="24" height="24">
               <path fill="currentColor" d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
             </svg>`
-        }
+}
       </div>
       <div class="media-info">
         <div class="media-name">${item.name}</div>
@@ -1834,41 +1834,41 @@ function pushToHistory(type, description, data) {
  */
 function executeUndoAction(action) {
   switch (action.type) {
-    case 'add-to-timeline':
-      // Remover clip del timeline
-      if (action.data?.clipIndex !== undefined) {
-        timelineClips.splice(action.data.clipIndex, 1);
-        renderTimeline();
-      }
-      break;
-    case 'remove-from-timeline':
-      // Restaurar clip al timeline
-      if (action.data?.clip && action.data?.clipIndex !== undefined) {
-        timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
-        renderTimeline();
-      }
-      break;
-    case 'reorder-timeline':
-      // Restaurar orden anterior
-      if (action.data?.previousOrder) {
-        timelineClips = [...action.data.previousOrder];
-        renderTimeline();
-      }
-      break;
-    case 'import-media':
-      // Remover archivos importados
-      if (action.data?.files) {
-        for (const file of action.data.files) {
-          const index = mediaLibrary.findIndex(m => m.path === file.path);
-          if (index !== -1) {
-            mediaLibrary.splice(index, 1);
-          }
+  case 'add-to-timeline':
+    // Remover clip del timeline
+    if (action.data?.clipIndex !== undefined) {
+      timelineClips.splice(action.data.clipIndex, 1);
+      renderTimeline();
+    }
+    break;
+  case 'remove-from-timeline':
+    // Restaurar clip al timeline
+    if (action.data?.clip && action.data?.clipIndex !== undefined) {
+      timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
+      renderTimeline();
+    }
+    break;
+  case 'reorder-timeline':
+    // Restaurar orden anterior
+    if (action.data?.previousOrder) {
+      timelineClips = [...action.data.previousOrder];
+      renderTimeline();
+    }
+    break;
+  case 'import-media':
+    // Remover archivos importados
+    if (action.data?.files) {
+      for (const file of action.data.files) {
+        const index = mediaLibrary.findIndex(m => m.path === file.path);
+        if (index !== -1) {
+          mediaLibrary.splice(index, 1);
         }
-        renderMediaLibrary();
       }
-      break;
-    default:
-      console.log('Acción de undo no implementada:', action.type);
+      renderMediaLibrary();
+    }
+    break;
+  default:
+    console.log('Acción de undo no implementada:', action.type);
   }
 }
 
@@ -1877,36 +1877,36 @@ function executeUndoAction(action) {
  */
 function executeRedoAction(action) {
   switch (action.type) {
-    case 'add-to-timeline':
-      // Restaurar clip al timeline
-      if (action.data?.clip && action.data?.clipIndex !== undefined) {
-        timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
-        renderTimeline();
-      }
-      break;
-    case 'remove-from-timeline':
-      // Remover clip del timeline
-      if (action.data?.clipIndex !== undefined) {
-        timelineClips.splice(action.data.clipIndex, 1);
-        renderTimeline();
-      }
-      break;
-    case 'reorder-timeline':
-      // Aplicar nuevo orden
-      if (action.data?.newOrder) {
-        timelineClips = [...action.data.newOrder];
-        renderTimeline();
-      }
-      break;
-    case 'import-media':
-      // Restaurar archivos importados
-      if (action.data?.files) {
-        mediaLibrary.push(...action.data.files);
-        renderMediaLibrary();
-      }
-      break;
-    default:
-      console.log('Acción de redo no implementada:', action.type);
+  case 'add-to-timeline':
+    // Restaurar clip al timeline
+    if (action.data?.clip && action.data?.clipIndex !== undefined) {
+      timelineClips.splice(action.data.clipIndex, 0, action.data.clip);
+      renderTimeline();
+    }
+    break;
+  case 'remove-from-timeline':
+    // Remover clip del timeline
+    if (action.data?.clipIndex !== undefined) {
+      timelineClips.splice(action.data.clipIndex, 1);
+      renderTimeline();
+    }
+    break;
+  case 'reorder-timeline':
+    // Aplicar nuevo orden
+    if (action.data?.newOrder) {
+      timelineClips = [...action.data.newOrder];
+      renderTimeline();
+    }
+    break;
+  case 'import-media':
+    // Restaurar archivos importados
+    if (action.data?.files) {
+      mediaLibrary.push(...action.data.files);
+      renderMediaLibrary();
+    }
+    break;
+  default:
+    console.log('Acción de redo no implementada:', action.type);
   }
 }
 

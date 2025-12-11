@@ -44,6 +44,9 @@ const ThumbnailGenerator = require('./thumbnailGenerator');
 // Sistema de Historial
 const HistoryManager = require('./historyManager');
 
+// Reencuadre Inteligente
+const SmartReframe = require('./smartReframe');
+
 // M?dulos de fases (v1.1+)
 const Phases = require('./phases');
 
@@ -77,6 +80,9 @@ module.exports = {
   
   // Sistema de Historial
   HistoryManager,
+  
+  // Reencuadre Inteligente
+  SmartReframe,
   
   // M?dulos de fases - organizados por fase
   Phases,

@@ -34,6 +34,8 @@ const Phase2 = require('./phase2');
 const Phase3 = require('./phase3');
 const Phase4 = require('./phase4');
 const Phase5 = require('./phase5');
+const Phase6 = require('./phase6');
+const Phase7 = require('./phase7');
 
 module.exports = {
   Phase1,
@@ -41,6 +43,8 @@ module.exports = {
   Phase3,
   Phase4,
   Phase5,
+  Phase6,
+  Phase7,
   
   // Re-exportar todos los módulos de Fase 1 a nivel superior por conveniencia
   ...Phase1,
@@ -55,5 +59,11 @@ module.exports = {
   ...Phase4,
   
   // Re-exportar todos los módulos de Fase 5 a nivel superior por conveniencia
-  ...Phase5
+  ...Phase5,
+  
+  // Re-exportar todos los módulos de Fase 6 a nivel superior por conveniencia
+  ...Phase6,
+  
+  // Re-exportar todos los módulos de Fase 7 a nivel superior por conveniencia
+  ...Phase7
 };

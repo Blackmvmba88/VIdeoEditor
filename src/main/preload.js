@@ -46,7 +46,6 @@ contextBridge.exposeInMainWorld('videoEditorAPI', {
   exportWithPreset: (params) => ipcRenderer.invoke('export-preset', params),
   exportCustom: (params) => ipcRenderer.invoke('export-custom', params),
   exportMultiplePlatforms: (params) => ipcRenderer.invoke('export-multiple', params),
-  generateThumbnail: (params) => ipcRenderer.invoke('generate-thumbnail', params),
   estimateSize: (params) => ipcRenderer.invoke('estimate-size', params),
 
   // Presets
